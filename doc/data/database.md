@@ -47,6 +47,17 @@ docker compose up -d
 docker compose logs server --tail 50             # 确认重新导入完成、无 ERROR
 ```
 
+## 版本与溯源
+
+`db/*.sql.gz` 是 2006 年那代服务端的运行库转储，**不是官方 SDE，也没有 build/版本列**
+（`schema_migrations` 为空，dump 是近年用 PostgreSQL 16.15 重新导出的）。内容锚点显示它是
+RMR/Blood 前后的数据，但不能证明就是 build 3913；详见
+[`doc/data/provenance-3913.md`](provenance-3913.md)。
+
+- 改 `db/` 或客户端前后各跑一次 `tools/data-provenance/provenance.py manifest --verify`
+  （基线 `tools/data-provenance/manifest-3913.json`）。
+- 数据与客户端冲突时以客户端字节码/行为为准；新增数据后用 `provenance.py check` 核对消息键。
+
 ## 修改表结构的规则
 
 - 零售转储表结构是权威；新增列/表必须给出理由与零售依据，并同步更新本文档与相关代码。

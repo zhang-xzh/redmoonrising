@@ -1,0 +1,2586 @@
+{
+ "client": "M:\\EVE-LOCAL\\inputs\\EVE-Online-3913",
+ "db": "M:\\EVE-LOCAL\\worktrees\\wt-rmr-data-provenance\\db",
+ "files": [
+  {
+   "group": "client",
+   "path": "client/boot.ini",
+   "size": 494,
+   "sha256": "a4ab60a0629537e605303d0f32be77e0f50762f2142e133115cb60d6378da6c1"
+  },
+  {
+   "group": "client",
+   "path": "client/eve.exe",
+   "size": 45056,
+   "sha256": "a21a0a3255ee9560e7ee5a2753120898c6146268219f23ce35b54064ac84bcb2"
+  },
+  {
+   "group": "client",
+   "path": "client/script/compiled.code",
+   "size": 7930596,
+   "sha256": "daa5eae3f8f7695fc36b8c095709613f2f4b156916f85780e068e09851d52a3b"
+  },
+  {
+   "group": "client",
+   "path": "client/script/compiled.code.zh-prev-20261101-194509",
+   "size": 7926678,
+   "sha256": "04806579d8d4e37722ccca2010fef87084ead67ea431d1a791328cdd6733a589"
+  },
+  {
+   "group": "client",
+   "path": "client/script/run.py",
+   "size": 315,
+   "sha256": "2236cea6ac287415154ce90ab259607f207b31a03a32a5e59dccd358e027581a"
+  },
+  {
+   "group": "client",
+   "path": "client/script/common/net/systemErrorReport.html",
+   "size": 5437,
+   "sha256": "ef25686f05cd97bb7491299758b914e1570da5625e635dfe4ab09fcd60d85a91"
+  },
+  {
+   "group": "client",
+   "path": "client/script/sys/autoexec.py",
+   "size": 8977,
+   "sha256": "64664ab9ee4f5bbf0fe90f55c256de10d4f5f5350a3d4b53dab9c5952ceb2192"
+  },
+  {
+   "group": "client",
+   "path": "client/script/sys/strings.txt",
+   "size": 984,
+   "sha256": "6f830fff4eff1c39dcde2e5986b6249e14d841daca3cb57e846dd99c3c50b9a7"
+  },
+  {
+   "group": "client",
+   "path": "client/script/ui/css/agentconvo.css",
+   "size": 916,
+   "sha256": "b2e4a41a466b74ca528a9c951de4c91bf76bf07b33f1755f4a189829a24e2e77"
+  },
+  {
+   "group": "client",
+   "path": "client/script/ui/css/agentoffer.css",
+   "size": 916,
+   "sha256": "b2e4a41a466b74ca528a9c951de4c91bf76bf07b33f1755f4a189829a24e2e77"
+  },
+  {
+   "group": "client",
+   "path": "client/script/ui/css/dungeontm.css",
+   "size": 705,
+   "sha256": "e1b901172c309fa5255927b83ca9e39daa075c14cbefc66a7213fbca55d5009b"
+  },
+  {
+   "group": "client",
+   "path": "client/script/ui/css/missionjournal.css",
+   "size": 826,
+   "sha256": "f13a7a61f572a44ecaded709bcfc11e8dba175df2d9a5f0a81e97562a33ce4ad"
+  },
+  {
+   "group": "client",
+   "path": "client/script/ui/css/tutorial.css",
+   "size": 866,
+   "sha256": "a115a1b75bc986f797c72eccf166a40366ce74cd59e8dced62e92a34228b230d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/aid.txt",
+   "size": 1,
+   "sha256": "5feceb66ffc86f38d952786c6d696c79c2dbc239dd4e91b46729d73a27fb57e9"
+  },
+  {
+   "group": "client",
+   "path": "client/res/dxversupport.html",
+   "size": 563,
+   "sha256": "5f8010ec441069e7608b2e65dcceb58ad31f0e0932f1ed27fcb8023c69694286"
+  },
+  {
+   "group": "client",
+   "path": "client/res/introMovie.txt",
+   "size": 9719,
+   "sha256": "5a206167d2c97eec5e4b0d36c30f8d3a25283895021a97d87c4cdb11c09339b9"
+  },
+  {
+   "group": "client",
+   "path": "client/res/splash.bmp",
+   "size": 993656,
+   "sha256": "49326f6727ef30e47fbe086fa178c19d3cb4f441d7ad607a8f50317538783c0a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/splatt2.jpg",
+   "size": 156520,
+   "sha256": "00d24071163b8b7e77b70a095f3db0d1c4c6e871efeb9e9bcdc166c59f58aa1d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.de.txt",
+   "size": 162,
+   "sha256": "bb438a6a294277ecfc8d9b8ec62e513adac78f4c91c38bae5f205eecd543fbdd"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.es.txt",
+   "size": 185,
+   "sha256": "923967ab8ac9a58b59f93f5cd5f4b5ff363aca30d45de6ec38b9acf8fe8c1f47"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.fr.txt",
+   "size": 170,
+   "sha256": "36b101451e5720f2b0979c334adcfb71aa2777e56cea10a31040d9554224602a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.is.txt",
+   "size": 1376,
+   "sha256": "2b91ab06eac5518d9a36d56955fdd270da654864e0b7714e983196333379293f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.it.txt",
+   "size": 154,
+   "sha256": "149ed56c09751256b0a5b12162e448b9432326926ed2f2fbcabcaf009fbd5823"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.ja.txt",
+   "size": 112,
+   "sha256": "09703132dbb48f043a16203a2b21a43a890ca51fe7e09a6043cca9fc46576d7d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.ko.txt",
+   "size": 182,
+   "sha256": "d4eb343d267a126c9ea4d729be767878735c0dae252dbf424a7feb109393bd8f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.pt.txt",
+   "size": 158,
+   "sha256": "7f2e7867bc609f026ee5ce5f2e2496d3f069d76d4a0494feb3c3af3c989fbb4f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.ru.txt",
+   "size": 314,
+   "sha256": "abaf43da3d498f97d61841dcba5c5b8673dc15569e78a5038e6c7266ea299347"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.txt",
+   "size": 20935,
+   "sha256": "a507e712fea8e699452a64896d161a76b08f854fc701dd6d48aaa149f49b6a79"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/messages.zh.txt",
+   "size": 142,
+   "sha256": "06fbe971884425842862f547eeb580727a51d1e57d2ec4de62064e20ae0297b7"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/Font/evesansmm.pfb",
+   "size": 135921,
+   "sha256": "e6d695db2e8f26ae616c5fc79d34a91238c99385c327471fdab29741d8d479c9"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/6x10.pbm",
+   "size": 1237,
+   "sha256": "bb7267cdf09c4a4346f2903200b29034803c81b6145e46d20eed2dc1b7e5081e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/6x10.pil",
+   "size": 5143,
+   "sha256": "86b6d6d95235310af5b2668079cc1af9d629c9c1155851343128b7ccec9c6813"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/6x13.pbm",
+   "size": 1369,
+   "sha256": "06b37d852097899f365d6fc63081c0e5fd9045ed6ceec76e4908d4c2ad00bc45"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/6x13.pil",
+   "size": 5143,
+   "sha256": "8d84e494d74656d5cb4584fc4665ef928c3f8c5e339eb8b6a15347bbd6ddd961"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/8x13.pbm",
+   "size": 1459,
+   "sha256": "66ac8935dfee8f68978b23d44b7d1e746f9c648c7239beaa911cf8bcb1015f1e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/8x13.pil",
+   "size": 5143,
+   "sha256": "40470a0509d8881566f41b674889dbdf403802823b507cf1a333bd2fdd12527e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/Arial_8_100.pbm",
+   "size": 1263,
+   "sha256": "b059153542e14353c493f3d7cfc5ae7730b5982fd8ec374132d9099fd3402e6a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/Arial_8_100.pil",
+   "size": 5143,
+   "sha256": "9ed124d8e92bc62b8fca312445d9a6ad723ce5f0f5723435b33c29e3c7acb8db"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/luRS12.pbm",
+   "size": 1993,
+   "sha256": "fe91a5ffa0951d51bbcf665903c2c4c77063d7e9e00957a2486594b9373d50e8"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/luRS12.pil",
+   "size": 5143,
+   "sha256": "87b4ddcddaf38aaf19919881962931ab4ecc0e175d05124233fcb014fd08e7b6"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/luRS14.pbm",
+   "size": 2598,
+   "sha256": "c718b436e516a9b6510579d1128d003aa8224f8939a3ca06a145ee803dee4454"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/luRS14.pil",
+   "size": 5143,
+   "sha256": "e443927065081d0c5612e1e8052a1230ba1a5bc1643d824623931d732398501e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/timB18.pbm",
+   "size": 5069,
+   "sha256": "4485b88fe84fa9354cb727ab872f41fc2beb1a9af143fab35972a994f0de6108"
+  },
+  {
+   "group": "client",
+   "path": "client/res/common/pilfonts/timB18.pil",
+   "size": 5143,
+   "sha256": "e695f38d15a8a57fd76ed33d07bb1024daa3bfa330e5d20f9ffaf4224cfd1f9c"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/addressbook.html",
+   "size": 922,
+   "sha256": "d4500c11c69cae6686bba22f2460ba4d79dc0ee89190dafedc623b2195cd9e00"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/agents.html",
+   "size": 886,
+   "sha256": "e189584826cc3bb8b5c696649f9e8a88447d2cb1e4d22913ad8e5eb2a2670232"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/assets.html",
+   "size": 452,
+   "sha256": "3f5709602be9e9d71cfc847ec5526a311232fc4389c3d422969588747a719392"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/basic-movement.html",
+   "size": 1363,
+   "sha256": "71483376fbb41deee283bc0bb040b3fe6ac6cff6bcc2839efe5a9b7494cda84d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/bookmarks.html",
+   "size": 597,
+   "sha256": "b6e273e56063fbf5582e26f7fb15b69ed2933a4b253130486b7d84db2571b9d6"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/browser.html",
+   "size": 374,
+   "sha256": "8853a89b3467d087d7b89facf030c2233fb9b2589d16e3e634ead4f5daf7ab58"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/buying-selling.html",
+   "size": 1378,
+   "sha256": "cc6444a606647bee8134b386e75f1ad4542dbad7ae85af92f2e46f3c379bc649"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/cargo-hold.html",
+   "size": 807,
+   "sha256": "06b2d3f69ef710b36c31e7740d410247224e6195a190a1a3c497a6bc1d9908cb"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/categories.html",
+   "size": 1127,
+   "sha256": "9de22c14612241b58f4646cb18c9efef5c1f00f04d85f4ba771e6ac6086aa336"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/channels.html",
+   "size": 562,
+   "sha256": "f94d897759e81063caa57aa2c279f02dcb617f6886ce455c6dada6f7f91e4a53"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/charsheet.html",
+   "size": 1300,
+   "sha256": "e94c110df356a333a3bfc78c16117e5f3135a0cdb947a9e54b1affd00ee8ddb8"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/control-display.html",
+   "size": 1262,
+   "sha256": "b4dec7d64951e019d0b7f321d16bde5f15ac76548424c6f9778a7c99473b2533"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/corp.html",
+   "size": 643,
+   "sha256": "58d235830344e4698fdb0b392abbc3be17f34c898c697f2df003dc13bd0cb8f8"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/dock.html",
+   "size": 611,
+   "sha256": "87d90719c44bfc0e3efaf867bdf745ac8d3b91c6fce8a1bfe09bb5cdc0c69451"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/eject.html",
+   "size": 674,
+   "sha256": "d1f947777ec7f1ec6c8ca8c0b81b81a6d44f2317c662e3a9c896fc7eb776cc96"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/factories.html",
+   "size": 1438,
+   "sha256": "d7bfb000a8227488dccbc136e0a1587474a65eace23948ca46903b0e3e9874dc"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/fitting.html",
+   "size": 823,
+   "sha256": "a5783356169c49bdb650efe9983a1202c346168ec8cc6258f0f9584ad39e1c4d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/get-help.html",
+   "size": 898,
+   "sha256": "7aa0355e81c061cc22e807d2f2b5a387d90e0a2c74fb85441d2759ff4b74f90f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/guests.html",
+   "size": 662,
+   "sha256": "d3cbebcec895866b425866cf4139190b5afe759ed82b36092246deb2ebca27b3"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/help-index.html",
+   "size": 382,
+   "sha256": "261b31cbb53716f1aaf351f4c7252acd9c7c239da2cc6938c34b7876a1ec198e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/inbox.html",
+   "size": 467,
+   "sha256": "f3348a35b1c873b994144d90bc152426749b539c64aa380ed98d112304c873c3"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/invite.html",
+   "size": 722,
+   "sha256": "773832275e89833d21f62f7d554d622964aab38c2ad3b1dbb7f0bc5ce9846219"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/journal.html",
+   "size": 403,
+   "sha256": "faf2fa1a410ecc5c8b2bf9daec63eee22fb435e68fe4d3acf9b6cb66d4abcecf"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/jukebox.html",
+   "size": 283,
+   "sha256": "5333a010d4059e8990a2202d369c578888215be7a32fdaabf49d1ffb6f51f881"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/jump.html",
+   "size": 538,
+   "sha256": "f6bdea1458ae38b229dfed4f556b3dabb441c92e134082da96bdfc40a6c60f19"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/map.html",
+   "size": 915,
+   "sha256": "59fc7bdcf0dd2a369f89afa2bdb4108e55e41e4cbc30f2a62f7f3ad50fb72b8b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/market.html",
+   "size": 1046,
+   "sha256": "bd9e1380dfa4346406f449eb7cd2a2c39401999afa9849c465c3ba75d9fa477e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/medical.html",
+   "size": 417,
+   "sha256": "76c8847fe29b3f056cf4cb0263b4423af29c7f04209ec1d08d7af5de03c1af38"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/mining-index.html",
+   "size": 1913,
+   "sha256": "c9397f6af659ea56aca209125a5a0b6b5b5318f1efa4ec79734b4f886449ffa0"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/misc-panels.html",
+   "size": 800,
+   "sha256": "436b76c4405b1b17f390ccd7ff727a8a44a368453f03a7e18d48b85269543ec8"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/missions.html",
+   "size": 852,
+   "sha256": "765c73f41919a60bc721677807dceea735db2dc94037e8e90ba44b015cf54f6f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/module-activation.html",
+   "size": 1172,
+   "sha256": "e69382b3d7dfdcad7752a57a7b3191d219e1b88a70ac6e2031e086fc1e9e4ec9"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/more-neocom.html",
+   "size": 1382,
+   "sha256": "6e6b1d2e24d206003b092d05c4b3405f006d979e9190689837f3454d889a122b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/movement.html",
+   "size": 1016,
+   "sha256": "ca9eacfef90d378271cf98b21477e84b4d99ff2faebc76f96ec9e354958bfeff"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/neocom.html",
+   "size": 1129,
+   "sha256": "177e503b6a12ce82dca9700356e4473b70b1797de843835c466b57873b398e07"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/news.html",
+   "size": 512,
+   "sha256": "c7e44f19699a4e2993293b5ff928c483e9d2e3dac52a9552ffc22b808507f699"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/offices.html",
+   "size": 588,
+   "sha256": "0466faae52678d5c79dfc0a2ffd52fc92f7304a18c729f93bee10134f657de80"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/powerslots.html",
+   "size": 713,
+   "sha256": "1bc450d124da6ef479fed5ad57720cf74d6d3d0c0603c9aff73d2807d3545a3c"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/radar.html",
+   "size": 583,
+   "sha256": "a4026cbdf63fc48f24fb864a303fe8ccd8ef0a587d263b835d2e4b0eebcd8577"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/repair.html",
+   "size": 605,
+   "sha256": "09e9b003d53ba2e41dbdb8ebe4c7d7fdc9a8328ad2d0440bfde203b2c416e44b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/reprocess.html",
+   "size": 1252,
+   "sha256": "386b8551de807b7a2e4023575ba05af05aaeae19d2f00a7ef147b4e85a782b43"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/security-status.html",
+   "size": 1580,
+   "sha256": "b29c9458c1c45c898af4a902e59032fefad8b23ab0b880404973898a9d957c0f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/self-destruct.html",
+   "size": 581,
+   "sha256": "0446a773d57bf4ece18fa34b28e17632cef17fda043ba3c3ee87edf28f6e55aa"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/space-index.html",
+   "size": 1831,
+   "sha256": "02bd2492350557364aea4b557f8d6c20ecf794a8ebe12d3df573e8ae393b0ff1"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/station-index.html",
+   "size": 1244,
+   "sha256": "6c638059e43d19256c54738bcd763e188a74ef35e1d2b6df105f34d67532a31c"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/target-lock.html",
+   "size": 569,
+   "sha256": "327211903b4304b6470651967318afd29afd126ba2d8009128c82a90b04009f5"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/wallet.html",
+   "size": 548,
+   "sha256": "5a5d451f1abb8432bddd03445cd21c6f805957973367aa22315324c4cae36f7f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/align.html",
+   "size": 651,
+   "sha256": "5302520b1058876a2cd78e9811a7cfe4d64da66c926e6b6f5b45f3f25774b256"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/chowner.html",
+   "size": 674,
+   "sha256": "8c1c679cd07bc0f45a1a1e702827c132ea8d7c34fb6524731ef594c6540e1c4c"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/cloak.html",
+   "size": 400,
+   "sha256": "7c46102a8f10a1f7d396f18f6b47747736e42d62f56a57c230f2b983a68c615e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/dogma.html",
+   "size": 979,
+   "sha256": "b9d1051ba27c6bd38f2a350d188d75d0419ad59fd966229d9f36fd8e36e767c0"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/dungeons.html",
+   "size": 3264,
+   "sha256": "2a386c0de08e59363f9eb52d5fdda1898a1ce58ca473daa6ecaa37789fe75029"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/entity.html",
+   "size": 3956,
+   "sha256": "a0b3961becc2731aad84d81de4a99fcf9e94eb47a9aeaf4bf07a760b6454be34"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/ex_tr.html",
+   "size": 1273,
+   "sha256": "8018c30b91c16dd346ce77c0a5f06ac683635e351ef50401e3061c1216e7bf3a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/fetch.html",
+   "size": 431,
+   "sha256": "73bab5c66d32a01c4291493f3dd4c85abe207832777b61a6d8e6a9a5efdc54f1"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/fit.html",
+   "size": 558,
+   "sha256": "d6dcdaae32dd487d6ac7019a398801537b7857cae3e720394e30399c66c2537e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/fly.html",
+   "size": 854,
+   "sha256": "2c9c2ae73c815b897c53f0f7f2485e9c9918911d02d40ce26bdc70e79df35f2a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/freeze.html",
+   "size": 405,
+   "sha256": "4f77da63c9d65f944c88341756e0f6ddc982de6264e662ccc95c4bd9ae9a4bc7"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/gag.html",
+   "size": 496,
+   "sha256": "eabcf993d9fa9a07dbfa9dfa9868408958c70c9017ac82d739a815d5a6281d0d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/heal.html",
+   "size": 1122,
+   "sha256": "faebc26ac5e310f6517a1a05c75252f696e9864faf175be2398f697cbc8be305"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/help.html",
+   "size": 341,
+   "sha256": "764a161bcbd444f5317a1115701b592c0a2c105e4fa899fc6cd1fc350f0644ed"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/loadcontainer.html",
+   "size": 734,
+   "sha256": "7db0285b65ee0e0e7c37bf297b54b7956db3654f028de9669bfcb2f69b86843d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/mark.html",
+   "size": 345,
+   "sha256": "f586b3656b8346628866310b89285e65016fd51bd2f263a00d1be13ef55e5d2f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/pos.html",
+   "size": 501,
+   "sha256": "63dff7a3b6d6a99cf58fe4b880e2877ee424224047f5dc95a2babb1738320bd1"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/posatt.html",
+   "size": 1127,
+   "sha256": "a4ff832220d9869f7fb11ac9b185e6bf709206a47ae001dfcff6ef3243ad48cf"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/rename.html",
+   "size": 297,
+   "sha256": "95f9c2996bebd8e61e5859513ceaafdd5765c86f190fc9ba82f35af41f38178f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/roles.html",
+   "size": 1711,
+   "sha256": "66a6d0abb4c3a690eaee1928f6ea46b6c796527f48cc0b7bfc7ff55cb97ebff2"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/sessiondump.html",
+   "size": 450,
+   "sha256": "2ba2ae36884fa982a2a45394732040ce58af1f3846d71622acf36a419128056e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/setqty.html",
+   "size": 384,
+   "sha256": "6caf019a0d963dcff7f4d10da239b61c7cef01e5d723f25a35baf453b693e76b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/setstanding.html",
+   "size": 502,
+   "sha256": "f76f491ef8f5a8425813dc823bca7e1d89f3048870f44f8a7df4721a9da29805"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/slash.html",
+   "size": 1661,
+   "sha256": "75fd13f2930ad86c7d276ebb0720c919209aa3dbbd9b918011d3bec2fc5dbd88"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/spawn.html",
+   "size": 1228,
+   "sha256": "b581388273315d65b0c3f880ecbffbdae1c6456e3c5a8eea7ac24298c4eb0014"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/spawnn.html",
+   "size": 546,
+   "sha256": "4f13c6282cd3c25e2a3daeb4816626a3eed9bb652cee3384727e33be45649efe"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/transfer.html",
+   "size": 1212,
+   "sha256": "a08e300ca32585c3e5cfde8b1b092cb37da6e2cb27b88b8459fa2d2c2892f73d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/uncloak.html",
+   "size": 350,
+   "sha256": "5d9994e88c56337c2a38f05b4349f643ba2b9c12593a05a3db881671ddc27924"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/unfreeze.html",
+   "size": 326,
+   "sha256": "e6a569af0b3d15dc9e067b0d480848a322a16a5b0967e959cfa06ecbb27bb4b2"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/ungag.html",
+   "size": 344,
+   "sha256": "28eeb6a32a291d0a67bc46d9c3530ed2df6b05ad6d58531900dc721e7b5b3163"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/unload.html",
+   "size": 740,
+   "sha256": "7a5ec8ea06666ba21b497c05354bc9ee5ab399ca5f082e4398c702d6f6f4c5ea"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/en/slash/unspawn.html",
+   "size": 804,
+   "sha256": "627fa4d2b62df3bcde0eef99c0b5943ec87081893f250578b655ecd79ec866ab"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/addressbook.html",
+   "size": 585,
+   "sha256": "873e30ad57de13ffccf7ea935ba0be5e53b7e77676dafe40553d12cfc3b5323b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/agents.html",
+   "size": 1017,
+   "sha256": "d0f9b66485620010e785d27975eca1b8f4c32a4a0da5a038cbd12915d8e0d391"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/assets.html",
+   "size": 531,
+   "sha256": "c1b7ccf9b09b3fde4f9d6acf5e517ab2c34f4a5bb27aaf9b92d55f368cb5dc3b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/basic-movement.html",
+   "size": 1479,
+   "sha256": "67470e40e64a2f69b3cc64d406f3234bf49b452b63e7122de36ea425777c5a41"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/bookmarks.html",
+   "size": 677,
+   "sha256": "10699a7022cc89a4ad450960b7abc059adc3308e48b5d82e01ca2efbd38eaaf7"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/browser.html",
+   "size": 399,
+   "sha256": "0aa2d9908bb04da7a0fd2883498485832aceafb35f1b40b0e07378e57da0fe3a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/buying-selling.html",
+   "size": 1588,
+   "sha256": "e3eda14413a4b6bfabbb9e1ec49aed284bc25337194f90cd87eb47a3cbcb3c4b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/cargo-hold.html",
+   "size": 917,
+   "sha256": "50a3ee9c01c746863f77791137045e2167b9227c7da9f7035483c33dd5f1ef1c"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/categories.html",
+   "size": 1307,
+   "sha256": "8e9d17541331161f1c463671de9c9a24f1810a7f75e6aba1b92f551bb1f5c99a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/channels.html",
+   "size": 644,
+   "sha256": "5ecf295feac9f12e2812f6be5de0c9079b1fd832aeed54cff69fef46fd23ac09"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/charsheet.html",
+   "size": 1574,
+   "sha256": "606bc333309088e1df75fd3b33f5319c3c4fa27e5888e80ff230fb1a4744a73c"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/control-display.html",
+   "size": 1473,
+   "sha256": "db6a2dbe6e2aa942cf03011305d834035e8defa980cef8f2b62b83a16dd0c576"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/corp.html",
+   "size": 699,
+   "sha256": "49474caca88832e2e9e24b5694835938bf04c668597a3c49aafcc811420a66e2"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/dock.html",
+   "size": 762,
+   "sha256": "6e3a8f8d4901add94e498cf1f4bec860688e6fdb7da7cebe5da6d651e5d5b5e1"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/eject.html",
+   "size": 774,
+   "sha256": "3a53ed0f6718e2fc65e2e2fa3a0971d445fea9c6ef6d15662061a103facc72ed"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/factories.html",
+   "size": 1552,
+   "sha256": "d911c5e5302fb37513400a086c6536973121cb2bf58ef879ea3a505b884e7611"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/fitting.html",
+   "size": 1015,
+   "sha256": "913382d834d16e6a44ba880159fe81b6690a7258e601ff307f502b10a0d5f64f"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/get-help.html",
+   "size": 1002,
+   "sha256": "f0fb8a963d164aa4f2aa9cb4b365926a7f55458e75a1d1115b6e86f446289bf3"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/guests.html",
+   "size": 858,
+   "sha256": "c197ce0c315485681c8bf41fae82006d411660acf59c50014776b6024ea25410"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/help-index.html",
+   "size": 393,
+   "sha256": "69459477c00b144c4ff11cd1843fb60486bdb0eaec531f5403a98569ed175b17"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/inbox.html",
+   "size": 556,
+   "sha256": "eac73ef7ff332cf356848513f75b368c59559e64d1a443dec5aac7e8fccd1889"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/invite.html",
+   "size": 828,
+   "sha256": "784aeaaac7f697591de378a3a556566aa833b54ab5c444cf8ee54d5f9f344c8b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/journal.html",
+   "size": 460,
+   "sha256": "a51de78501527a450938e0fde5b5a5ea2002d4c520d4f70e919e39ba892913a5"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/jukebox.html",
+   "size": 295,
+   "sha256": "99a722ae699cb0fedf5c8ef440167cc2093b46ca7068114d3ae172c1e03ea995"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/jump.html",
+   "size": 722,
+   "sha256": "c1507fbf36ddeace0857fb4fa4e900236841a408b49669bf7a10a8c0c20c43cc"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/map.html",
+   "size": 1102,
+   "sha256": "b449aa7457bfe2a1200a7246cff18e60d89362c66b2992c620f48bb765d4d3db"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/market.html",
+   "size": 1307,
+   "sha256": "a0324f5e37e956fff553c61b8f45eb3f014195ce8d69d5b66f2e808e4fbd79fc"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/medical.html",
+   "size": 534,
+   "sha256": "17a42f13cd2c0ef8be4850d4c2f6b2fadc657e9a2063e01acaf2897b0cd2bcd6"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/mining-index.html",
+   "size": 2279,
+   "sha256": "781171da61572cc1e3644902cf5e8ef534afc3da200c04ba0d78f84e21619a8b"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/misc-panels.html",
+   "size": 880,
+   "sha256": "09056212c2bebed13a7eac7569c23d3431445cc1bfeef5c8006be85712385ff6"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/missions.html",
+   "size": 962,
+   "sha256": "0a449528a13fcc087acd730e170c92087c6c569e28fd874c85fd34e4960a10a3"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/module-activation.html",
+   "size": 1393,
+   "sha256": "08adc000555325371246fde3de0851478f83471cac3233e636c41caab1f0bc98"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/more-neocom.html",
+   "size": 1508,
+   "sha256": "5c7f179414a95cb60506047b88102255af3f022af9f61851f0426125a8f6f7eb"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/movement.html",
+   "size": 1052,
+   "sha256": "1ab1c7a8cb06acfd252346184ff7379e17ff632436b85bfbed3dc5a745e99dcf"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/neocom.html",
+   "size": 1313,
+   "sha256": "830fa53c6a2465ecf8f55242d14aeecc91adf81fd0030ba637f27b15572b0fa2"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/news.html",
+   "size": 326,
+   "sha256": "8643baf4b635010c142e5d88944073861a585104a98382aa19e925f1d9d3d867"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/offices.html",
+   "size": 591,
+   "sha256": "693d9d8f97a04850e728dfbb8bbab6230f1ad9baed167632ab7df6d42d3ae630"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/powerslots.html",
+   "size": 805,
+   "sha256": "39e2a3359db76ae36a89aeb8215f9ca7b733dda11ab6192bddea87ad321688f8"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/radar.html",
+   "size": 593,
+   "sha256": "fc803f99d1c1e41325559c548e61e60c61f9742baff947307ccb5f315aceb4ac"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/repair.html",
+   "size": 782,
+   "sha256": "0e056b89b4555c8baa954565c76cae5065e80822630a1edf88201911cce51483"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/reprocess.html",
+   "size": 1359,
+   "sha256": "0a7132fb7394e92f4a1646c52c7401cf25ec391d7cd594ef6cda004a2af0af5a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/security-status.html",
+   "size": 1687,
+   "sha256": "44151db64e774f5a73e27b2e4c948ff8fba998982126bed43790d7cf3b4b66dd"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/self-destruct.html",
+   "size": 645,
+   "sha256": "a07996fe712ac8ea83ba4f135288b4de441b70cfd9def16984b306ce853eecf7"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/space-index.html",
+   "size": 1964,
+   "sha256": "84ae84b3ba5acd033fab82530436eb75bd379eeea9e8e9a11545f1d1aa088f31"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/station-index.html",
+   "size": 1342,
+   "sha256": "93e9f85453531c9c5b651e627dca23f755376a6e4f94ffcbafc237e2d6f724f3"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/target-lock.html",
+   "size": 602,
+   "sha256": "5fd44d0c9ce7190372ca0b2341f0034e0fa5649b5d109ad104d60c774072d5fb"
+  },
+  {
+   "group": "client",
+   "path": "client/res/help/fr/wallet.html",
+   "size": 602,
+   "sha256": "7f6db43baa9eaa482bc33b3f27323af95463ab1d89d9a6dd7928936309b22e96"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/CCP_logo.jpg",
+   "size": 1497,
+   "sha256": "fa3259c5455ab7882eca2d5c62cbab1410af533feafbd1d69f1407c99edc2560"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/CCP_logo_w.png",
+   "size": 3011,
+   "sha256": "296d3c85acd930f85585379d04ee1dee8859876192984d82577e551fe94489f9"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/CS_logo.jpg",
+   "size": 2383,
+   "sha256": "5d235e393666b67cc99c290e1f00630a1d38cb0a6d4ae69e2be08bfa906fa40a"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/Community_logo.jpg",
+   "size": 1658,
+   "sha256": "4a61cfd0eaf5345678895c6ec8233130204a633df9d5eadd24dba9515b32cf2d"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/ISD_logo.jpg",
+   "size": 1747,
+   "sha256": "8001c6a627675ca0c95efaef97d0127061f5329267ee79ae45d59caf7bdad5a7"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/credits.html",
+   "size": 4447,
+   "sha256": "85f5f68207ceeffb63113969ff86033d9f593f3c8ee7cb5c50da1823bfc2c1ae"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/eula.html",
+   "size": 44422,
+   "sha256": "5335e214ced6ab870d9be32de072959959db5c28b96d99ef51d21adafb94b25e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/agents/back.gif",
+   "size": 258,
+   "sha256": "b161280d2fc4ac4f6bc068e1ad9fdb241ae37814cdba83ec0d1934f972635bde"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/agents/more.gif",
+   "size": 272,
+   "sha256": "f64acb57fd7f559fad82086a6d188ece002b126b6ce98080ce14cb039af3b54e"
+  },
+  {
+   "group": "client",
+   "path": "client/res/html/agents/say.gif",
+   "size": 252,
+   "sha256": "f3777255c06f3f33e62f8f24a7a8ae590d0df8b6628939a595766a00af3424d8"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/NetClient.dll",
+   "size": 180224,
+   "sha256": "f43143a7bc3a4a73add9680ae75045548f1058e77a5831216c537615ae6fd298"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/_PyFreeTypeP.dll",
+   "size": 450560,
+   "sha256": "bc4819305bb6f84e33e4ca2c0b5d13ff0427b855a22544df5edc5c963dbc9bfb"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/audio.dll",
+   "size": 679936,
+   "sha256": "ab02c4ca1291e3232f397e9221e80cd08f61270b4e5fb95d60ad61ff6168dcd3"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/blue.dll",
+   "size": 2334720,
+   "sha256": "9a8ec8c8f7f229fcf027a92eb44528dbc82814839cfcafee4484882a67698dc5"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/chartdir.dll",
+   "size": 1331200,
+   "sha256": "3479d867ce5488b722dfc17a161c9b818d47c13fcb0c84ba841d99ac553adda0"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/dbghelp.dll",
+   "size": 986112,
+   "sha256": "cf2647be9233f4a7248514cbd2541d5f7bebd61005bde1dca79c8e4234f53794"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/destiny.dll",
+   "size": 499712,
+   "sha256": "bb52f148b0d47ed5c7570abbed2fc8f0fdfe4955f3fd0830cd6524abf2beef5c"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/exefile.exe",
+   "size": 131072,
+   "sha256": "8d1da2ac1cd33c388e0cee61db2ddd5b9bc8a1a8b185cc438732b622d591371a"
+  },
+  {
+   "group": "client",
+   "path": "client/bin/trinity.dll",
+   "size": 3858432,
+   "sha256": "72d4f720d9dbe076346a52744925adcf437b5a10219669e932c7c7831526d0da"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/autoexec.py",
+   "size": 207,
+   "sha256": "1f4d36311c62544451c3dd95a8c396f44daaf9327f087715f5f3f3cddcef51fd"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/bluepy.py",
+   "size": 5786,
+   "sha256": "2c57b515bcf1c3019cb4be023c0da165dfc8ab43a69fc75517b06ef9bbe25f35"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/bluepy.pyo",
+   "size": 7806,
+   "sha256": "c61eea0bb7e1dffd77fbcc82df574c2ed65bd4ea51002061e8d9064994466057"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/ccp_exceptions.py",
+   "size": 3656,
+   "sha256": "7bee1aa3a3b884596f376937bd573fc3996e12669fc37067f52d947f98d189ba"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/ccp_exceptions.pyo",
+   "size": 4002,
+   "sha256": "2d70947c858c9f741e4670811550b04bd27cdaf0c0a95b2ef4ac1b42f35bce77"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/importutil.py",
+   "size": 17437,
+   "sha256": "316517081c7447ccd01538910d1b7075916c5c204b57321c51da9b50a4a7685c"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/inifile.py",
+   "size": 14811,
+   "sha256": "1b50b044a38591ccd34115d98e05bbf4d8ee4ed1a2e8eecc28a2dd0aa77016cf"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/inifile.pyo",
+   "size": 11051,
+   "sha256": "0911a53a0960a75ea8df30c12db87ac5d107bb889a3b7c5c4039bf2f5c7adbd3"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/log.py",
+   "size": 18034,
+   "sha256": "e877a6840fd9266f7167ee40db213ab453e01afbffc9df32207434788cd00bc8"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/log.pyo",
+   "size": 21689,
+   "sha256": "91683d2add0555c2448a28d7b3a46cd30412b82b153c8866265b34df26c703c2"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/nasty.py",
+   "size": 54722,
+   "sha256": "4f77f561c6fe4349dc5c3884007f5c0033753cfc8a35ea2e7a5747bf5ef6ea83"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/nasty.pyo",
+   "size": 49236,
+   "sha256": "5c1018891dd8818bfea9c9b98f92c18edb88c27b04f03b9f4a0b04896c9c850f"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/rdebug.py",
+   "size": 1782,
+   "sha256": "dc605979a0556ac025ed0ef9643554bcf54402b57681ecf6801a2fd0ebdbbe95"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/slprofile.py",
+   "size": 7162,
+   "sha256": "025fa060de0219eb873d16f71cba2ec8f686bda1917993168874a35ae0ea314f"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/slprofile.pyo",
+   "size": 8771,
+   "sha256": "bb79e68513e602899e24ca982776a078923b873dea391d0cbd25b85c465b2546"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/socket.py",
+   "size": 7716,
+   "sha256": "65471f7c4de4c3f55ef495dbd84ddb6f9bec152d6caf8949c8137f1dc169eb31"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/socket.pyo",
+   "size": 11067,
+   "sha256": "78b30a93458d29f431578cd578d7d6d71978d3ffb53ce3936bddd80da3de6e99"
+  },
+  {
+   "group": "client",
+   "path": "client/lib/triPickle.py",
+   "size": 2041,
+   "sha256": "8fbf73e168f16397b880ad66165736261c7fea09c03a968edcddd57ec512b78e"
+  },
+  {
+   "group": "client",
+   "path": "client/res.stuff",
+   "size": 81782502,
+   "sha256": "f071498905575fcb97dd4b665490504482774c74bcfec8f418a166a27de3086f"
+  },
+  {
+   "group": "client",
+   "path": "client/resCOSMOS.stuff",
+   "size": 106260095,
+   "sha256": "1cf447fb8cbca70f3dd9cf3ffa8de469c26b4b4572236f82673296cf1b3b64cb"
+  },
+  {
+   "group": "client",
+   "path": "client/resCelestialTextures.stuff",
+   "size": 82168880,
+   "sha256": "da5b18832098f868d9e5087f1c975e6f8dd3bcae83a59dc6be27b6d31a8631da"
+  },
+  {
+   "group": "client",
+   "path": "client/resDungeons.stuff",
+   "size": 204431656,
+   "sha256": "ddcf7d3c86aaa09f4039b85f9370a1dc9eb3d11e6de75f215df3656f66b25c6e"
+  },
+  {
+   "group": "client",
+   "path": "client/resFace.stuff",
+   "size": 79497606,
+   "sha256": "fa58b05a92a4bc0cf9956bd113b22a2f98c6b5242d9e7a096496fa8ed2e03749"
+  },
+  {
+   "group": "client",
+   "path": "client/resFaceTextures.stuff",
+   "size": 305984118,
+   "sha256": "8fe866bd3ea3472b3021cc4b6c2b2fa1c62c2bede99e1159f9e25789e87ebcd7"
+  },
+  {
+   "group": "client",
+   "path": "client/resMusic.stuff",
+   "size": 159067599,
+   "sha256": "d8f88e1ce4897e9c4fdd6f7762e8c59df32a13d29601ddae1b5bb0068c618ad7"
+  },
+  {
+   "group": "client",
+   "path": "client/resSND.stuff",
+   "size": 109264638,
+   "sha256": "41aaceb70651bffbae87ddc6da5b4a799df7566f2e61e1e5850b7a6a57956dd5"
+  },
+  {
+   "group": "client",
+   "path": "client/resTextures.stuff",
+   "size": 175460973,
+   "sha256": "47e650c166d85673f9cb5e4a88ac9dcaf30335c65648eaf013368cebb69c01fc"
+  },
+  {
+   "group": "client",
+   "path": "client/resui.stuff",
+   "size": 29632320,
+   "sha256": "a9ceed5da2d1ab005a92c1b8cbcdfb9b1ab0a5d4f820860a811260bbda114e88"
+  },
+  {
+   "group": "client",
+   "path": "client/tut2.stuff",
+   "size": 26875834,
+   "sha256": "a62ce9498a18d5c2f4efd7dcebff816899a5279a4e0251a296113fca886e126a"
+  },
+  {
+   "group": "db",
+   "path": "db/00_shared.sql.gz",
+   "size": 1573,
+   "sha256": "bc2cc2836dd8fe8cad27f31780f2fa6c388b5c556d7ea3620ec8699fd9c4420d"
+  },
+  {
+   "group": "db",
+   "path": "db/TL2MaterialsForTypeWithActivity.sql.gz",
+   "size": 289509,
+   "sha256": "749fa6c1e75c6b6eba4b96c33174111d82d7caf6b81a863adbd8d5057fd3b8b2"
+  },
+  {
+   "group": "db",
+   "path": "db/account.sql.gz",
+   "size": 1679,
+   "sha256": "f4b2de19ac0805a544e0ce21d59ae7fa97ec2e951bc2060415d9751553e8c29d"
+  },
+  {
+   "group": "db",
+   "path": "db/accountBalance.sql.gz",
+   "size": 1047,
+   "sha256": "f4590009ae4304d96b1a24b0e81c5a616d902ed751d322cc24a952fef0021840"
+  },
+  {
+   "group": "db",
+   "path": "db/agtAgentTypes.sql.gz",
+   "size": 669,
+   "sha256": "cc615da2b5cedc16b042b0788ad36866b58014563c6d651c83346eef98bd2f60"
+  },
+  {
+   "group": "db",
+   "path": "db/agtAgents.sql.gz",
+   "size": 74808,
+   "sha256": "c4ba4e9d4452748c93c79f6aa0b743ce8cd3b63da75ed1b577811a49cbba18c6"
+  },
+  {
+   "group": "db",
+   "path": "db/agtCharMissions.sql.gz",
+   "size": 1398,
+   "sha256": "5e66722162e55ae8bae01c7c80488494de794806935592d04f24734a0c58c436"
+  },
+  {
+   "group": "db",
+   "path": "db/agtConfig.sql.gz",
+   "size": 67754,
+   "sha256": "bd36a4333b33e74ffccf96213e434009a55546dce6913a75a8b2f4f1c1d91d41"
+  },
+  {
+   "group": "db",
+   "path": "db/agtMissionGroups.sql.gz",
+   "size": 694,
+   "sha256": "779ddebcec79eba5387a538040d8fbf54a932ad5670db5524f4dda0f1ecab1e7"
+  },
+  {
+   "group": "db",
+   "path": "db/agtMissionTypes.sql.gz",
+   "size": 617,
+   "sha256": "006bbb7eeb6aad6dfa6ee16bfa0a80960fcea54b9aef821cc56c1775c9737cad"
+  },
+  {
+   "group": "db",
+   "path": "db/agtMissions.sql.gz",
+   "size": 716,
+   "sha256": "4a7f2b339a23a9f7f91b771999ab4264da59013110a2a81dd5c43ce7935c3807"
+  },
+  {
+   "group": "db",
+   "path": "db/agtOfferGroups.sql.gz",
+   "size": 693,
+   "sha256": "a576f3da5bf23b5532b60eebe23af539357a093907010e4149e25b79bc732666"
+  },
+  {
+   "group": "db",
+   "path": "db/agtOfferRequired.sql.gz",
+   "size": 665,
+   "sha256": "ae3c3a794e3710c591b5df60580b4d234541be19012b435be1cc82daacda43c5"
+  },
+  {
+   "group": "db",
+   "path": "db/agtOfferReward.sql.gz",
+   "size": 664,
+   "sha256": "cedc2a80111c908d62308821458dfb5e7d82e6f60010202e47aef53638191b37"
+  },
+  {
+   "group": "db",
+   "path": "db/agtOffers.sql.gz",
+   "size": 739,
+   "sha256": "b2e142a7681757436b8fce74dde391cef618879641b71fc08d38378df8fe1c9f"
+  },
+  {
+   "group": "db",
+   "path": "db/allianceApplications.sql.gz",
+   "size": 1298,
+   "sha256": "0993e03c31b47bb0da0fb36bf07cb8ce20642a19110303fedfb0d832ced4030f"
+  },
+  {
+   "group": "db",
+   "path": "db/allianceMembers.sql.gz",
+   "size": 1236,
+   "sha256": "2318776a7548ad42f4f389834db4bc232082058380074cc5a0fb3fc04237d42d"
+  },
+  {
+   "group": "db",
+   "path": "db/allianceRelationships.sql.gz",
+   "size": 1096,
+   "sha256": "b9ed0e5fb7bfee771eeaac6707759981b20fb2fef73235f0677e04b3bc6d5016"
+  },
+  {
+   "group": "db",
+   "path": "db/alliance_shortnames.sql.gz",
+   "size": 621,
+   "sha256": "f7e428cba2ea44af3fdb6d5863135ba301d637ad345a654cc66ebc0fe5c3d63c"
+  },
+  {
+   "group": "db",
+   "path": "db/alliances.sql.gz",
+   "size": 2039,
+   "sha256": "a13b5c3712004a2563570689bd7cc472880390a94857a9c27cf7d5ad0f28b920"
+  },
+  {
+   "group": "db",
+   "path": "db/alscLog.sql.gz",
+   "size": 2069,
+   "sha256": "01ebb2a3b908284fd030166b04b04d6ba7b9063cd8e33207061df775c8ec3e59"
+  },
+  {
+   "group": "db",
+   "path": "db/billTypes.sql.gz",
+   "size": 684,
+   "sha256": "08711b6e6036a2e8cf63be248a20d9b6979f83958810811f9eae46b56659d071"
+  },
+  {
+   "group": "db",
+   "path": "db/billsReceivable.sql.gz",
+   "size": 1663,
+   "sha256": "3942d2f3d8a6dc608b3f7ef8ef53c67b261a61ba8324f37160c0c925495465ce"
+  },
+  {
+   "group": "db",
+   "path": "db/bloodlineTypes.sql.gz",
+   "size": 715,
+   "sha256": "f4f1d8f209e11d8f9df1b3b1d1aa22a40b73e17a91d6bbf8536bbf1077545ab5"
+  },
+  {
+   "group": "db",
+   "path": "db/bookmarkVouchers.sql.gz",
+   "size": 823,
+   "sha256": "c1c6c140fb27d2bb7e459451ae8fa62c1ec5cd370fb6ca56c8da1bef6694ffd3"
+  },
+  {
+   "group": "db",
+   "path": "db/bookmarks.sql.gz",
+   "size": 1418,
+   "sha256": "54e0ff538ab914a41ac3d436cdf44edf2b34be63515f87a08c56c3d409cf67b9"
+  },
+  {
+   "group": "db",
+   "path": "db/botGroups.sql.gz",
+   "size": 785,
+   "sha256": "a9019e4b816ff81538049df7fe32ed0cadf222c96adb63a1d73b97b0ade70efb"
+  },
+  {
+   "group": "db",
+   "path": "db/botRegionDensity.sql.gz",
+   "size": 697,
+   "sha256": "6ce7700aea89096eea519f4d10b95c48f981e2193a073b1ba4aa6de09372330a"
+  },
+  {
+   "group": "db",
+   "path": "db/botRelations.sql.gz",
+   "size": 753,
+   "sha256": "47b8522e6e08e276d2c0aa1fb413913ff2132538e17e162111a47374b9b3c790"
+  },
+  {
+   "group": "db",
+   "path": "db/botStock.sql.gz",
+   "size": 691,
+   "sha256": "aa708d082e14e04bbbe4e90ad527826d2782e1aa82b8f7c5855c3c3d699f4ebb"
+  },
+  {
+   "group": "db",
+   "path": "db/bots.sql.gz",
+   "size": 936,
+   "sha256": "b60884a9c3ab707f1c233c04e2ed0f15cc20a79292f28301a9318a09f1b2243e"
+  },
+  {
+   "group": "db",
+   "path": "db/bounties.sql.gz",
+   "size": 1079,
+   "sha256": "1a73a6981f47ae59a2c12d219ef15a84af0651ef43574012c18647308d48c9ea"
+  },
+  {
+   "group": "db",
+   "path": "db/cacheLocations.sql.gz",
+   "size": 659,
+   "sha256": "9a526835ba203ac8de7f98fd4b4f6e688d9611a32d021d8553f6e107449dea73"
+  },
+  {
+   "group": "db",
+   "path": "db/cacheOwners.sql.gz",
+   "size": 631,
+   "sha256": "2c2a5306983a3be437fc6fd922defaa70b87105be82f53ee72c31b307c0f52eb"
+  },
+  {
+   "group": "db",
+   "path": "db/channelChars.sql.gz",
+   "size": 714,
+   "sha256": "55be6bc4c3765a2c2981e5734b52d2bd9e1f26a177bc0e4d7af508bee0197050"
+  },
+  {
+   "group": "db",
+   "path": "db/channelMods.sql.gz",
+   "size": 874,
+   "sha256": "1746ebaf12788b15b30917d1b27158189545d1cc8cdc743fac32750fc9fc06a2"
+  },
+  {
+   "group": "db",
+   "path": "db/channelTypes.sql.gz",
+   "size": 625,
+   "sha256": "b325613c388ffc02965510c86bd5ff41eefa729202828b210bfdf23d4f0ff21d"
+  },
+  {
+   "group": "db",
+   "path": "db/channels.sql.gz",
+   "size": 871,
+   "sha256": "fbfb788bb184b2503fa7ed11eafefcfb770fb93d7f74d9144a2b6ca932727ca3"
+  },
+  {
+   "group": "db",
+   "path": "db/channelsStatic.sql.gz",
+   "size": 856,
+   "sha256": "eb52ea8f3b6d9b52b2d28fea51ea34029e86dde6adb8192e563e37a3183d6973"
+  },
+  {
+   "group": "db",
+   "path": "db/characterStatic.sql.gz",
+   "size": 220944,
+   "sha256": "1368d4327ac5f938174a4da8adda8c1c29466f361ed1f65b966fdfafc3cdacd5"
+  },
+  {
+   "group": "db",
+   "path": "db/character_.sql.gz",
+   "size": 313527,
+   "sha256": "e1db5e9fde7b3dd5d254f12a83c51be5c7f6f152db681c622372878935c86565"
+  },
+  {
+   "group": "db",
+   "path": "db/chrAccessories.sql.gz",
+   "size": 793,
+   "sha256": "1da87f72d1ce1e9f3aa3670c0dce2c3170ec65d66ec9a5a784e2c516e8a13e7a"
+  },
+  {
+   "group": "db",
+   "path": "db/chrAgentLoyalty.sql.gz",
+   "size": 1030,
+   "sha256": "7d6853b6fdff86b98ee11173299d049fb4aa157b94669354afa4525915841553"
+  },
+  {
+   "group": "db",
+   "path": "db/chrAgentResearch.sql.gz",
+   "size": 1301,
+   "sha256": "6d619a152236aeb4fde450de00860c6afed4b146d1ae8698c76d33c53dd33c01"
+  },
+  {
+   "group": "db",
+   "path": "db/chrAncestries.sql.gz",
+   "size": 7539,
+   "sha256": "c2384223c7a62e7df01b3310184b246dc12a4f929a13522232828afdcde35837"
+  },
+  {
+   "group": "db",
+   "path": "db/chrAttributes.sql.gz",
+   "size": 1140,
+   "sha256": "391809b7b49bf7432231c2163792679bbc60cf268e3ae2644d38c217b08fc340"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLAccessories.sql.gz",
+   "size": 709,
+   "sha256": "419658e797dc99214a92a7f4e5698231b648afba0af2b56188543e8df5cf420e"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLBackgrounds.sql.gz",
+   "size": 1278,
+   "sha256": "d2d169b3fcbbfd52adbaed2ffade0fc845a5d684bad0bab579c6bdcd72a70ab7"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLBeards.sql.gz",
+   "size": 888,
+   "sha256": "5c3af2a1beab8127a2e9f113836e31a77893d0692ecf93595fb213d76a9bd1fd"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLCostumes.sql.gz",
+   "size": 1722,
+   "sha256": "9815678efb943709a2c446a48db9f8049dae9ca66db28bd5e9694442406cdb93"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLDecos.sql.gz",
+   "size": 1513,
+   "sha256": "d0ae660ac9134761b4667bf454ab76e4cacfa18632de852710f0ad694303f859"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLEyebrows.sql.gz",
+   "size": 1283,
+   "sha256": "9a6fdc6f3d4601b062f8aba0c3f77fa40b59147e3d1c547ed3cc391b65b1adca"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLEyes.sql.gz",
+   "size": 1308,
+   "sha256": "628991660d41bc371e5d9a2d8a3d67c05db411467e269850485829fd0eb6678f"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLHairs.sql.gz",
+   "size": 1492,
+   "sha256": "f178635014fd48eddbe7029339ad5f786cdf30162eea3449077a100e77cb2984"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLLights.sql.gz",
+   "size": 776,
+   "sha256": "9686ce72baf5db694f0667bae0ecceeec21ed97ecb5730f676fb8d2797e9038f"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLLipsticks.sql.gz",
+   "size": 1112,
+   "sha256": "a73315c5e8ddd14a29047f4ed688c840ccac12952e6578dd645bd2fd3bb675ec"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLMakeups.sql.gz",
+   "size": 1176,
+   "sha256": "65f62df9f054f8c2df9bbf95a54578933f846ec4cc861f7427c14b5146b17165"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBLSkins.sql.gz",
+   "size": 1153,
+   "sha256": "8cfcdac8f246a4189949b8eb75e424ac60a692c0b0e880f81d860b8cea146d6b"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBackgrounds.sql.gz",
+   "size": 1273,
+   "sha256": "4ede34d69bf4d68f6f21624f9c995154a246ba82f5cbf507e28f43a666023538"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBeards.sql.gz",
+   "size": 803,
+   "sha256": "5c94e2e369f497da7ef9b0ae7a55576a29e62389246d38e119733c5a70cbbd4e"
+  },
+  {
+   "group": "db",
+   "path": "db/chrBloodlines.sql.gz",
+   "size": 8167,
+   "sha256": "f4e8dce94c9b65bc775d8d7ab4083b726d992fa1d078279ae9c53bbf4fafc7ca"
+  },
+  {
+   "group": "db",
+   "path": "db/chrCorporationRoles.sql.gz",
+   "size": 1102,
+   "sha256": "5916da8d2389af0d64e3e19c9dd67a536abfd690c8741ab186ba34ae906f160a"
+  },
+  {
+   "group": "db",
+   "path": "db/chrCostumes.sql.gz",
+   "size": 2533,
+   "sha256": "c1b48a12ca3f35e7cd024b5ce090823e562f0e6bd11ff2004b60e3611ef81be7"
+  },
+  {
+   "group": "db",
+   "path": "db/chrDecos.sql.gz",
+   "size": 1478,
+   "sha256": "cf50a2706504d03fed4f83115788a45b0122843484f1a559e75a232e67687763"
+  },
+  {
+   "group": "db",
+   "path": "db/chrDepartments.sql.gz",
+   "size": 1194,
+   "sha256": "9f9895c310a59fa06e16509d3949cf3c613a4ac475592db1f8af4c81ef53029d"
+  },
+  {
+   "group": "db",
+   "path": "db/chrEmployment.sql.gz",
+   "size": 689,
+   "sha256": "7338bc03df40bdfbe564d02f334f2d7b3f978534640bddf49123943352f344fe"
+  },
+  {
+   "group": "db",
+   "path": "db/chrEyebrows.sql.gz",
+   "size": 1100,
+   "sha256": "97dbde5f8ecd510fe0fe55797b59a4ccd5ee73f71537c7aeea026330ab09fb0d"
+  },
+  {
+   "group": "db",
+   "path": "db/chrEyes.sql.gz",
+   "size": 935,
+   "sha256": "852abc508c8590dfa725d113508808399ffaf00ef31bfd3cf370a930921daadf"
+  },
+  {
+   "group": "db",
+   "path": "db/chrFactions.sql.gz",
+   "size": 6705,
+   "sha256": "b9d5fb5f57d2bc66cba93eafbc0bc2907358ca77961ed89b9d9539a48e33fd26"
+  },
+  {
+   "group": "db",
+   "path": "db/chrFields.sql.gz",
+   "size": 2099,
+   "sha256": "a4e713ad2b4c8df93be8bb8cc5940a62b12f67aef363831408e232a973836fb4"
+  },
+  {
+   "group": "db",
+   "path": "db/chrHairs.sql.gz",
+   "size": 2152,
+   "sha256": "627aee4bb36282f1fc05b78d8aaa8fbb6bab2fb37c72c36c0cb689a3eb4971b1"
+  },
+  {
+   "group": "db",
+   "path": "db/chrKillRights.sql.gz",
+   "size": 1105,
+   "sha256": "feca27c6c7017ad821f399aa94da8abf25db743d8e69ea43cd4b8f338a4d40c7"
+  },
+  {
+   "group": "db",
+   "path": "db/chrLights.sql.gz",
+   "size": 777,
+   "sha256": "fea917294756799d0a7198c90a3e555a4a5364bcf62dcf14042345e38096b85e"
+  },
+  {
+   "group": "db",
+   "path": "db/chrLipsticks.sql.gz",
+   "size": 1056,
+   "sha256": "2a77cbdb4e785a22436b46aa2943dd673a1c7e50a39cd1edd707b2c4bbee9eda"
+  },
+  {
+   "group": "db",
+   "path": "db/chrMakeups.sql.gz",
+   "size": 1087,
+   "sha256": "4bbf6e0ac2b56e614d1fc368aaaa727187843263f7a93b6321a305ffc5017c25"
+  },
+  {
+   "group": "db",
+   "path": "db/chrMissionState.sql.gz",
+   "size": 1037,
+   "sha256": "ad26dd9e0857012c24c08fcc65323680bebbd2795bfe1b6e117f130cece2a5bc"
+  },
+  {
+   "group": "db",
+   "path": "db/chrNPCStandings.sql.gz",
+   "size": 851,
+   "sha256": "6bfb3f6f9ba96ce5ad448f402d47082994435364d3f3abc8c35bf9eca5c4b1d9"
+  },
+  {
+   "group": "db",
+   "path": "db/chrNotes.sql.gz",
+   "size": 1076,
+   "sha256": "b9377681e58e8f960d6701217b96bd7bcbccf743c79cb51091369bff50205295"
+  },
+  {
+   "group": "db",
+   "path": "db/chrOffers.sql.gz",
+   "size": 807,
+   "sha256": "24a2d9d6255d9c83ab856b5c5436bf458d400907703af41bf8b080bffb770118"
+  },
+  {
+   "group": "db",
+   "path": "db/chrOwnerNote.sql.gz",
+   "size": 1572,
+   "sha256": "e2747da7e5a28520639b41cf612e8b3f790eef9fefe476eec6b6ff8663eb1141"
+  },
+  {
+   "group": "db",
+   "path": "db/chrRaces.sql.gz",
+   "size": 1587,
+   "sha256": "800ea82e932a28ec0d6ad59939225aa7e828bad57a50a2b52b90983151be1b03"
+  },
+  {
+   "group": "db",
+   "path": "db/chrSchools.sql.gz",
+   "size": 2969,
+   "sha256": "7aeea0e178bb4ace9ccda119196839190045f124817f88a91bf341bbf84b51e7"
+  },
+  {
+   "group": "db",
+   "path": "db/chrSkins.sql.gz",
+   "size": 1043,
+   "sha256": "317b2a1e89a5d2805b7b23c9effa107d59227898b7e55f8bd596491f48f634c0"
+  },
+  {
+   "group": "db",
+   "path": "db/chrSpecialities.sql.gz",
+   "size": 3977,
+   "sha256": "da5bf9dc7a9d8e2e276c271e6af5ba6239720c74128fee40ad0fb11b27b70bd3"
+  },
+  {
+   "group": "db",
+   "path": "db/chrStandings.sql.gz",
+   "size": 845,
+   "sha256": "bba3ac35a2cfd5d442514946b7727ad4a771ae25d002638ad58aef0fcfb76186"
+  },
+  {
+   "group": "db",
+   "path": "db/corporation.sql.gz",
+   "size": 25777,
+   "sha256": "c130d9211760ac20a69eff1144d7b681b88e267c7134cbf9b9799fffc095408e"
+  },
+  {
+   "group": "db",
+   "path": "db/corporationStatic.sql.gz",
+   "size": 25300,
+   "sha256": "aec91d86e7ffe0b4b3e7b47ade1795427507cd7697ed2eca61014d24aca3e323"
+  },
+  {
+   "group": "db",
+   "path": "db/courierMissions.sql.gz",
+   "size": 2859,
+   "sha256": "6d6e1d85333f034acdeb3f0cb65d1961a6602d730497946a544eae8cf17138c0"
+  },
+  {
+   "group": "db",
+   "path": "db/crpApplications.sql.gz",
+   "size": 1485,
+   "sha256": "d335de82cabaee2e055fa8ec33e75ce19525d7304a501acacaf914cb3f5f7675"
+  },
+  {
+   "group": "db",
+   "path": "db/crpCharShares.sql.gz",
+   "size": 789,
+   "sha256": "4904b568604801de788d41bfed33e4847a785125c8d66e61b7eb7f86399f1f45"
+  },
+  {
+   "group": "db",
+   "path": "db/crpItemLocks.sql.gz",
+   "size": 1369,
+   "sha256": "d626bc868ab7767d49a72c36028faa8e26ae95e187b132df2688510b1d1c895d"
+  },
+  {
+   "group": "db",
+   "path": "db/crpNPCCorporationDivisions.sql.gz",
+   "size": 5308,
+   "sha256": "bef47ae646511c07dc0e6c7fe2c12a4f175a18fb5fcbb5fd233679a0ab1d49e6"
+  },
+  {
+   "group": "db",
+   "path": "db/crpNPCCorporationTrades.sql.gz",
+   "size": 52989,
+   "sha256": "1ae9a6ff6635c561f3c5edc5760414520933f07e05e2d692ec756e7f2d18a644"
+  },
+  {
+   "group": "db",
+   "path": "db/crpNPCCorporations.sql.gz",
+   "size": 5563,
+   "sha256": "943bc74fd03e518cdfac1bcea73d36b6be6ac1c660b2cd7d65eb13b800e4691d"
+  },
+  {
+   "group": "db",
+   "path": "db/crpNPCDivisions.sql.gz",
+   "size": 927,
+   "sha256": "06e3879c7fd8f0bbc9194731783ee6bb236e3c979bfa2c0297ab1e71dc97de04"
+  },
+  {
+   "group": "db",
+   "path": "db/crpNPCTickerNames.sql.gz",
+   "size": 1625,
+   "sha256": "0e3424072dada0379a5e0dbe737624dedec26a5f81947af217157548be788b66"
+  },
+  {
+   "group": "db",
+   "path": "db/crpOffices.sql.gz",
+   "size": 810,
+   "sha256": "3c68a4646ee176a2711e1eba6888d152253b710f68127b276fb002322297afb0"
+  },
+  {
+   "group": "db",
+   "path": "db/crpSanctionedActions.sql.gz",
+   "size": 1346,
+   "sha256": "7f8dc40119d8ad5102311b845f10a99abcdf50474e1874e0e6204f42275ed9ed"
+  },
+  {
+   "group": "db",
+   "path": "db/crpTitles.sql.gz",
+   "size": 1328,
+   "sha256": "3b0a336fe5bed407eef0ce16bb431a47f2e875cfcc9d21a8c425a1071f294930"
+  },
+  {
+   "group": "db",
+   "path": "db/crpVoteCases.sql.gz",
+   "size": 1519,
+   "sha256": "976a47870683f00e13156a885103c1f944e6451976554bf2331c86ed817adf64"
+  },
+  {
+   "group": "db",
+   "path": "db/crpVoteOptions.sql.gz",
+   "size": 1202,
+   "sha256": "6a7c841969e488191c3dfeead56bbc875c6e85c3d7e83debbf4e728e60081427"
+  },
+  {
+   "group": "db",
+   "path": "db/crpVotes.sql.gz",
+   "size": 1071,
+   "sha256": "2d1cd9110b553e744215976f6f3388bc3b0b07a8d6a5aaba1b7e0489d63e62eb"
+  },
+  {
+   "group": "db",
+   "path": "db/crpWars.sql.gz",
+   "size": 2052,
+   "sha256": "c55906eb3bbf7c477f5e8330fb05214dea51539c4d43126bf90ad038cee85c51"
+  },
+  {
+   "group": "db",
+   "path": "db/dgmAttributeTypes.sql.gz",
+   "size": 22752,
+   "sha256": "f1de280ca529b8cecbd0e24692988ee8dc3729cb254474300fabc06d1c1a4205"
+  },
+  {
+   "group": "db",
+   "path": "db/dgmAttributes.sql.gz",
+   "size": 25345,
+   "sha256": "1137266989b0f880847cc4b5a83b3d43467a1b2761d062adec68073d8bf27219"
+  },
+  {
+   "group": "db",
+   "path": "db/dgmEffects.sql.gz",
+   "size": 33917,
+   "sha256": "46c491fe0f4677bc7c832e6d034bb409f27862ebc5a323b6e9c6bac171d6019a"
+  },
+  {
+   "group": "db",
+   "path": "db/dgmTypeAttribs.sql.gz",
+   "size": 388822,
+   "sha256": "a61581ab1c6213685a46fb52b3e7d3a2da56018fbdd8984c6e3c176371ac765c"
+  },
+  {
+   "group": "db",
+   "path": "db/dgmTypeAttributes.sql.gz",
+   "size": 942582,
+   "sha256": "2ab29313533f7436022a6946071230a1ef5940bb4a1f0e4127ce202f5a60ca29"
+  },
+  {
+   "group": "db",
+   "path": "db/dgmTypeEffects.sql.gz",
+   "size": 69729,
+   "sha256": "1691b5b8961761722c88e0db27c24140892938d9a6d19d96f2fd58e2283abbb2"
+  },
+  {
+   "group": "db",
+   "path": "db/dgmTypeModifiers.sql.gz",
+   "size": 71699,
+   "sha256": "9d27d101b5c221b284188d15171fc0f9877dfd9b14f9b8af217a8116887c50a4"
+  },
+  {
+   "group": "db",
+   "path": "db/droneState.sql.gz",
+   "size": 659,
+   "sha256": "1578776da5c727862f72a1eb347e1227785f62a76af95560cf18819362b8135e"
+  },
+  {
+   "group": "db",
+   "path": "db/entity.sql.gz",
+   "size": 378995,
+   "sha256": "813c578f0da8f9c92a286b45ca77df93067068165285128819af38bd0ca118b9"
+  },
+  {
+   "group": "db",
+   "path": "db/entityStatic.sql.gz",
+   "size": 378313,
+   "sha256": "a26b4a4b41fe5864acda4f8826788224f0621c2a6a3fd6fb086a12b055a57dd7"
+  },
+  {
+   "group": "db",
+   "path": "db/entity_attributes.sql.gz",
+   "size": 1007,
+   "sha256": "59bd2f05377894645389ab91ba4c4c4fc2bcfeee85a8a048b01ba4861d9f08b1"
+  },
+  {
+   "group": "db",
+   "path": "db/eveCategories.sql.gz",
+   "size": 941,
+   "sha256": "f5a6e678e673ad95e72d18fa5261556632bbfe1aab081656b4d096a747a280bf"
+  },
+  {
+   "group": "db",
+   "path": "db/eveConstants.sql.gz",
+   "size": 8751,
+   "sha256": "a129437f98810c9915dc170c8ec6ddc6b541490fbb76626e69a9a6d7fd48ed3e"
+  },
+  {
+   "group": "db",
+   "path": "db/eveEncyclTypes.sql.gz",
+   "size": 627,
+   "sha256": "ebc1bc3c6e9188e5fc7e3cd3f798c86a78c1da0d01f8657c2f49afffa7d7a971"
+  },
+  {
+   "group": "db",
+   "path": "db/eveFlags.sql.gz",
+   "size": 2754,
+   "sha256": "f44e116c1dc4d62ad93e24238a1ae434f5303ebc75d286681e309313eec8217c"
+  },
+  {
+   "group": "db",
+   "path": "db/eveGraphics.sql.gz",
+   "size": 34756,
+   "sha256": "0a7ec5c7399f9f855c4314ed7e356ba0746dfdbaf68f50e5bfe03ee6311b3df1"
+  },
+  {
+   "group": "db",
+   "path": "db/eveMessages.sql.gz",
+   "size": 64228,
+   "sha256": "21e74513964ff9bf43d4df7ed5df9fab10728f97f276e68d7f60a92bf95b210d"
+  },
+  {
+   "group": "db",
+   "path": "db/eveNames.sql.gz",
+   "size": 1932750,
+   "sha256": "a754323f68ef406dde4360efeefd44fce8581d9f48f95735c6cda013b1c6de29"
+  },
+  {
+   "group": "db",
+   "path": "db/eveRoles.sql.gz",
+   "size": 1366,
+   "sha256": "2609af51d452f1608a2e3de59cd916b5834b841d027c97485ead58b345e0be11"
+  },
+  {
+   "group": "db",
+   "path": "db/eveStaticLocations.sql.gz",
+   "size": 388293,
+   "sha256": "8690367d2bf323019135aa09602d87e5da99acd1fb612aed34d2bc8f71e75892"
+  },
+  {
+   "group": "db",
+   "path": "db/eveStaticOwners.sql.gz",
+   "size": 130109,
+   "sha256": "0ba4957e76aa9b4d99b454bc477909b883c54e3089a862492e081084e5fe1da9"
+  },
+  {
+   "group": "db",
+   "path": "db/eveStaticOwnersStatic.sql.gz",
+   "size": 130100,
+   "sha256": "7f387cb932447456be89ece14782210718953acd7aad6c4f6dbb52194c89d191"
+  },
+  {
+   "group": "db",
+   "path": "db/eveStatistics.sql.gz",
+   "size": 728,
+   "sha256": "7ca8529f384564b3149ae17342cf97836fcb59b1cf53e37d683766aa80f6bf54"
+  },
+  {
+   "group": "db",
+   "path": "db/eveUnits.sql.gz",
+   "size": 1440,
+   "sha256": "193448f6afad94815ea57158b1faad3f7892a97f8459f61405e5d30d506a5668"
+  },
+  {
+   "group": "db",
+   "path": "db/evemail.sql.gz",
+   "size": 1231,
+   "sha256": "34ecf8ce8d1390a9e9f0a2638c2223f8165be691150ffb633c5566e4e6e11305"
+  },
+  {
+   "group": "db",
+   "path": "db/evemailDetails.sql.gz",
+   "size": 849,
+   "sha256": "149cb9066c66b5b4dd2939a21b2a3b576ac3404770ccb4d095bc0c657e8f3be2"
+  },
+  {
+   "group": "db",
+   "path": "db/evemailMimeType.sql.gz",
+   "size": 648,
+   "sha256": "3a157e3990ba3770b7ee77436c1f12cdc6bc37e10402d1c6a3f1642994524d77"
+  },
+  {
+   "group": "db",
+   "path": "db/factionRaces.sql.gz",
+   "size": 725,
+   "sha256": "a5625225638d93a9d3c5c112645fb8cfaf8bf374b8d0d60390f4a29d54dfa06e"
+  },
+  {
+   "group": "db",
+   "path": "db/insuranceContracts.sql.gz",
+   "size": 1899,
+   "sha256": "59e6edef056e23957686a46bae855688ac36ab9452db30d22644d7b43cf1acd3"
+  },
+  {
+   "group": "db",
+   "path": "db/invBlueprintTypes.sql.gz",
+   "size": 18237,
+   "sha256": "b9aa144782e121d22e64e1aed58b8743e4ce7f9e263f5086ee8a9162807af97b"
+  },
+  {
+   "group": "db",
+   "path": "db/invBlueprints.sql.gz",
+   "size": 1014,
+   "sha256": "152a11a3bf6af0093d819ef6919ffdae6144533d70f2a61bcd7d6506f3d039b3"
+  },
+  {
+   "group": "db",
+   "path": "db/invCategories.sql.gz",
+   "size": 926,
+   "sha256": "6be520abec0b121b16eb7bc23685c9d65cff12e7893c7bd51d77d61002ea60d6"
+  },
+  {
+   "group": "db",
+   "path": "db/invContrabandTypes.sql.gz",
+   "size": 2331,
+   "sha256": "04a679363da4768ddc6d93392383cd97ddaca85fa9a72c123d165da6c9a2e9bb"
+  },
+  {
+   "group": "db",
+   "path": "db/invControlTowerResourcePurposes.sql.gz",
+   "size": 643,
+   "sha256": "7717b0baaa770588cca4a1295fb207788d64a9b3b719d4640705b9d57bc0d86d"
+  },
+  {
+   "group": "db",
+   "path": "db/invControlTowerResources.sql.gz",
+   "size": 1370,
+   "sha256": "8c3cfca9afb41da67d903b74fe7c0e6baeca6b55834da256215ea9267557cc1a"
+  },
+  {
+   "group": "db",
+   "path": "db/invGroups.sql.gz",
+   "size": 8875,
+   "sha256": "ffabb9bf837482360242c2670d40fe0df9506aaf59cc1d0c67458445a3ff71f4"
+  },
+  {
+   "group": "db",
+   "path": "db/invMarketGroups.sql.gz",
+   "size": 13553,
+   "sha256": "2d59208253a09efbda8cafa2e169859e803503f597d7288314d7a330482c508b"
+  },
+  {
+   "group": "db",
+   "path": "db/invMetaGroups.sql.gz",
+   "size": 749,
+   "sha256": "dfbc541ba0383fbcc4f00532586f60b2ef437fde0f5e82a1c91592512117b7a1"
+  },
+  {
+   "group": "db",
+   "path": "db/invMetaTypes.sql.gz",
+   "size": 11481,
+   "sha256": "463d057422de5a8ad6a07215ab3cb5ddf1ac22093d08c55ac0c8a70bfb14f991"
+  },
+  {
+   "group": "db",
+   "path": "db/invOreInfo.sql.gz",
+   "size": 622,
+   "sha256": "f5045813757ae23c95877944b764a7f2b0ddaf0a6d44a4a2ee14147cc83c8f30"
+  },
+  {
+   "group": "db",
+   "path": "db/invOreReprocessing.sql.gz",
+   "size": 1185,
+   "sha256": "c5807bda5ba4f1b6bcca8c436ddca53bd423ded10ba630fa084cddcf83c70886"
+  },
+  {
+   "group": "db",
+   "path": "db/invOreYield.sql.gz",
+   "size": 661,
+   "sha256": "aca0e260cc282bc57afc380072ceb8ec0315ff8b62a4f20f455b71a92dd4cdb1"
+  },
+  {
+   "group": "db",
+   "path": "db/invShipTypes.sql.gz",
+   "size": 3033,
+   "sha256": "c65970d52459484c1d16beeb5653b0d860d931d9728ef4a88997b1d4db9d0e29"
+  },
+  {
+   "group": "db",
+   "path": "db/invTypeReactions.sql.gz",
+   "size": 1512,
+   "sha256": "0bdf379045cb0b3a705131e667f3d99dd98ba4d49a535f7d26b35fb4c2dbacc6"
+  },
+  {
+   "group": "db",
+   "path": "db/invTypes.sql.gz",
+   "size": 474604,
+   "sha256": "40bde40897a6ce9e95fddcf7e15215f9f503ed0d7690d538b96e28c27a596c44"
+  },
+  {
+   "group": "db",
+   "path": "db/killLog.sql.gz",
+   "size": 1534,
+   "sha256": "babd168f905a0af72dafab57fa85ff229d66c74142d7cf1bdcfcea7a6bcb87ce"
+  },
+  {
+   "group": "db",
+   "path": "db/killLogParticipants.sql.gz",
+   "size": 986,
+   "sha256": "9f29c6754cdfc9a8f7d3e18b2c1bb003bb99e84659c3d9e4533c9ab6536a8df6"
+  },
+  {
+   "group": "db",
+   "path": "db/languages.sql.gz",
+   "size": 815,
+   "sha256": "e76aa6577f7a47782686b8911e91c9430fe6f3482186cd8b3f2c04e34bcdbdc5"
+  },
+  {
+   "group": "db",
+   "path": "db/mapCelestialStatistics.sql.gz",
+   "size": 17599404,
+   "sha256": "6a761a363905d3dd410efe4c8d3770971cbf5f6982d4d65e0c8faecd123a028c"
+  },
+  {
+   "group": "db",
+   "path": "db/mapConstellationJumps.sql.gz",
+   "size": 9305,
+   "sha256": "f2d22ee41bbd93fbccf85d946375e2de03f1082f0b18e3b1f613f5c6e15a8205"
+  },
+  {
+   "group": "db",
+   "path": "db/mapConstellations.sql.gz",
+   "size": 82561,
+   "sha256": "1b77769479fbf1c4a8551058d75f7be913da59eb3867a151c251be03772f95b3"
+  },
+  {
+   "group": "db",
+   "path": "db/mapDenormalize.sql.gz",
+   "size": 13117878,
+   "sha256": "23ae7abfd4a2a035b44e48912a2dde4f6b049f7da29f8aa8725a721bbac8b786"
+  },
+  {
+   "group": "db",
+   "path": "db/mapJumps.sql.gz",
+   "size": 66796,
+   "sha256": "9ed9f134f79766097f09336099786c4a77b96ea734465dbe7fdfdea8b776f5ff"
+  },
+  {
+   "group": "db",
+   "path": "db/mapLandmarks.sql.gz",
+   "size": 10234,
+   "sha256": "9a3d6067f7c6153d9c01a2cf945a0aa9fe8aba7137e1cb8671e7bf88fdc18426"
+  },
+  {
+   "group": "db",
+   "path": "db/mapRegionJumps.sql.gz",
+   "size": 1442,
+   "sha256": "08fe782c5a1e4849155047f2418bc7941ea7d4030034b91ef70f23d1cf7eda0a"
+  },
+  {
+   "group": "db",
+   "path": "db/mapRegions.sql.gz",
+   "size": 8284,
+   "sha256": "5de8ee07fe4a2840c5503b859033a40057accf7d71191f5af971339c5c8d4ab2"
+  },
+  {
+   "group": "db",
+   "path": "db/mapSolarSystemJumps.sql.gz",
+   "size": 55532,
+   "sha256": "a55a04188b016d97abe697eacf15114aa8a6681f9d878dfd4b53156002dbdfd8"
+  },
+  {
+   "group": "db",
+   "path": "db/mapSolarSystems.sql.gz",
+   "size": 606440,
+   "sha256": "14a2b8a36600b354aa2cef163a7a427ee2d2800d2866854ce8d2caa2c8c622bb"
+  },
+  {
+   "group": "db",
+   "path": "db/mapUniverse.sql.gz",
+   "size": 842,
+   "sha256": "2f9d2e0c3f6e75830b0dddb5b36b9fcc648a512c9509bdaaeeeb721a0931c148"
+  },
+  {
+   "group": "db",
+   "path": "db/market_history.sql.gz",
+   "size": 1420,
+   "sha256": "927c64a5821fdaa6e610217c02f9c46de222e116eb8ef3c15da61d5153d41bb1"
+  },
+  {
+   "group": "db",
+   "path": "db/market_journal.sql.gz",
+   "size": 1318,
+   "sha256": "6194bdb1dada23ce21577081a51d81ef3da04572ed859f8eefd88bdbfa45a78b"
+  },
+  {
+   "group": "db",
+   "path": "db/market_keyMap.sql.gz",
+   "size": 727,
+   "sha256": "4d161f2a926b649ffb82cb6f443b56ca47867b9f519888b450ebba5de341b185"
+  },
+  {
+   "group": "db",
+   "path": "db/market_orders.sql.gz",
+   "size": 1541,
+   "sha256": "bf753ae775c44dab524f49fa7484341078d9becf92ad6dea68b17f9d869f1f81"
+  },
+  {
+   "group": "db",
+   "path": "db/market_refTypes.sql.gz",
+   "size": 1780,
+   "sha256": "841bf02167b9af321d374f378bf0aa3c981dd4e8b716dde2251c37896fb97068"
+  },
+  {
+   "group": "db",
+   "path": "db/market_transactions.sql.gz",
+   "size": 1741,
+   "sha256": "115cb55799620919a7b7021a8297c64df99fd55451f61e2798dc5503f5b51613"
+  },
+  {
+   "group": "db",
+   "path": "db/npcStandings.sql.gz",
+   "size": 1987,
+   "sha256": "f2f18c6b5db078235a5844858f685cdd8d53109c6fb5ffc3eef4b53337f7007b"
+  },
+  {
+   "group": "db",
+   "path": "db/ownerStandings.sql.gz",
+   "size": 1319,
+   "sha256": "47884a18939a6c1396e8bbf7357d0d1feb0d3889290005c05ad7216b263e7849"
+  },
+  {
+   "group": "db",
+   "path": "db/petitionCategories.sql.gz",
+   "size": 1367,
+   "sha256": "0c79ed320dfa07dfe149471334d351c25794065afcee4915f7c1fabc6d1d5f31"
+  },
+  {
+   "group": "db",
+   "path": "db/petitionCategoryProperties.sql.gz",
+   "size": 1034,
+   "sha256": "df374af846093e02277f194b131a3e5c8ef6764ce815cd6132a39927e7f7807a"
+  },
+  {
+   "group": "db",
+   "path": "db/petitionLog.sql.gz",
+   "size": 993,
+   "sha256": "8d12ffb8363b6bd571f4dcc7550ee41e1e1f11c609c7571f16612cd21affea59"
+  },
+  {
+   "group": "db",
+   "path": "db/petitionMessages.sql.gz",
+   "size": 1409,
+   "sha256": "31df78f3218a4d44592d4afc01ddc1216decc58f74006a38ca209a1bb32aaef0"
+  },
+  {
+   "group": "db",
+   "path": "db/petitionProperties.sql.gz",
+   "size": 883,
+   "sha256": "af28f4632e9a641e92e7c833a260c23065a2a312c282be8ac604e498404be59d"
+  },
+  {
+   "group": "db",
+   "path": "db/petitionQueues.sql.gz",
+   "size": 846,
+   "sha256": "4ec68f65ad4f5c6f499320a859628f58656c7d7be023bec5f83d9bef03ec5e9f"
+  },
+  {
+   "group": "db",
+   "path": "db/petitions.sql.gz",
+   "size": 2244,
+   "sha256": "6bf9c66a09d8f13934bfc5e2de3a8ae492f1e6bc54e15ba0c757d98ff9591c85"
+  },
+  {
+   "group": "db",
+   "path": "db/posLinks.sql.gz",
+   "size": 695,
+   "sha256": "c11be8905b02a922a9165446e2285b0889ee162414ed08831f439352e43ad898"
+  },
+  {
+   "group": "db",
+   "path": "db/posStructures.sql.gz",
+   "size": 1126,
+   "sha256": "8262b27c0c9935315d669a4e13d520ec53e6911a3922dd4f60eabb32eca2b7d0"
+  },
+  {
+   "group": "db",
+   "path": "db/ramALTypeCategory.sql.gz",
+   "size": 897,
+   "sha256": "d896a95c65efea5b3bad9a9e1baaa4d912899895be74736f2f6c785d5d4032dd"
+  },
+  {
+   "group": "db",
+   "path": "db/ramALTypeGroup.sql.gz",
+   "size": 975,
+   "sha256": "846c9b394440aa09d28451456029c4d9d458c39dd9276034a9edf91048edb881"
+  },
+  {
+   "group": "db",
+   "path": "db/ramALTypes.sql.gz",
+   "size": 1194,
+   "sha256": "26931076e5acf52fe8fd7f8a8800f9f6886e8ca622bd09c483107e47598e2f96"
+  },
+  {
+   "group": "db",
+   "path": "db/ramActivities.sql.gz",
+   "size": 886,
+   "sha256": "c27ea8f7c9a30400caeaef63038bb12a5506ec293bbcffea81f068c5588f6d69"
+  },
+  {
+   "group": "db",
+   "path": "db/ramAssemblyLineStationCostLogs.sql.gz",
+   "size": 877,
+   "sha256": "5a2b8fc1a307bb926eafa788684a1a299e8eb63deb85aea95cf9342a14b0289d"
+  },
+  {
+   "group": "db",
+   "path": "db/ramAssemblyLineStations.sql.gz",
+   "size": 21177,
+   "sha256": "5327290f2be5c38c793707948f0d8bbf68c83e717b86294a8aa916bf2ebcbe0a"
+  },
+  {
+   "group": "db",
+   "path": "db/ramAssemblyLineTypeDetailPerCategory.sql.gz",
+   "size": 1589,
+   "sha256": "5852e71e8e84e2aeebeb1c60592e7a14ad26af7250772f36d056f2263f1afdec"
+  },
+  {
+   "group": "db",
+   "path": "db/ramAssemblyLineTypeDetailPerGroup.sql.gz",
+   "size": 3054,
+   "sha256": "38e739680fb71bffcabfcca84361f8c99367139bdbd7a084eff2d1f7eb8bca57"
+  },
+  {
+   "group": "db",
+   "path": "db/ramAssemblyLineTypes.sql.gz",
+   "size": 2042,
+   "sha256": "0d7176063c1558b012da4e545a97ea9a5a785fa5e028277e3facfefe977306f9"
+  },
+  {
+   "group": "db",
+   "path": "db/ramAssemblyLines.sql.gz",
+   "size": 371712,
+   "sha256": "07baf803c39d910a6e306cddf2c5cdbf6f6e7f353073468ff5eb40d58d0aacd0"
+  },
+  {
+   "group": "db",
+   "path": "db/ramCompletedStatuses.sql.gz",
+   "size": 683,
+   "sha256": "343384472c34097c72e6a012bc3f4848e48aeef0d145002238a6ef9b9832562e"
+  },
+  {
+   "group": "db",
+   "path": "db/ramInstallationTypeDefaultContents.sql.gz",
+   "size": 837,
+   "sha256": "cb4ab9ac035978e36e75cc672b3f80bddb2c092e015ffc04d122f95e386909de"
+  },
+  {
+   "group": "db",
+   "path": "db/ramJobs.sql.gz",
+   "size": 3793,
+   "sha256": "33fbe094737a7605df6b76a8544520a2692df8d8d95ead3e7362921378db6110"
+  },
+  {
+   "group": "db",
+   "path": "db/rentalInfo.sql.gz",
+   "size": 1031,
+   "sha256": "92e473b781a181d0add9acc7d1fb5c33f0da7ed782108d1d5d23cb4d3e5b7924"
+  },
+  {
+   "group": "db",
+   "path": "db/schema_migrations.sql.gz",
+   "size": 1012,
+   "sha256": "5d2486b45dec5fc914b98434c48d63dbd684a51638cb134f267386cd8ab6c0cf"
+  },
+  {
+   "group": "db",
+   "path": "db/secureContainers.sql.gz",
+   "size": 1229,
+   "sha256": "347831f08371bd8c5e741c0ff37c3ac028c88d6e2f001be1ef2293599f96d247"
+  },
+  {
+   "group": "db",
+   "path": "db/spawnBounds.sql.gz",
+   "size": 775,
+   "sha256": "19d57410eb5e8107ff2645509a838aebf246738341188c77ab83e3bb293d08d1"
+  },
+  {
+   "group": "db",
+   "path": "db/spawnGroupEntries.sql.gz",
+   "size": 695,
+   "sha256": "1fdf60b275c5d4cb0d06bbda71873609db2f926d40401a422df8b3a78d97cc90"
+  },
+  {
+   "group": "db",
+   "path": "db/spawnGroups.sql.gz",
+   "size": 646,
+   "sha256": "8597689e96c6cb1acc762d27520632ec91320648129d8e7a44f1b73f2ff55312"
+  },
+  {
+   "group": "db",
+   "path": "db/spawns.sql.gz",
+   "size": 706,
+   "sha256": "74726e11875b917b7e8d13d6f31c20c8795bf7a2768d65f66eb1573eee553bac"
+  },
+  {
+   "group": "db",
+   "path": "db/staOperationServices.sql.gz",
+   "size": 2179,
+   "sha256": "08eb5c837703c27de8b95b87d25fe6da424cb61f933db6ea34c6e53894bbe991"
+  },
+  {
+   "group": "db",
+   "path": "db/staOperations.sql.gz",
+   "size": 2383,
+   "sha256": "003a6c969aaacc1c7199c9d791a1ad9c84c7d66ef8529ff99bc6c8935008696b"
+  },
+  {
+   "group": "db",
+   "path": "db/staServices.sql.gz",
+   "size": 908,
+   "sha256": "c3c66a0444a66673a7765c618882e557efba8b0a4e96d6a399875114521d1c2c"
+  },
+  {
+   "group": "db",
+   "path": "db/staStationTypes.sql.gz",
+   "size": 1763,
+   "sha256": "e2c76fb20be5cda6f02eea7e20380ba0a41eba46e2dd244ee4a831111c77c1dc"
+  },
+  {
+   "group": "db",
+   "path": "db/staStations.sql.gz",
+   "size": 193666,
+   "sha256": "0e7e90b377fc98ab695066230a57c8df19208104a472285850314e7b998fd657"
+  },
+  {
+   "group": "db",
+   "path": "db/standingTransactions.sql.gz",
+   "size": 2111,
+   "sha256": "38a576c642d95a893f33f10375a848db2da87eb8c0ab4179b92573116b51d06b"
+  },
+  {
+   "group": "db",
+   "path": "db/tutorial_criteria.sql.gz",
+   "size": 3999,
+   "sha256": "5fcd5657ca71914f2afc9b93e2b2c4b141a0d84540309bdf553f552e72f227e8"
+  },
+  {
+   "group": "db",
+   "path": "db/tutorial_page_criteria.sql.gz",
+   "size": 2140,
+   "sha256": "2421e15c8d19acf2cf5cfed2faaaeee8c8f583ebb9e10101ae9ad2b6ca50f27f"
+  },
+  {
+   "group": "db",
+   "path": "db/tutorial_pages.sql.gz",
+   "size": 16159,
+   "sha256": "474bdb15c592f5049cdfea474499a0f18eeaf6691c2825b01686e962da7dba9f"
+  },
+  {
+   "group": "db",
+   "path": "db/tutorials.sql.gz",
+   "size": 1231,
+   "sha256": "5a8c41c43a82bc9c9f5d68a403cf44da62335e859e18d18198ac46d89843943a"
+  },
+  {
+   "group": "db",
+   "path": "db/tutorials_criterias.sql.gz",
+   "size": 700,
+   "sha256": "abb49935c69441ff4b5c4cff2619259ff77a909d10662777a385366533c4038c"
+  },
+  {
+   "group": "db",
+   "path": "db/zz_foreign_keys.sql.gz",
+   "size": 384,
+   "sha256": "ef71a1086ffe522e102b78a0a04d07eca064881f5a756fab913010d2ab575c1e"
+  },
+  {
+   "group": "db",
+   "path": "db/zz_seed_market.sql.gz",
+   "size": 1315,
+   "sha256": "c85447a4ad6572bd9a58ac5d8ded3966517957d11b2b1c2a512d3a7d3c7e365b"
+  }
+ ]
+}
