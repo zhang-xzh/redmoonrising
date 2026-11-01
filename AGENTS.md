@@ -166,7 +166,7 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 - `M:\EVE-LOCAL\inputs\`：只读输入（客户端/反编译客户端代码/SDE 等），只用绝对路径定向读取。
 - `M:\EVE-LOCAL\worktrees\`：并行任务 git worktree；`_archive\`：历史备份/整包；`_scratch\`：临时产物；`mods\`：外部 mod 合并工作目录。
 - 客户端目录 `M:\EVE-LOCAL\inputs\EVE-Online-3913`（本项目的唯一客户端）；新版客户端 `EVE-Online-3396210` 与本仓库无关，别混用。
-- 仓库内：`crates/`（代码）、`db/`（官方表转储）、`tools/`（本地工具，已被忽略）、`config/`（本地化映射，未跟踪）、`doc/`（文档）。
+- 仓库内：`crates/`（代码）、`db/`（官方表转储）、`tools/`（本地化工具与产物，已 `git add -f`）、`config/`（本地化映射，已入库）、`doc/`（文档）、`docs/`（早期客户端本地化说明）。
 
 ---
 
