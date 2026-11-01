@@ -67,6 +67,6 @@
 
 ## 已知缺口
 
-- 3913 客户端没有 `tree/`+`dist/` 形式的独立代码仓库；本地化流水线与产物已在版本库（`tools/localization/`、`config/localization/` 由 commit `be249b2` 强制加入；`tools/` 仍在 `.gitignore`，该目录下新增文件需 `git add -f`）。
+- 3913 客户端逐模块代码基线在独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/`，见 `doc/client/client-code-baseline.md`）；本地化流水线与产物仍在本仓库（`tools/localization/`、`config/localization/` 由 commit `be249b2` 强制加入；`tools/` 仍在 `.gitignore`，该目录下新增文件需 `git add -f`）。
 - 文档有两个入口：本规则的 `doc/`（权威、当前状态）与 commit `be249b2` 带来的 `docs/client-localization-3913.md`（客户端本地化的原始说明）；`doc/client/client-3913.md` 是汇总。
 - 迁移未引入任何 MCP 服务；需要无头测试时直接用 `fakeclient`。
