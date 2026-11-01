@@ -55,37 +55,43 @@ Python-2 protocol-1 pickle:
   [ (module_path: str, (marshalled_code: str, aux: int)), ... ]
 ```
 
-- 373 个模块，按 `script:/eve/...` 一类路径索引；每个 blob 是 Python 2.4 方言的 marshal code object（interned string `t`、string ref `R` 等）。
-- 当前大小 7,926,678 字节（2026-11-01 写入）；`compiled.code.vanilla` 7,930,596 字节（零售原样）。两者有 **143/373 个模块不同**——即当前工作包已经带本地化等改动。
+- 373 个模块，按 `script:/eve/...` 一类路径索引；每个 blob 是 marshal code object（interned string `t`、string ref `R` 等）。客户端运行时是 Python **2.3.3 / Stackless 3.0**，`eveccp.py` 按 2.3/2.4 方言读写。
+- 当前大小 7,926,678 字节；`compiled.code.vanilla` 7,930,596 字节（零售原样）。两者有 **143/373 个模块不同**——即当前包已带本地化改动。
+- 当前客户端 `script\compiled.code` 与 `tools/localization/artifacts/compiled.code.zh` **完全一致**（md5 `251dfdefbfa6eda204821afbf3dec74e`），即仓库里的产物就是客户端在用的包。
 - 读写的权威实现：`tools/localization/eveccp.py`（round-trip 字节级保真，可改字符串常量）；它同时是“格式即文档”的来源。
 
-### 工具链（`tools/localization/`，本地未跟踪）
+### 工具链（`tools/localization/`，已纳入版本库）
 
 | 脚本 | 作用 |
 |---|---|
 | `eveccp.py` | 容器 unpickle/pickle、marshal 读写；库 |
-| `dis24.py` | Python 2.4 字节码反汇编（判断常量是显示文本还是结构数据） |
+| `dis24.py` / `opcode24.py` | Python 2.3/2.4 字节码反汇编（判断常量是显示文本还是结构数据） |
 | `localize_code.py` | 按映射表把显示字符串改成中文 `unicode`；跳过类名、字典键、import 名、比较常量、单 token 标识符 |
-| `repack.py` | 解包 → 重打包（不改内容时用于验证字节保真） |
-| `check_patch.py` | 检查补丁里的 unicode 常量与映射命中 |
-| `verify.py` / `probe*.py` / `scan.py` / `stats.py` / `analyze.py` / `build_map.py` / `module_strings.py` / `findstr.py` / `opcode24.py` / `auxcheck.py` | 映射构建、扫描、统计与校验的辅助脚本 |
-| `config/localization/ui_en_zh.json` | 英文 → 中文显示文本映射（`build_map.py` 生成） |
-| `exclude.json`（若存在） | 精确排除的危险字符串 |
+| `scan.py` | 只读扫描：`list` / `grep PAT [const\|name]` / `tree MODULE` / `dis MODULE/FUNC` |
+| `build_map.py` | 从 3396210 的 en-us + zh 本地化构建 EN→ZH 映射 `ui_en_zh.json`（约 2457 条） |
+| `make_messages_zh.py` | 生成 `res/common/messages.zh.txt`（UTF-16LE + BOM + CRLF） |
+| `verify.py` | 逐模块 `loads`/`dumps` 字节比对 |
+| `exclude.json` | 已知会破坏客户端、需精确排除的字符串（当前为空） |
+| `artifacts/compiled.code.zh`、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini` | 当前构建产物；按 README 覆盖到客户端 |
+
+- 映射表另有仓库根 `config/localization/ui_en_zh.json`（与 `tools/localization/ui_en_zh.json` 同步）。
+- 本地另有 `repack.py`、`check_patch.py`、`probe*.py` 等未跟踪辅助脚本（只在主工作区存在），需要时可参考但不要当成权威。
+- 用法与流程的权威说明：`tools/localization/README.md`、`docs/client-localization-3913.md`。
 
 运行解释器：`C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`（`python` 不在 PATH）。
 
 ### 改写流程
 
 1. 备份当前包：`Copy-Item script\compiled.code script\compiled.code.bak`。
-2. 以 `.vanilla` 为基线生成补丁包（不要叠加在上一次产物上）。
-3. 用 `localize_code.py` 等脚本生成，`check_patch.py`/`verify.py` 校验。
-4. 覆盖 `script\compiled.code`，**完全退出并重启客户端**（`.pyc` 只在进程启动时载入）。
+2. 以 `.vanilla` 为基线生成补丁包（不要叠加在上一次产物上）；产物写进 `tools/localization/artifacts/`。
+3. 用 `localize_code.py` 等脚本生成，`verify.py` 校验字节保真，再检查目标模块的字符串。
+4. 覆盖 `script\compiled.code`（以及 `res\common\messages.zh.txt`、`prefs.ini` 的 `languageID=ZH`），**完全退出并重启客户端**（字节码只在进程启动时载入）。
 5. 进客户端看实际界面；证据看 `capture\Gamelogs`。
-6. 记录到 `doc/client/`，写清改了什么、脚本、映射条目。
+6. 记录到 `doc/client/`，写清改了什么、脚本、映射条目、产物 md5。
 
 ### 硬约束
 
 - `compiled.code.vanilla` 永不修改；`bin\exefile.exe`、`bin\*.dll`、`res\*.stuff` 不改。
 - 只改**显示文本**，不改结构数据（类名、字典键、import、比较常量、单 token 标识符）；`localize_code.py` 的跳过规则即为此，`exclude.json` 兜底。
-- 改动必须由脚本可复现；没有版本控制前不要原地手改。
-- 缺口：3913 还没有独立客户端代码仓库；`tools/` 被 `.gitignore` 忽略。大改前先把代码与工具纳入版本控制（分支策略同服务端仓库）。
+- 改动必须由脚本可复现；手改 `compiled.code` 视为破坏版本化流程。
+- 缺口：3913 仍没有 `tree/`+`dist/` 形态的独立客户端代码仓库；结构性大改前先评估是否拆出（分支策略同服务端仓库）。`tools/` 仍在 `.gitignore` 里，新增工具文件要 `git add -f`。
