@@ -67,5 +67,6 @@
 
 ## 已知缺口
 
-- 3913 客户端没有独立代码仓库；`tools/localization/` 与 `config/localization/` 未纳入版本控制（`tools/` 被 `.gitignore` 忽略）。
+- 3913 客户端没有 `tree/`+`dist/` 形式的独立代码仓库；本地化流水线与产物已在版本库（`tools/localization/`、`config/localization/` 由 commit `be249b2` 强制加入；`tools/` 仍在 `.gitignore`，该目录下新增文件需 `git add -f`）。
+- 文档有两个入口：本规则的 `doc/`（权威、当前状态）与 commit `be249b2` 带来的 `docs/client-localization-3913.md`（客户端本地化的原始说明）；`doc/client/client-3913.md` 是汇总。
 - 迁移未引入任何 MCP 服务；需要无头测试时直接用 `fakeclient`。

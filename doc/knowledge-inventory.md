@@ -9,7 +9,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 - 客户端启动：`M:\EVE-LOCAL\redmoonrising\Start-RMR.bat`（起服务端并拉起客户端）或客户端目录内 `Launch-EVE-RMR.bat`（设 `USERDOMAIN=CENTRAL` 显示 Local Servers）。
 - 上游：`origin` = `github.com/pixelcatburglar/redmoonrising`（`main` 为上游基线，`plus` 为开发主分支）。
 - 数据库：PostgreSQL 16，命名卷 `pgdata`，初始化数据 `db/*.sql.gz`（212 个表转储）。
-- 客户端代码：`script/compiled.code`（零售原包）+ `script/compiled.code.vanilla`（原样备份），工具 `tools/localization/`（本地未跟踪），映射 `config/localization/ui_en_zh.json`（未跟踪）。
+- 客户端代码：`script/compiled.code`（当前包，与 `artifacts/compiled.code.zh` 一致）+ `script/compiled.code.vanilla`（零售原样备份），工具 `tools/localization/`（已纳入版本库），映射 `config/localization/ui_en_zh.json`（已纳入版本库）。
 - 技能目录：`M:\EVE-LOCAL\redmoonrising\.opencode\skills\`（纳入 git）。
 - 仓库文档：`M:\EVE-LOCAL\redmoonrising\doc\`（按领域分目录，见下）。
 
@@ -51,5 +51,5 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `docker-compose.yml` / `Dockerfile` | Postgres + 服务端容器；镜像内带 `strings.txt` |
 | `crates/eve-server/src/bin/fakeclient.rs` | 无头客户端：LLV 握手 + 脚本化服务调用 |
 | `crates/eve-server/web/` | TypeScript 仪表盘（`npm run build` 产出 `web/dist/app.js`，随源提交） |
-| `tools/localization/*.py` | `compiled.code` 解包/反汇编/改写/重打包/校验（本地未跟踪） |
+| `tools/localization/*.py` | `compiled.code` 解包/反汇编/改写/重打包/校验与本地化产物（已纳入版本库；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`） |
 | `db/*.sql.gz` | 官方表转储，卷首次启动时导入 |
