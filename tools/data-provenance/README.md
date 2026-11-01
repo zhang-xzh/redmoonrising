@@ -33,8 +33,8 @@ cd M:\EVE-LOCAL\redmoonrising
 & $PY tools\data-provenance\provenance.py check --snapshot tools\data-provenance\db-snapshot-3913.json
 ```
 
-`manifest` 里的客户端路径是绝对路径，`--verify` 时会读清单里的记录；换机器/换客户端目录用
-`--client` / `--db` 覆盖。
+`manifest` 里的客户端/db 路径只作记录；`--verify` 默认用本机默认路径（`--client` / `--db` 可覆盖），
+所以换 worktree、换客户端目录都能直接校验。
 
 ## 当前基线（2026-11）
 
