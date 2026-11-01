@@ -144,7 +144,7 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 - 零售原样备份 `script\compiled.code.vanilla` 必须保持不动，它是唯一的重置来源。**当前 `compiled.code` 已与 vanilla 不同**（143/373 个模块被改过，2026-11-01 写入），即工作包已经带本地化改动；要回到零售状态就从 `.vanilla` 重新生成。
 - 改动一律**由脚本生成**，可复现：工具在 `tools/localization/`（`eveccp.py` 读写容器、`dis24.py`/`opcode24.py` 反汇编、`localize_code.py` 改字符串、`scan.py`/`verify.py` 校验、`make_messages_zh.py` 生成静态消息文件；映射表 `config/localization/ui_en_zh.json`），已纳入版本库。
 - 工具与产物都在版本库：`tools/localization/README.md`（用法）、`tools/localization/artifacts/compiled.code.zh`（当前客户端包，md5 `251dfdefbfa6eda204821afbf3dec74e`，与客户端 `script/compiled.code` 当前一致）、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini`；详细流程见 `docs/client-localization-3913.md`。`tools/` 仍在 `.gitignore` 里，新增文件要 `git add -f`。
-- 已知缺口：3913 仍没有 `tree/`+`dist/` 形态的独立客户端代码仓库；现在的版本化载体是本仓库的脚本 + `artifacts/`。要做结构性大改（增删模块、改逻辑）前，先评估是否拆出独立仓库（分支策略同本仓库：`plus`/`main`）。
+- 逐模块基线：独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/` + `tools/`），结构性大改在此进行并重建容器；细节见 `doc/client/client-code-baseline.md`。
 - 每次写入前备份当前 `compiled.code`；写完必须进客户端**完全重启**验证（字节码只在进程启动时载入），并记录到 `doc/client/`。
 
 ---

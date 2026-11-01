@@ -9,7 +9,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 - 客户端启动：`M:\EVE-LOCAL\redmoonrising\Start-RMR.bat`（起服务端并拉起客户端）或客户端目录内 `Launch-EVE-RMR.bat`（设 `USERDOMAIN=CENTRAL` 显示 Local Servers）。
 - 上游：`origin` = `github.com/pixelcatburglar/redmoonrising`（`main` 为上游基线，`plus` 为开发主分支）。
 - 数据库：PostgreSQL 16，命名卷 `pgdata`，初始化数据 `db/*.sql.gz`（212 个表转储）。
-- 客户端代码：`script/compiled.code`（当前包，与 `artifacts/compiled.code.zh` 一致）+ `script/compiled.code.vanilla`（零售原样备份），工具 `tools/localization/`（已纳入版本库），映射 `config/localization/ui_en_zh.json`（已纳入版本库）。
+- 客户端代码：`script/compiled.code`（当前包，与 `artifacts/compiled.code.zh` 一致）+ `script/compiled.code.vanilla`（零售原样备份），工具 `tools/localization/`（已纳入版本库），映射 `config/localization/ui_en_zh.json`（已纳入版本库）；逐模块基线仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/`，见 `doc/client/client-code-baseline.md`）。
 - 技能目录：`M:\EVE-LOCAL\redmoonrising\.opencode\skills\`（纳入 git）。
 - 仓库文档：`M:\EVE-LOCAL\redmoonrising\doc\`（按领域分目录，见下）。
 
@@ -41,6 +41,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `doc/platform/architecture.md` | 服务端架构总览（crate、模块、数据流） |
 | `doc/data/database.md` | 数据库结构、初始化、备份、重置 |
 | `doc/client/client-3913.md` | 客户端布局、`compiled.code`、本地化工具链 |
+| `doc/client/client-code-baseline.md` | 零售代码基线仓库（`dist`+`tree`+`lib`+`stdlib`）、反编译工具与验证 |
 | `doc/issues/INDEX.md` | 异常归档索引 |
 
 ## 脚本与工具

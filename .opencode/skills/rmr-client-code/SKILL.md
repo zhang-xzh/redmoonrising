@@ -62,9 +62,16 @@ cd M:\EVE-LOCAL\redmoonrising\tools\localization
 - `bin\exefile.exe`、`bin\*.dll`、`res\*.stuff` 一律不改。
 - 改动必须由脚本可复现；没有版本控制前不要手改。
 
-## 缺口
+## 基线仓库
 
-3913 仍没有 `tree/`+`dist/` 形态的独立客户端代码仓库；版本化载体是本仓库 `tools/localization/` + `artifacts/`。结构性大改前先评估是否拆出仓库（`plus`/`main` 策略同服务端）。
+逐模块代码版本管理在独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（git，参照新版客户端的 `EVE-3396210-code.ccp` 结构）：
+
+- `dist/compiled.code`（零售容器，md5 `36e18ef3…`）+ `dist/manifest.json`（373 个模块的路径、aux、sha256）；
+- `tree/<模块>.pyc`（精确载荷，magic `62061`）+ `tree/<模块>.py`（pycdc 反编译，供阅读）；
+- `lib/*.py`、`stdlib/**`、`script/run.py`、`script/sys/autoexec.py` 原文；
+- `tools/extract_compiled_code.py`（容器→tree）、`tools/build_compiled_code.py`（tree→容器并校验）。
+
+结构性大改（增删模块、改逻辑）改 `tree` 后用 `build_compiled_code.py` 重建容器，细节与验证见 `doc/client/client-code-baseline.md`。
 
 ## 触发关键词
 

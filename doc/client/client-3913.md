@@ -94,4 +94,4 @@ Python-2 protocol-1 pickle:
 - `compiled.code.vanilla` 永不修改；`bin\exefile.exe`、`bin\*.dll`、`res\*.stuff` 不改。
 - 只改**显示文本**，不改结构数据（类名、字典键、import、比较常量、单 token 标识符）；`localize_code.py` 的跳过规则即为此，`exclude.json` 兜底。
 - 改动必须由脚本可复现；手改 `compiled.code` 视为破坏版本化流程。
-- 缺口：3913 仍没有 `tree/`+`dist/` 形态的独立客户端代码仓库；结构性大改前先评估是否拆出（分支策略同服务端仓库）。`tools/` 仍在 `.gitignore` 里，新增工具文件要 `git add -f`。
+- 缺口：`tools/` 仍在 `.gitignore` 里，新增工具文件要 `git add -f`；结构性大改前的逐模块代码版本管理见 `doc/client/client-code-baseline.md`（独立基线仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`：`dist/compiled.code` + `tree/*.pyc` + `tree/*.py`）。
