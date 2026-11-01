@@ -4,8 +4,8 @@ RMR 已解决异常的索引。正文不是 skill，每篇正文位于 `doc/issu
 
 **异常一律只落文档、不做 skill**：skill 的 `description` 每请求全量加载，只增固定开销；触发词也只在本文件维护。
 
-共 0 篇。
+共 1 篇。
 
 | 归档文档 | 症状 / 触发关键词 |
 |---|---|
-| （暂无） | — |
+| [rmr-issue-language-list-empty.md](rmr-issue-language-list-empty.md) | ESC → Language 标签列表为空；`AttributeError: 'list' object has no attribute 'languageID'`；GetLanguages / languageSvc / 多语言 |
