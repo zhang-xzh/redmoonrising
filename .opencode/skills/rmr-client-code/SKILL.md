@@ -1,0 +1,67 @@
+---
+name: rmr-client-code
+description: Use when reading or patching the EVE 3913 client's compiled.code, Python views, strings or Chinese localization. Triggers: compiled.code, eveccp, localize, pyo, 本地化
+---
+
+# 3913 客户端代码（compiled.code）
+
+规则见 `AGENTS.md`「客户端代码修改」；背景见 `doc/client/client-3913.md`。
+
+## 事实
+
+- 客户端：`M:\EVE-LOCAL\inputs\EVE-Online-3913`（2.10 / build 3913 / Blood，固定不升级）。
+- 代码容器：`script\compiled.code`（约 7.9 MB，373 个模块）。
+- 零售基线：`script\compiled.code.vanilla`（**永不修改**；当前工作包与它有 143 个模块不同，说明已带改动）。
+- 运行时刻意区分：`eve.exe` 是启动器，游戏进程是 `bin\exefile.exe`。
+
+## 容器格式
+
+```text
+Python-2 protocol-1 pickle:
+  [ (module_path: str, (marshalled_code: str, aux: int)), ... ]
+```
+
+每个 blob 是 Python 2.4 方言 marshal code object（4 字节 header、interned string `t`、string ref `R`）。`tools/localization/eveccp.py` 是权威读写实现，未改动时 round-trip 字节保真。
+
+## 工具（`tools/localization/`，本地未跟踪）
+
+| 脚本 | 用途 |
+|---|---|
+| `eveccp.py` | 容器 unpickle/pickle + marshal 读写（库） |
+| `dis24.py` | 2.4 字节码反汇编，判断常量用途 |
+| `localize_code.py` | 按 `config/localization/ui_en_zh.json` 改显示文本 |
+| `repack.py` | 解包→重打包（验证字节保真） |
+| `check_patch.py` / `verify.py` | 补丁与映射校验 |
+| `build_map.py` / `scan.py` / `stats.py` / `module_strings.py` | 映射构建、扫描、统计 |
+
+解释器：`C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`（`python` 不在 PATH）。
+
+```powershell
+$py = 'C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe'
+cd M:\EVE-LOCAL\redmoonrising\tools\localization
+& $py repack.py <in> <out>
+```
+
+## 改写流程
+
+1. 备份：`Copy-Item ...\script\compiled.code ...\script\compiled.code.bak -Force`。
+2. 从 `.vanilla` 生成新包（不要在上一次产物上叠加）。
+3. 脚本改写 + `check_patch.py`/`verify.py` 校验。
+4. 覆盖 `script\compiled.code`。
+5. **完全退出并重启客户端**（字节码只在启动时载入），进游戏看效果；证据看 `capture\Gamelogs`。
+6. 记录到 `doc/client/`：脚本、映射条目、改动的模块、验证结果。
+
+## 约束
+
+- 只改**显示文本**：类名、字典键、import 名、比较常量、单 token 标识符一律不改（`localize_code.py` 的跳过规则）。
+- 显示文本必须是 `unicode`（C++ label 与 fontsvc 按字符码点渲染；字节串会被拆成 UTF-8 字节）。
+- `bin\exefile.exe`、`bin\*.dll`、`res\*.stuff` 一律不改。
+- 改动必须由脚本可复现；没有版本控制前不要手改。
+
+## 缺口
+
+3913 没有独立客户端代码仓库；`tools/` 与 `config/` 未纳入 git（`tools/` 被 `.gitignore` 忽略）。做结构性大改前，先把代码与工具建成仓库（`plus`/`main` 分支策略同服务端）。
+
+## 触发关键词
+
+compiled.code, compiled.code.vanilla, eveccp, dis24, localize_code, repack, check_patch, ui_en_zh.json, marshal, pickle, Stackless Python, .pyo, 客户端代码, 本地化, 中文, 字体, 界面文字
