@@ -102,8 +102,10 @@ def manifest_entries(client, dbroot):
 def cmd_manifest(a):
     if a.verify:
         data = json.load(open(a.verify, encoding="utf-8"))
-        client = a.client or data["client"]
-        dbroot = a.db or data["db"]
+        # The recorded paths are informational only: verify against this
+        # checkout/install unless the caller overrides them.
+        client = a.client or DEFAULT_CLIENT
+        dbroot = a.db or DEFAULT_DB
         bad = []
         for rec in data["files"]:
             p = os.path.join(client if rec["group"] == "client" else dbroot,
@@ -129,7 +131,11 @@ def cmd_manifest(a):
         group, rel = label.split("/", 1)
         files.append({"group": group, "path": label, "size": os.path.getsize(path),
                       "sha256": sha256_file(path)})
-    data = {"client": client, "db": dbroot, "files": files}
+    data = {"client": client,
+            "db": (os.path.relpath(dbroot, REPO).replace(os.sep, "/")
+                   if os.path.abspath(dbroot).startswith(os.path.abspath(REPO))
+                   else dbroot),
+            "files": files}
     text = json.dumps(data, indent=1, ensure_ascii=False) + "\n"
     if a.out:
         open(a.out, "w", encoding="utf-8", newline="\n").write(text)

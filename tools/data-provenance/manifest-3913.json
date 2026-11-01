@@ -1,6 +1,6 @@
 {
  "client": "M:\\EVE-LOCAL\\inputs\\EVE-Online-3913",
- "db": "M:\\EVE-LOCAL\\worktrees\\wt-rmr-data-provenance\\db",
+ "db": "db",
  "files": [
   {
    "group": "client",
