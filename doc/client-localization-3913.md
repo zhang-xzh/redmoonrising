@@ -1,4 +1,6 @@
 # build 3913 客户端汉化（Red Moon Rising）
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 把 `M:\EVE-LOCAL\inputs\EVE-Online-3913`（build 3913，2006 年 retail 客户端）的界面
 文本换成中文。译名取自 3396210 客户端的本地化表。客户端代码工具在 `tools/client-code/`，

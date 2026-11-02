@@ -1,4 +1,6 @@
 # 知识清单
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具，以及给后续 agent 的环境事实。
 
@@ -55,7 +57,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `docker-compose.yml` / `Dockerfile` | Postgres + 服务端容器；镜像内带 `strings.txt` |
 | `crates/eve-server/src/bin/fakeclient.rs` | 无头客户端：LLV 握手 + 脚本化服务调用 |
 | `crates/eve-server/web/` | TypeScript 仪表盘（`npm run build` 产出 `web/dist/app.js`，随源提交） |
-| `tools/client-code/*.py` | `compiled.code` 容器解包/反汇编/扫描/重打包校验与诊断探针（已纳入版本库；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`） |
-| `tools/localization/*.py` | 本地化映射构建、字符串改写、静态消息生成与产物（同上，已纳入版本库） |
+| `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\client-code\*.py` | `compiled.code` 容器解包/反汇编/扫描/重打包校验与诊断探针（独立客户端仓库） |
+| `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\localization\*.py` | 本地化映射构建、字符串改写、静态消息生成与产物（独立客户端仓库） |
 | `tools/data-provenance/*.py` | 客户端 + `db/` 的 sha256 清单、数据库内容锚点、客户端消息键交叉校验；基线 JSON 与用法见 `doc/data/provenance-3913.md`（已纳入版本库，新增文件要 `git add -f`） |
 | `db/*.sql.gz` | 官方表转储，卷首次启动时导入 |
