@@ -5,7 +5,7 @@
 - **已实现**：ESC → Language 列表（`languages` 表 11 行，`util.Rowset`）、
   `authentication.SetLanguageID`（改 session、写 `account."languageID"`、发 session change）、
   五个乱码语言名的启动修复、服务端静态数据的 EN/ZH 两套 bulk（ZH 走
-  `config/localization/server_zh.json` 覆盖层，其余语言回落英文）。
+  `config/server-i18n/server_zh.json` 覆盖层，其余语言回落英文）。
 - **未实现**：教程/幻灯片按语言查库、动态 RPC 返回名称的翻译、其他语言覆盖层、
   多份 `compiled.code` 的 UI 文案切换（客户端当前是中文单语言包）。
 
@@ -178,7 +178,7 @@ RMR 现状：`tutorialSvc` 忽略 `languageID`（`crates/eve-server/src/svc/tuto
 
 ### 阶段 3：服务端静态数据（完成 EN/ZH，重登生效）
 
-1. **翻译存储**：JSON 覆盖层 `config/localization/server_<lang>.json`，结构为
+1. **翻译存储**：JSON 覆盖层 `config/server-i18n/server_<lang>.json`，结构为
    “表 → 列 → 主键 → 文本”：
 
    ```json
@@ -193,7 +193,7 @@ RMR 现状：`tutorialSvc` 忽略 `languageID`（`crates/eve-server/src/svc/tuto
 
    不是每个文件都要全量；缺的单元格回落英文。服务端在启动时读取目录里所有
    `server_<lang>.json`（`crates/eve-server/src/i18n.rs`），目录由
-   `server.localization` / `RMR_LOCALIZATION` 指定，默认 `config/localization`；
+   `server.localization` / `RMR_LOCALIZATION` 指定，默认 `config/server-i18n`；
    `docker-compose.yml` 把它只读挂进容器。
 2. **每语言 bulk**：`crates/eve-server/src/bulkdata.rs` 的 `BulkSet`
    持有英文 `BulkData` 和每个覆盖层构建的翻译版；`translate()` 按
@@ -206,9 +206,10 @@ RMR 现状：`tutorialSvc` 忽略 `languageID`（`crates/eve-server/src/svc/tuto
    `ramActivities`、`ramCompletedStatuses`、`eveRoles`、`eveFlags`、`chrRaces`、`chrBloodlines`、
    `eveStatistics`、`eveUnits`、`channelTypes`、`eveStaticLocations`（星系/空间站名）。
    玩家生成名字不翻；`config.BulkData.messages` 不翻（本地消息文件优先）。
-4. **数据生成**：`tools/localization/build_server_map.py` 读取 3396210 的
+4. **数据生成**：客户端仓库的 `tools/localization/build_server_map.py`
+   （`M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\localization\build_server_map.py`）读取 3396210 的
    `loc_en.json` + `client_localization_fsd_zh.json`，按 **3913 英文原文精确匹配**
-   （名称再做大小写去空白匹配），写 `config/localization/server_zh.json`。
+   （名称再做大小写去空白匹配），写 `config/server-i18n/server_zh.json`。
    当前产物 1.18 MB、19534 条文本：13261 个类型里 9193 个 `typeName`、5862 条 `description`；
    559 个组里 483 个 `groupName`；11261 个静态地点里 2184 个名字。
    匹配是“原文相同才翻”，不是按 ID 猜测，所以改过文案的条目不翻、保持英文。
@@ -259,11 +260,11 @@ RMR 现状：`tutorialSvc` 忽略 `languageID`（`crates/eve-server/src/svc/tuto
 
 | 项 | 位置 |
 |---|---|
-| 覆盖层文件 | `config/localization/server_zh.json`（每个语言一份，按 `server_<lang>.json` 识别） |
-| 生成器 | `tools/localization/build_server_map.py`（读 3913 `db/*.sql.gz` 与 3396210 本地化表） |
+| 覆盖层文件 | `config/server-i18n/server_zh.json`（每个语言一份，按 `server_<lang>.json` 识别） |
+| 生成器 | 客户端仓库 `tools/localization/build_server_map.py`（读 3913 `db/*.sql.gz` 与 3396210 本地化表） |
 | 加载/选择 | `crates/eve-server/src/i18n.rs`、`bulkdata.rs`（`BulkSet`、`translate`） |
-| 配置 | `rmr.yml` 的 `server.localization` / `RMR_LOCALIZATION`，默认 `config/localization` |
-| 容器 | `docker-compose.yml` 只读挂载 `./config/localization:/app/config/localization` |
+| 配置 | `rmr.yml` 的 `server.localization` / `RMR_LOCALIZATION`，默认 `config/server-i18n` |
+| 容器 | `docker-compose.yml` 只读挂载 `./config/server-i18n:/app/config/server-i18n` |
 
 未选其他方案的原因：Postgres 翻译表要迁移现有卷（`db/` 只在空卷初始化一次）；
 每语言列/表会让 schema 和官方数据一起膨胀。JSON 覆盖层可 diff、可只翻一部分、不改官方 `db/`。
@@ -313,6 +314,6 @@ docker compose logs server --tail 100 | Select-String "bulk data|localization|la
 - 服务端：`crates/eve-server/src/svc/language.rs`、`svc/login.rs`、`svc/tutorial.rs`、
   `conn/auth.rs`、`conn/language.rs`、`conn/mod.rs`、`session.rs`、`bulkdata.rs`、`i18n.rs`、`db.rs`、`svc/rows.rs`
 - 数据：`db/languages.sql.gz`、`db/account.sql.gz`、`db/eveMessages.sql.gz`
-- 工具：`tools/localization/build_server_map.py`、`config/localization/server_zh.json`
+- 工具：客户端仓库 `tools/localization/build_server_map.py`、`config/server-i18n/server_zh.json`
 - 文档：`doc/client-localization-3913.md`（单语言汉化流水线）、
   `doc/issues/rmr-issue-language-list-empty.md`（列表为空现象）、`doc/client/client-code-baseline.md`

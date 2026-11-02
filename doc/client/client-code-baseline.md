@@ -1,4 +1,6 @@
 # 3913 客户端代码基线仓库
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 零售 3913 客户端 Python 代码的独立版本管理基线：`M:\EVE-LOCAL\inputs\EVE-Online-3913-code`
 （自己的 git 仓库，不属于 RMR workspace）。用途是给客户端代码一个可 diff、可回溯、

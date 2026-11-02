@@ -51,7 +51,7 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 - 提交前看 `git status` / `git diff` / `git log --oneline -10`，只 stage 本次有意改动；绝不提交密钥、日志、`dumps/`、`target/`、临时产物；不 `--force`、不建空提交。
 - 提交信息：简短英文祈使句（`Add ...` / `Fix ...` / `Allow ...`），一句话说清改了什么。
 - 提交后报告短 hash 与摘要；**不自动 push**（除非明确要求）；提交失败另起新提交、不 amend。
-- `.gitignore` 仍写着 `tools/`、`target/`、`crates/eve-server/web/node_modules/`；但客户端代码工具与本地化流水线已用 `git add -f` 纳入版本库（`tools/client-code/`、`tools/localization/`、`config/localization/`）。这些目录下**新增**文件默认仍被忽略，需显式 `git add -f`。
+- `.gitignore` 仍写着 `tools/`、`target/`、`crates/eve-server/web/node_modules/`；客户端代码工具与本地化流水线已迁到独立客户端仓库，不再在本仓库。
 
 ---
 
@@ -71,7 +71,7 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 
 **任何功能/行为修改都必须落盘到仓库文档，且写成“当前状态”，不是变更流水账。**
 
-- 范围：`crates/**` 代码、`rmr.yml` 配置项、`db/` 静态数据、客户端代码补丁（`script/compiled.code`）、`tools/` 工具链与脚本，及任何对外行为改动。
+- 范围：`crates/**` 代码、`rmr.yml` 配置项、`db/` 静态数据，及任何服务器对外行为改动。客户端代码、客户端工具与客户端补丁不在本仓库，见 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；客户端改动记录在客户端仓库的 `README.md`/`AGENTS.md`。
 - 方法：综合进**相关主题** `doc/<领域>/<文档>.md`（目录与放置约定见 `doc/README.md`），删除已被取代的旧内容，使文档描述“现在是什么样”；不追加 `> 2026-xx-xx 更新` 之类的流水账。
 - 一个改动 = 写入/更新对应主题文档；无合适文档则新建并在 `doc/knowledge-inventory.md` 登记一行；同主题多次改动持续更新同一文档。
 - 记录须含：改了什么/为什么、涉及文件与函数（`file_path:line`）、当前生效的配置/数值、生效方式（`rmr.yml` + 重启容器 / 服务端代码重建镜像 / 客户端补丁完全重启客户端）、验证与回滚。
@@ -142,9 +142,11 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 **3913 客户端的 Python 代码只有两种形态：`script\compiled.code`（自定义容器：Python protocol-1 pickle + marshal code object，373 个模块，约 7.9 MB）和 `lib\*.pyo` / `stdlib\**` 里的散装字节码。`bin\exefile.exe`、`bin\*.dll`、`res\*.stuff` 一律不改。**
 
 - 零售原样备份 `script\compiled.code.vanilla` 必须保持不动，它是唯一的重置来源。**当前 `compiled.code` 已与 vanilla 不同**（143/373 个模块被改过，2026-11-01 写入），即工作包已经带本地化改动；要回到零售状态就从 `.vanilla` 重新生成。
-- 改动一律**由脚本生成**，可复现：客户端代码工具在 `tools/client-code/`（`eveccp.py` 读写容器、`dis24.py`/`opcode24.py` 反汇编、`scan.py`/`verify.py` 扫描与校验），本地化流水线在 `tools/localization/`（`localize_code.py` 改字符串、`build_map.py` 建映射、`make_messages_zh.py` 生成静态消息文件；映射表 `config/localization/ui_en_zh.json`），均已纳入版本库。
-- 工具与产物都在版本库：`tools/client-code/README.md`（客户端代码工具）、`tools/localization/README.md`（本地化用法）、`tools/localization/artifacts/compiled.code.zh`（当前客户端包，md5 `251dfdefbfa6eda204821afbf3dec74e`，与客户端 `script/compiled.code` 当前一致）、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini`；详细流程见 `doc/client-localization-3913.md`。`tools/` 仍在 `.gitignore` 里，新增文件要 `git add -f`。
-- 逐模块基线：独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/` + `tools/`），结构性大改在此进行并重建容器；细节见 `doc/client/client-code-baseline.md`。
+- 客户端代码、工具、补丁、本地化流水线与产物全部在独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`，**不在本服务器仓库**。
+- 客户端代码工具：`M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\client-code\`（`eveccp.py` 读写容器、`dis24.py`/`opcode24.py` 反汇编、`scan.py`/`verify.py` 扫描与校验）；本地化流水线：`M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\localization\`（`localize_code.py` 改字符串、`build_map.py` 建映射、`make_messages_zh.py` 生成静态消息文件；映射表 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\config\localization\ui_en_zh.json`）。
+- 客户端本地补丁：`M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\client-ui-scale\`、`...\tools\client-cursor-fix\`、`...\tools\client-dx-version-fix\`。
+- 产物：`M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\localization\artifacts\compiled.code.zh`（当前客户端包，md5 `251dfdefbfa6eda204821afbf3dec74e`）、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini`；详细流程见客户端仓库 `README.md`/`AGENTS.md`，本仓库 `doc/client-localization-3913.md` 仅作说明。
+- 逐模块基线/客户端仓库：独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/` + `tools/`），结构性大改与本地补丁都在此进行并重建容器；细节见该仓库 `AGENTS.md` 与本仓库 `doc/client/client-code-baseline.md`。
 - 每次写入前备份当前 `compiled.code`；写完必须进客户端**完全重启**验证（字节码只在进程启动时载入），并记录到 `doc/client/`。
 
 ---
@@ -166,7 +168,8 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 - `M:\EVE-LOCAL\inputs\`：只读输入（客户端/反编译客户端代码/SDE 等），只用绝对路径定向读取。
 - `M:\EVE-LOCAL\worktrees\`：并行任务 git worktree；`_archive\`：历史备份/整包；`_scratch\`：临时产物；`mods\`：外部 mod 合并工作目录。
 - 客户端目录 `M:\EVE-LOCAL\inputs\EVE-Online-3913`（本项目的唯一客户端）；新版客户端 `EVE-Online-3396210` 与本仓库无关，别混用。
-- 仓库内：`crates/`（代码）、`db/`（官方表转储）、`tools/`（本地化工具与产物，已 `git add -f`）、`config/`（本地化映射，已入库）、`doc/`（文档，唯一文档根）。
+- 本服务器仓库内：`crates/`（服务器代码）、`db/`（官方表转储）、`tools/data-provenance/`、`doc/`（服务器/项目文档，唯一文档根）。
+- 客户端代码/工具/补丁/本地化：`M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（独立仓库；`tools/client-code`、`tools/localization`、`config/localization`、`tools/client-*` 都在那里）。
 
 ---
 

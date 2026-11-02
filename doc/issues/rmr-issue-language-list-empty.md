@@ -1,6 +1,8 @@
 # 客户端 ESC 菜单 Language 标签列表为空
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
-**当前状态**：已修复（多语言阶段 1 完成）。`GetLanguages` 现在读 `languages` 表并返回 `util.Rowset`；`SetLanguageID` 会同步 session、`account."languageID"` 并下发 session change。服务端静态数据已按语言提供 EN/ZH 两套 bulk（ZH 为 `config/localization/server_zh.json` 覆盖层），教程/幻灯片与客户端 UI 文案仍待后续阶段。整体机制与分层方案见 `doc/client/multilanguage-3913.md`。
+**当前状态**：已修复（多语言阶段 1 完成）。`GetLanguages` 现在读 `languages` 表并返回 `util.Rowset`；`SetLanguageID` 会同步 session、`account."languageID"` 并下发 session change。服务端静态数据已按语言提供 EN/ZH 两套 bulk（ZH 为 `config/server-i18n/server_zh.json` 覆盖层），教程/幻灯片与客户端 UI 文案仍待后续阶段。整体机制与分层方案见 `doc/client/multilanguage-3913.md`。
 
 ## 1. 症状
 
@@ -93,7 +95,7 @@
 - 零售 3913 没有“同一 ID 的多语言版本”：`db/` 里只有 `languages` 和 `account` 带 `languageID`；
   名称层翻译是本项目用现代本地化表按 3913 英文原文对齐后补的（非零售数据）。
 - 客户端 `compiled.code` 仍是单语言构建（当前是中文包）；运行期改 UI 文案不在本阶段范围。
-- 本项目看到的中文界面来自 `compiled.code` 的字符串本地化（`tools/localization/`），
+- 本项目看到的中文界面来自 `compiled.code` 的字符串本地化（客户端仓库 `tools/localization/`），
   与服务端数据语言是两套机制。
 
 完整的分层方案、数据模型和实施阶段见 `doc/client/multilanguage-3913.md`。
@@ -130,7 +132,7 @@
 - 客户端：`ui/shared/systemmenu.py`、`parklife/gameui.py`、`external/common/script/sys/cfg.py`、`external/common/script/sys/mlsUtil.py`
 - `doc/client/client-code-baseline.md`（反编译基线不可全信，结构以字节码为准）
 - `doc/client/multilanguage-3913.md`（多语言机制、数据覆盖层与实施阶段）
-- `tools/localization/README.md`、`tools/localization/build_server_map.py`（服务端名称层生成器）
+- 客户端仓库 `tools/localization/README.md`、`tools/localization/build_server_map.py`（服务端名称层生成器）
 
 ## 9. 搜索关键词
 

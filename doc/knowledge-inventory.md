@@ -1,4 +1,6 @@
 # 知识清单
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具，以及给后续 agent 的环境事实。
 
@@ -9,7 +11,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 - 客户端启动：`M:\EVE-LOCAL\redmoonrising\Play.bat`（仓库根；起服务端并拉起客户端，设 `USERDOMAIN=CENTRAL` 显示 Local Servers）。
 - 远端：`origin` = 上游 `github.com/pixelcatburglar/redmoonrising`（只作对照/取上游，`main` 跟踪 `origin/main`）；`fork` = 自己的 GitHub fork `github.com/zhang-xzh/redmoonrising`，`plus` 跟踪 `fork/plus` 并作为推送目标。`main` 为上游基线，`plus` 为开发主分支。
 - 数据库：PostgreSQL 16，命名卷 `pgdata`，初始化数据 `db/*.sql.gz`（212 个表转储）。
-- 客户端代码：`script/compiled.code` 当前是**零售原版**（sha256 `daa5eae3…`、md5 `36e18ef3…`）；上一版中文包在 `script/compiled.code.zh-prev-20261101-194509`（md5 `251dfdef…`）和 `tools/localization/artifacts/compiled.code.zh`；`script/compiled.code.vanilla` 当前**缺失**，重置来源用 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\dist\compiled.code`（与零售原版同 hash）。客户端代码工具 `tools/client-code/`、本地化流水线 `tools/localization/` 与映射 `config/localization/ui_en_zh.json` 已入库；逐模块基线见 `doc/client/client-code-baseline.md`，版本/完整性基线见 `doc/data/provenance-3913.md`。
+- 客户端代码：`script/compiled.code` 当前是**零售原版**（sha256 `daa5eae3…`、md5 `36e18ef3…`）；上一版中文包在 `script/compiled.code.zh-prev-20261101-194509`（md5 `251dfdef…`）和 `tools/localization/artifacts/compiled.code.zh`；`script/compiled.code.vanilla` 当前**缺失**，重置来源用 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\dist\compiled.code`（与零售原版同 hash）。客户端代码工具、本地化流水线与映射在独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；逐模块基线见 `doc/client/client-code-baseline.md`，版本/完整性基线见 `doc/data/provenance-3913.md`。
 - 技能目录：`M:\EVE-LOCAL\redmoonrising\.opencode\skills\`（纳入 git）。
 - 仓库文档：`M:\EVE-LOCAL\redmoonrising\doc\`（按领域分目录，见下）。
 
@@ -19,7 +21,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 |---|---|
 | `agent-context-efficient-reads` | 大文件/大输出/多步骤时的上下文压缩与少往返策略 |
 | `rmr-server-operations` | 构建、启动、配置（`rmr.yml`）、日志、数据库与客户端联调 |
-| `rmr-client-code` | `compiled.code` 容器格式、`tools/client-code` 代码工具、`tools/localization` 本地化流程 |
+| `rmr-client-code` | `compiled.code` 容器格式、客户端仓库 `tools/client-code` 代码工具、`tools/localization` 本地化流程 |
 | `eve-online-university-wiki` | 查 EVE 玩法/机制（现代资料，取值仍需回到 3913 客户端） |
 
 ## 仓库文档
@@ -55,7 +57,8 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `docker-compose.yml` / `Dockerfile` | Postgres + 服务端容器；镜像内带 `strings.txt` |
 | `crates/eve-server/src/bin/fakeclient.rs` | 无头客户端：LLV 握手 + 脚本化服务调用 |
 | `crates/eve-server/web/` | TypeScript 仪表盘（`npm run build` 产出 `web/dist/app.js`，随源提交） |
-| `tools/client-code/*.py` | `compiled.code` 容器解包/反汇编/扫描/重打包校验与诊断探针（已纳入版本库；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`） |
-| `tools/localization/*.py` | 客户端本地化映射/改写/消息生成，以及服务端名称层 `build_server_map.py`（生成 `config/localization/server_zh.json`；同上，已纳入版本库） |
+| `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\client-code\*.py` | `compiled.code` 容器解包/反汇编/扫描/重打包校验与诊断探针（独立客户端仓库） |
+| `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\localization\*.py` | 本地化映射构建、字符串改写、静态消息生成与产物（独立客户端仓库） |
+| `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\tools\localization\build_server_map.py` | 服务端名称层生成器：按 3913 英文原文对齐客户端本地化表，输出本仓库 `config/server-i18n/server_zh.json` |
 | `tools/data-provenance/*.py` | 客户端 + `db/` 的 sha256 清单、数据库内容锚点、客户端消息键交叉校验；基线 JSON 与用法见 `doc/data/provenance-3913.md`（已纳入版本库，新增文件要 `git add -f`） |
 | `db/*.sql.gz` | 官方表转储，卷首次启动时导入 |

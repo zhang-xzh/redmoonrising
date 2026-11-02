@@ -1,4 +1,6 @@
 # 3913 客户端 4K / 200% UI 缩放
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 ## 结论（当前状态）
 
@@ -98,6 +100,21 @@ SetCursorPosition game=(2249,1195) raw=(689,377) flags=0x00000000
 回滚：删除这两个文件并删除上面的 DPI 注册表值。
 
 回滚：删除上面的 registry 值。
+
+## 启动时 DirectX 版本提示
+
+Windows 10/11 的 `d3d9.dll` 是 10.0.x；3913 的 `script/sys/autoexec.py` 里
+`GetDXVersion()` 只认 4.x/5.x，10.x 会落到 `(9, 0, "")`，于是 `CheckDXVersion()` 弹出：
+
+```
+DirectX 9.0 detected but this application needs 9.0b
+Try continue with old DirectX version?
+```
+
+修复：版本判断改为 `d3d9 >= Long(4, 9, 0, 904)` → 9.0c，
+`d3d9 >= Long(4, 9, 0, 902)` → 9.0b，不再限定主版本号。补丁与说明见
+`tools/client-dx-version-fix/`；安装后完全重启客户端，回滚用
+`script/sys/autoexec.py.bak-rmr`。
 
 ## 回滚
 

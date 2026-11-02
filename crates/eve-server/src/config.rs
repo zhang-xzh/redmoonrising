@@ -162,7 +162,7 @@ impl Default for ServerSection {
             auto_create_accounts: false,
             strings: None,
             dump_dir: ".".into(),
-            localization: "config/localization".into(),
+            localization: "config/server-i18n".into(),
         }
     }
 }

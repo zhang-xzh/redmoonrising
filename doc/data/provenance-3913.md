@@ -1,4 +1,6 @@
 # 3913 客户端与数据库溯源
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 `db/*.sql.gz` 是 2006 年那代服务端的 **PostgreSQL 运行库转储**，不是 CCP 官方 SDE，也没有
 build/版本列；客户端 `script/compiled.code.vanilla` 目前缺失。所以“数据是不是 build 3913
