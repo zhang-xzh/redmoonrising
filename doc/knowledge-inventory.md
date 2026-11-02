@@ -50,7 +50,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 
 | 路径 | 用途 |
 |---|---|
-| `Start-RMR.bat`（本地脚本，当前未跟踪） | 起 compose、等 26000、拉起客户端（`--no-client` 只起服务端） |
+| `Start-RMR.bat`（本地脚本，已列入 `.gitignore`） | 起 compose、等 26000、拉起客户端（`--no-client` 只起服务端） |
 | `docker-compose.yml` / `Dockerfile` | Postgres + 服务端容器；镜像内带 `strings.txt` |
 | `crates/eve-server/src/bin/fakeclient.rs` | 无头客户端：LLV 握手 + 脚本化服务调用 |
 | `crates/eve-server/web/` | TypeScript 仪表盘（`npm run build` 产出 `web/dist/app.js`，随源提交） |
