@@ -60,4 +60,4 @@ RMR 是 EVE 2.10 / build 3913（2006）的 machoNet 服务端。协议与玩法�
 
 ## 无头验证
 
-`crates/eve-server/src/bin/fakeclient.rs`：连 26000、走 LLV 握手、登录、按脚本发 service 调用并断言，是客户端之外最可靠的回归入口。参数：地址（默认 `127.0.0.1:26000`）、`--script <file>`、`--no-cache`（`fakeclient.rs:141`，脚本语法见 `parse_script`，`fakeclient.rs:192`）。
+`crates/eve-server/src/bin/fakeclient.rs`：连 26000、走 LLV 握手、登录、按脚本发 service 调用并断言，是客户端之外最可靠的回归入口。参数：地址（默认 `127.0.0.1:26000`）、`--script <file>`、`--no-cache`、`--lang <ID>`（写进 clientinfo 的 `languageID`，默认 `EN`，用于验证按语言 bulk；脚本语法见 `parse_script`）。

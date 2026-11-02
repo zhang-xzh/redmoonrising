@@ -5,6 +5,7 @@
 //! undock, jump) in `location`.
 
 mod auth;
+mod language;
 mod location;
 
 use std::net::SocketAddr;
@@ -22,7 +23,7 @@ use tokio::net::TcpStream;
 use tokio::sync::mpsc::UnboundedReceiver;
 use tracing::{debug, error, field, info, info_span, trace, warn, Instrument, Span};
 
-use crate::bulkdata::BulkData;
+use crate::bulkdata::BulkSet;
 use crate::exceptions::{custom_error, service_not_found, user_error};
 use crate::services::{self, Call, Ctx, Outcome};
 use crate::session::Session;
@@ -35,7 +36,7 @@ pub struct Server {
     pub db: tokio_postgres::Client,
     pub db_url: String,
     pub node_id: i64,
-    pub bulk: BulkData,
+    pub bulk: BulkSet,
     pub dogma: crate::dogma::Catalog,
     pub services: services::Registry,
     pub world: World,
@@ -242,6 +243,10 @@ impl Conn {
         if call.service == "character" && call.method == "SelectCharacterID" {
             return self.select_character(req, arg(0)).await;
         }
+        // Language is a session variable, so it is set here, not by a service.
+        if call.service == "authentication" && call.method == "SetLanguageID" {
+            return self.set_language(req, call.arg_text(0).unwrap_or_default()).await;
+        }
         if bound::owns(&call.service, "beyonce") {
             match call.method.as_str() {
                 "Dock" => return self.dock(req, arg(0), false).await,
@@ -378,7 +383,7 @@ impl Conn {
 
     fn ctx(&self) -> Ctx<'_> {
         Ctx {
-            bulk: &self.server.bulk,
+            bulk: self.server.bulk.for_lang(self.session.language_id.as_deref()),
             dogma: &self.server.dogma,
             session: &self.session,
             db: &self.server.db,

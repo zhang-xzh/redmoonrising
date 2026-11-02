@@ -34,6 +34,7 @@ docker compose logs -f server --tail 100
 cargo build --release -p eve-server --bins
 cargo test -p eve-marshal -p eve-proto        # marshal/proto 的回归
 cargo run -p eve-server --bin fakeclient -- 127.0.0.1:26000
+cargo run -p eve-server --bin fakeclient -- 127.0.0.1:26000 <user> <pass> --lang ZH   # 按 ZH 登录，验证语言 bulk
 ```
 
 服务端需要 Postgres（`RMR_DATABASE`）与字符串表（`RMR_STRINGS`，默认 `crates/eve-marshal/tests/data/strings.txt`）。
@@ -54,6 +55,7 @@ Docker 构建从 `rust:1.97-slim-trixie` 与 crates.io 拉依赖；离线或直�
 | `server.nodeId` | `RMR_NODE_ID` | machoNet 节点 ID，保持 1 |
 | `server.autoCreateAccounts` | `RMR_AUTO_CREATE_ACCOUNTS` | 未知用户名登录即建号；本地 `rmr.yml` 为 `true` |
 | `server.dumpDir` | `RMR_DUMP_DIR` | 无法解码帧的落盘目录；容器内 `/app/dumps` |
+| `server.localization` | `RMR_LOCALIZATION` | 服务端文本覆盖层目录，默认 `config/server-i18n`；每个 `server_<lang>.json` 在启动时构建一套该语言 bulk（当前有 `server_zh.json`）。容器只读挂载 `./config/server-i18n` |
 | `log.level` | `RMR_LOG`（或 `RUST_LOG`） | `off`/`error`/`warn`/`info`/`debug`/`trace`，支持 filter（如 `info,eve_server::svc=trace`）；本地为 `debug` |
 | `log.file` | `RMR_LOG_FILE` | 额外写文件；空 = 不写 |
 | `game.startingIsk` | `RMR_STARTING_ISK` | 新角色初始 ISK，本地 5000 |

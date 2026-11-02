@@ -23,6 +23,9 @@ pub struct Config {
     pub strings: PathBuf,
     /// `RMR_DUMP_DIR`: where undecodable frames are saved.
     pub dump_dir: PathBuf,
+    /// `RMR_LOCALIZATION`: the directory of `server_<lang>.json` overlays that
+    /// translate the bulk data. Empty or missing means English only.
+    pub localization: PathBuf,
     /// `RMR_ALLIANCE_JOIN_DELAY`: seconds from an alliance accepting a
     /// corporation to the membership taking effect (the client says 24 hours).
     pub alliance_join_delay_secs: i64,
@@ -127,6 +130,7 @@ struct ServerSection {
     auto_create_accounts: bool,
     strings: Option<PathBuf>,
     dump_dir: PathBuf,
+    localization: PathBuf,
 }
 
 #[derive(Deserialize)]
@@ -158,6 +162,7 @@ impl Default for ServerSection {
             auto_create_accounts: false,
             strings: None,
             dump_dir: ".".into(),
+            localization: "config/server-i18n".into(),
         }
     }
 }
@@ -187,6 +192,7 @@ impl Config {
             node_id: file.server.node_id,
             strings: file.server.strings.unwrap_or_else(|| concat!(env!("CARGO_MANIFEST_DIR"), "/../eve-marshal/tests/data/strings.txt").into()),
             dump_dir: file.server.dump_dir,
+            localization: file.server.localization,
             alliance_join_delay_secs: file.game.alliance_join_delay_seconds,
             starbase_speedup: file.game.starbase_speedup,
             sov_claim_delay_secs: file.game.sov_claim_delay_seconds,
@@ -219,6 +225,9 @@ impl Config {
         }
         if let Some(v) = var("RMR_DUMP_DIR") {
             c.dump_dir = v.into();
+        }
+        if let Some(v) = var("RMR_LOCALIZATION") {
+            c.localization = v.into();
         }
         if let Some(v) = var("RMR_WEB") {
             c.web = v;
@@ -341,6 +350,7 @@ mod tests {
             node_id: 1,
             strings: PathBuf::new(),
             dump_dir: PathBuf::new(),
+            localization: PathBuf::new(),
             alliance_join_delay_secs: 0,
             starbase_speedup: 1.0,
             sov_claim_delay_secs: 0,

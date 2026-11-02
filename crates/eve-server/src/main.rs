@@ -14,6 +14,7 @@ mod fight;
 mod gates;
 mod guard;
 mod heartbeat;
+mod i18n;
 mod items;
 mod logging;
 mod losses;
@@ -27,6 +28,7 @@ mod svc;
 mod web;
 mod world;
 
+use std::collections::HashMap;
 use std::sync::Arc;
 use std::time::Instant;
 
@@ -79,6 +81,9 @@ async fn run(config: Config) -> Result<(), Box<dyn std::error::Error>> {
         .map(|r| r.get(0))
         .unwrap_or(0);
     info!("database: {} ({accounts} accounts)", config.database_redacted());
+    if let Err(e) = db::repair_language_names(&client).await {
+        error!("repairing the language names: {}", logging::chain(&e));
+    }
     let ids = db::sync_accounts(&client, &config.accounts)
         .await
         .map_err(|e| format!("setting up the config file's accounts: {}", logging::chain(&e)))?;
@@ -91,10 +96,33 @@ async fn run(config: Config) -> Result<(), Box<dyn std::error::Error>> {
         auto_create_accounts: config.auto_create_accounts,
     });
 
+    let catalog = i18n::Catalog::load(&config.localization);
     let started = Instant::now();
-    let bulk =
-        bulkdata::BulkData::load(&client, &table, config.node_id, bulkdata::filetime_now()).await?;
-    report_bulk(&bulk, started);
+    let base = bulkdata::BulkData::load(
+        &client,
+        &table,
+        config.node_id,
+        bulkdata::filetime_now(),
+        None,
+    )
+    .await?;
+    report_bulk("EN", &base, started);
+    let mut by_lang = HashMap::new();
+    for lang in catalog.languages() {
+        let Some(overlay) = catalog.overlay(Some(lang)) else { continue };
+        let started = Instant::now();
+        let bulk = bulkdata::BulkData::load(
+            &client,
+            &table,
+            config.node_id,
+            bulkdata::filetime_now(),
+            Some(overlay),
+        )
+        .await?;
+        report_bulk(lang, &bulk, started);
+        by_lang.insert(lang.to_string(), bulk);
+    }
+    let bulk = bulkdata::BulkSet { base, by_lang };
 
     let dogma = dogma::Catalog::load(&client).await.map_err(|e| format!("loading dogma: {}", logging::chain(&e)))?;
 
@@ -137,7 +165,7 @@ async fn run(config: Config) -> Result<(), Box<dyn std::error::Error>> {
     }
 }
 
-fn report_bulk(bulk: &bulkdata::BulkData, started: Instant) {
+fn report_bulk(lang: &str, bulk: &bulkdata::BulkData, started: Instant) {
     let mut bytes = 0usize;
     let mut empty = Vec::new();
     for spec in bulkdata::SPECS {
@@ -151,7 +179,7 @@ fn report_bulk(bulk: &bulkdata::BulkData, started: Instant) {
         }
     }
     info!(
-        "bulk data: {} objects, {} rows, {:.1} MB on the wire, built in {:.1}s",
+        "bulk data {lang}: {} objects, {} rows, {:.1} MB on the wire, built in {:.1}s",
         bulk.entries.len(),
         bulk.entries.values().map(|e| e.rows).sum::<usize>(),
         bytes as f64 / 1e6,

@@ -51,7 +51,7 @@ fn main() -> Result<(), String> {
     wire.send_value(&VersionChallenge::client().to_value())?;
     println!("sent client LLV");
 
-    let init_vals = authenticate(&mut wire, &opts.user, &opts.password)?;
+    let init_vals = authenticate(&mut wire, &opts.user, &opts.password, &opts.lang)?;
 
     if opts.no_cache {
         println!("\n(skipping {} cached objects: --no-cache)", init_vals.len());
@@ -134,6 +134,8 @@ struct Options {
     addr: String,
     user: String,
     password: String,
+    /// The `languageID` put in clientinfo, as the real client does from prefs.
+    lang: String,
     no_cache: bool,
     script: Option<String>,
 }
@@ -142,10 +144,15 @@ fn parse_args() -> Result<Options, String> {
     let mut positional = Vec::new();
     let mut no_cache = false;
     let mut script = None;
+    let mut lang = "EN".to_string();
     let mut args = std::env::args().skip(1);
     while let Some(a) = args.next() {
         if a == "--no-cache" {
             no_cache = true;
+        } else if a == "--lang" {
+            lang = args.next().ok_or("--lang needs a language ID")?;
+        } else if let Some(id) = a.strip_prefix("--lang=") {
+            lang = id.to_string();
         } else if a == "--script" {
             script = Some(args.next().ok_or("--script needs a file")?);
         } else if let Some(path) = a.strip_prefix("--script=") {
@@ -164,6 +171,7 @@ fn parse_args() -> Result<Options, String> {
         addr: p.next().unwrap_or_else(|| "127.0.0.1:26000".to_string()),
         user: p.next().unwrap_or_else(|| "testuser".to_string()),
         password: p.next().unwrap_or_else(|| "testpass".to_string()),
+        lang,
         no_cache,
         script,
     })
@@ -533,12 +541,17 @@ impl Wire {
     }
 }
 
-fn authenticate(wire: &mut Wire, user: &str, password: &str) -> Result<Vec<(String, Value)>, String> {
+fn authenticate(
+    wire: &mut Wire,
+    user: &str,
+    password: &str,
+    lang: &str,
+) -> Result<Vec<(String, Value)>, String> {
     let clientinfo = Value::Dict(vec![
         (Value::bytes("version.number"), Value::Double(llv::BOOT_VERSION)),
         (Value::bytes("version.build"), Value::Int(llv::BOOT_BUILD)),
         (Value::bytes("version.project"), Value::Bytes(llv::BOOT_CODENAME.to_vec())),
-        (Value::bytes("languageID"), Value::bytes("EN")),
+        (Value::bytes("languageID"), Value::bytes(lang.to_string())),
     ]);
     let req = MachoPacket::new(
         MessageType::AuthenticationReq,

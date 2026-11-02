@@ -16,7 +16,10 @@
 * 文本分三层：
   * 硬编码 UI 文案 → `compiled.code` 的字符串常量；
   * 登录/连接期静态消息 → `res/common/messages.txt` + `res/common/messages.<lang>.txt`；
-  * 物品/技能/星系等名称 → 服务端数据（`fsd_localization`，尚未接）。
+  * 物品/技能/星系等名称 → 服务端 bulk；服务端用
+    `M:\EVE-LOCAL\redmoonrising\config\server-i18n\server_zh.json` 覆盖层
+    （由客户端仓库 `tools/localization/build_server_map.py` 生成）提供中文，见
+    `doc/client/multilanguage-3913.md`。
 
 ## 做法
 
@@ -76,7 +79,8 @@
 * **未验收**：`compiled.code` 里的 1353 条（按钮、菜单、窗口标题、工具提示）需要
   进游戏逐界面确认；开发机显示环境（DirectX 9.0 判定低于 9.0b、主窗口只有
   480x307）只能抓到 splash，看不到游戏内 UI。
-* 名称层（按 ID 从 `fsd_localization` 回填物品/技能/星系名）尚未接入服务端。
+* 名称层已接入服务端 bulk（EN/ZH 两套，服务器仓库 `config/server-i18n/server_zh.json`）；动态 RPC
+  （市场/查询/代理人等直接查库的名称）与教程/幻灯片仍未翻译。
 
 ## 安装 / 回滚
 

@@ -2,7 +2,7 @@
 > 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
 > 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
-**当前状态**：计划中。这是多语言功能的第一阶段现象，不是独立缺陷；根因已定位（服务端返回结构错误），修复方案见第 4 节。整体机制、分层方案和实施阶段见 `doc/client/multilanguage-3913.md`。
+**当前状态**：已修复（多语言阶段 1 完成）。`GetLanguages` 现在读 `languages` 表并返回 `util.Rowset`；`SetLanguageID` 会同步 session、`account."languageID"` 并下发 session change。服务端静态数据已按语言提供 EN/ZH 两套 bulk（ZH 为 `config/server-i18n/server_zh.json` 覆盖层），教程/幻灯片与客户端 UI 文案仍待后续阶段。整体机制与分层方案见 `doc/client/multilanguage-3913.md`。
 
 ## 1. 症状
 
@@ -53,67 +53,86 @@
 2. `docker compose exec -T postgres psql -U rmr -d rmr -c "select * from languages;"` → 11 行（EN/DE/FR/ES/IS/IT/PT/RU/JA/KO/ZH），正是客户端 `row.languageID/languageName/translatedLanguageName` 三列对应的零售表。
 3. `python tools/client-code/scan.py dis "gameui.py/GameUI/GetLanguages"` → 确认客户端确实走 `eve.RemoteSvc('languageSvc').GetLanguages()` 且按行属性取值。
 
-## 4. 修复方案（未执行）
+## 4. 修复（已执行）
 
-把 `languageSvc.GetLanguages` 改成读 `languages` 表并返回 rowset，例如：
+1. `crates/eve-server/src/svc/language.rs`：`GetLanguages` 读官方 `languages` 表并返回 rowset：
 
-```rust
-"GetLanguages" => {
-    ctx.rowset(
-        &["languageID", "languageName", "translatedLanguageName"],
-        r#"select "languageID", "languageName", "translatedLanguageName"
-             from languages order by "languageID""#,
-        &[],
-    )
-    .await
-}
-```
+   ```rust
+   let sql = r#"SELECT "languageID","languageName","translatedLanguageName"
+                  FROM "languages" ORDER BY "languageID""#;
+   ctx.rowset(&["languageID", "languageName", "translatedLanguageName"], sql, &[]).await
+   ```
 
-要点：
+2. `crates/eve-server/src/conn/language.rs`：新增 `Conn::set_language`，接管
+   `authentication.SetLanguageID`（`conn/mod.rs` 在 service dispatch 之前特判，因为要改 session）：
+   校验 `languages` 表 → 更新 `Session.language_id` → 写 `account."languageID"` →
+   `send_session_change_from` 下发 `languageID` 变更。未知语言保持原值、只回 `None`。
+3. 登录（`conn/auth.rs`）：以 `clientinfo.languageID`（客户端 prefs）为准，缺失时取
+   `account."languageID"`，再缺失才 `EN`；有变化时写回账户。`account` 查询新增
+   `languageID` 列（`crates/eve-server/src/db.rs`）。
+4. 语言名修复（`crates/eve-server/src/db.rs:repair_language_names`）：官方转储里
+   IS/JA/KO/RU/ZH 的 `translatedLanguageName` 是双重编码乱码。启动时按语言 ID 幂等修复为
+   `Íslenska` / `日本語` / `한국어` / `Русский` / `中文`；`db/*.sql.gz` 不动。
+5. 客户端要显示本地名时用 `translatedLanguageName or languageName`，因此修复后 11 项都有可读标签。
 
-- 复选框标签用的是 `languageName`（German/French/…），不是 `translatedLanguageName`；官方转储里 IS/JA/KO/RU/ZH 的 `translatedLanguageName` 是乱码，不影响列表显示。若要显示本地名，需另行修数据（本任务不做）。
-- 零售依据：`db/languages.sql.gz` 的 11 行数据 + 客户端字节码的三列取值方式；不要自造语言清单。
-- 生效方式：改 `crates/eve-server` → 重建镜像并重启 `server` 容器；客户端无需改。重启前先确认 `exefile` 未运行。
+零售依据：`db/languages.sql.gz` 的 11 行、客户端 `GameUI.GetLanguages` 按
+`row.languageID/languageName/translatedLanguageName` 取值的字节码。语言清单没有自造项。
+
+生效方式：改服务端代码 → 重建镜像并重启容器（`docker compose up -d --build server`）；客户端无需改。
+重启前先确认 `exefile` 未运行。
 
 ## 5. 多语言能力现状（回答“客户端支持多语言吗”）
 
-语言列表为空只是多语言功能的第一阶段现象。零售框架存在（`prefs.languageID`、
-`res:/common/messages.<lang>.txt`、`cfg.ReloadMessages`、`fontsvc` 的 `ZH` 字体回退、
-`authentication.SetLanguageID`），但 RMR 的 `SetLanguageID` 还是空实现，服务端静态数据只有英文，
-客户端 `compiled.code` 是单语言构建。
+阶段 1 已闭环：列表能显示 11 种语言、能勾选、session 与 `account."languageID"` 一致。
+阶段 3 的静态数据部分也已完成 EN/ZH：服务端启动时构建两套 bulk，登录时按
+`clientinfo.languageID` 选一套；缺翻译的单元格回落英文。其余层仍是计划：
 
-关键结论：
-
-- 切换语言**不会**向服务器重新请求游戏数据；只发 `authentication.SetLanguageID`，
-  并本地重载 `messages.<lang>.txt`。
-- 只有教程（`tutorialSvc.GetTutorials/GetTutorialInfo`）、幻灯片
-  （`languageSvc.GetTextsForGroup`）等少数 RPC 带 `languageID`，且是用到时才请求。
+- 运行期切换只改 session 与本地消息文件；服务端 bulk 不重拉，**要重登才看到新语言的物品/地名**。
+- 教程（`tutorialSvc.GetTutorials/GetTutorialInfo`）、幻灯片
+  （`languageSvc.GetTextsForGroup`）仍未按 `languageID` 查库。
 - `mlsUtil.Mls.LoadLanguagePack` → `languageSvc.GetMessagesByLanguageID` 在 3913 客户端没有调用点；
   `mls` 只作为 `cfg.evemessages` 的懒加载访问器。
-- 零售 3913 没有“同一 ID 的多语言版本”：`db/` 里只有 `languages` 和 `account` 带 `languageID`。
-- 本项目看到的中文界面来自 `compiled.code` 的字符串本地化（`tools/localization/`），
-  与这套运行期语言机制无关。
+- 零售 3913 没有“同一 ID 的多语言版本”：`db/` 里只有 `languages` 和 `account` 带 `languageID`；
+  名称层翻译是本项目用现代本地化表按 3913 英文原文对齐后补的（非零售数据）。
+- 客户端 `compiled.code` 仍是单语言构建（当前是中文包）；运行期改 UI 文案不在本阶段范围。
+- 本项目看到的中文界面来自 `compiled.code` 的字符串本地化（客户端仓库 `tools/localization/`），
+  与服务端数据语言是两套机制。
 
 完整的分层方案、数据模型和实施阶段见 `doc/client/multilanguage-3913.md`。
 
-## 6. 验证（修复后应做）
+## 6. 验证
 
-1. `cargo build -p eve-server`，重建并重启 `server`。
-2. `cargo run -p eve-server --bin fakeclient -- 127.0.0.1:26000 --script <断言脚本>` 断言 `languageSvc.GetLanguages` 返回 `util.Rowset` 且 11 行。
-3. 完全重启客户端 → ESC → Language，应看到 11 个复选框；服务端日志中 `AttributeError ... languageID` 消失。
+已跑通的验证（2026-11-02，本地调试实例 `127.0.0.1:26001`，DB 为现网卷）：
+
+1. `cargo build -p eve-server`、`cargo test -p eve-server`（含 `bulkdata` 与 `i18n` 用例）通过。
+2. `fakeclient 127.0.0.1:26001 loctest loctest --no-cache --script <script>`：
+   `languageSvc.GetLanguages -> util.Rowset{lines} x11`；`authentication.SetLanguageID "ZH"`
+   收到 `SessionChangeNotification`（`languageID "EN" -> "ZH"`）；再发 `"XX"` 无 session change。
+   脚本结果 `4 call(s), 4 ok, 0 failed`。
+3. `psql` 查 `account`：该账户 `languageID = ZH`；`languages` 11 行，五个乱码名已修复
+   （`convert_to(...)` 十六进制可验证 `中文`/`日本語`/`한국어`/`Русский`/`Íslenska`）。
+4. `fakeclient ... --lang ZH`：登录 session change 为 `languageID None -> "ZH"`，
+   `cached objects: 38/38 decoded`。
+5. 服务端 debug 日志：`bulk data ZH: 38 objects, 246911 rows`，且
+   `config.BulkData.types` 应用了 15053 条翻译、`config.StaticLocations` 2184 条。
+6. 客户端实机验证仍待做（需完全重启客户端后在 ESC → Language 里勾选并重登看名称）。
+
+已修复后客户端侧应看到：ESC → Language 有 11 个复选框；勾选 ZH 后 `prefs.languageID`
+与 session 一致；重登后物品/星系名显示中文，客户端 UI 文案仍由当前 `compiled.code` 决定。
 
 ## 7. 回滚 / 预防
 
-- 回滚：`git revert` 对应提交并重建镜像。
+- 回滚：`git revert` 对应提交并重建镜像。语言名修复是启动时幂等 UPDATE，回滚代码后数据保留修复值；
+  若要完全恢复官方转储原值，只能从 `db/languages.sql.gz` 手动重导该表（不推荐）。
 - 预防：凡是客户端用 `for row in ...: row.field` 消费的返回值，必须用 `rowset()`（`svc/rows.rs`），不能直接塞 `Value::List`；服务端日志里出现 `AttributeError: 'list' object has no attribute` 即此模式。
 
 ## 8. 关联
 
-- `crates/eve-server/src/svc/language.rs`、`crates/eve-server/src/svc/rows.rs`
+- 服务端：`crates/eve-server/src/svc/language.rs`、`svc/rows.rs`、`conn/language.rs`、`conn/auth.rs`、`db.rs`、`bulkdata.rs`、`i18n.rs`
 - 客户端：`ui/shared/systemmenu.py`、`parklife/gameui.py`、`external/common/script/sys/cfg.py`、`external/common/script/sys/mlsUtil.py`
 - `doc/client/client-code-baseline.md`（反编译基线不可全信，结构以字节码为准）
-- `doc/client/multilanguage-3913.md`（多语言机制与实施计划）
-- `tools/localization/README.md`（中文界面实际来源）
+- `doc/client/multilanguage-3913.md`（多语言机制、数据覆盖层与实施阶段）
+- 客户端仓库 `tools/localization/README.md`、`tools/localization/build_server_map.py`（服务端名称层生成器）
 
 ## 9. 搜索关键词
 

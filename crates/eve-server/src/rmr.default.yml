@@ -17,6 +17,10 @@ server:
   autoCreateAccounts: false
   # Where frames the server cannot decode are saved (RMR_DUMP_DIR).
   dumpDir: .
+  # Translations of the server's static table text (RMR_LOCALIZATION). Each
+  # server_<lang>.json here becomes that language's bulk at startup; missing
+  # cells stay English.
+  localization: config/server-i18n
 
 log:
   # off, error, warn, info, debug or trace (RMR_LOG). debug shows every
