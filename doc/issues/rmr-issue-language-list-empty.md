@@ -27,7 +27,7 @@
       return [['EN','English','English'], ...]   # 未登录时硬编码 10 种
   ```
 
-  注意：反编译基线 `EVE-Online-3913-code/tree/parklife/gameui.py:477` 丢掉了 `if not self.languages: ... RemoteSvc(...)` 这一段（pycdc 反编译残缺），**这处只能以字节码为准**（`tools/localization/scan.py dis "gameui.py/GameUI/GetLanguages"`）。
+  注意：反编译基线 `EVE-Online-3913-code/tree/parklife/gameui.py:477` 丢掉了 `if not self.languages: ... RemoteSvc(...)` 这一段（pycdc 反编译残缺），**这处只能以字节码为准**（`tools/client-code/scan.py dis "gameui.py/GameUI/GetLanguages"`）。
 
 - 服务端 `crates/eve-server/src/svc/language.rs:12` 把 `GetLanguages` 返回成
   `Value::List([Value::List(["EN","English","English"])])`，客户端拿到的是普通 list；
@@ -49,7 +49,7 @@
 
    说明 RPC 成功、数据形状不对，是 `svc/language.rs` 的返回结构问题，不是网络或鉴权。
 2. `docker compose exec -T postgres psql -U rmr -d rmr -c "select * from languages;"` → 11 行（EN/DE/FR/ES/IS/IT/PT/RU/JA/KO/ZH），正是客户端 `row.languageID/languageName/translatedLanguageName` 三列对应的零售表。
-3. `python tools/localization/scan.py dis "gameui.py/GameUI/GetLanguages"` → 确认客户端确实走 `eve.RemoteSvc('languageSvc').GetLanguages()` 且按行属性取值。
+3. `python tools/client-code/scan.py dis "gameui.py/GameUI/GetLanguages"` → 确认客户端确实走 `eve.RemoteSvc('languageSvc').GetLanguages()` 且按行属性取值。
 
 ## 4. 修复方案（未执行）
 
@@ -78,7 +78,7 @@
 - 框架在：`prefs.languageID`、`res:/common/messages.<lang>.txt`、`cfg.ReloadMessages`（`external/common/script/sys/cfg.py:432-437`）、`fontsvc.py:1026` 对 `ZH` 的字体回退、`authentication.SetLanguageID`。
 - 内容不在：`res/common/messages.txt` 是全部英文（20935 字节）；其余 `messages.de/es/fr/it/ja/ko/pt/ru/zh.txt` 只有一条 `MlsNotifyCaveats`（“所选语言并非全部文本可用，缺的用英文”），`messages.is.txt` 也只有 1376 字节。
 - `mls` 语言包机制（`mlsUtil.Mls.TR`、`languageSvc.GetMessagesByLanguageID`）在 3913 客户端里**没有任何调用点**，是死代码。
-- 结论：零售 3913 只能“切语言开关”，没有翻译文本；本项目看到的中文界面来自 `script/compiled.code` 的字符串本地化（`tools/localization/`），与这套 MLS 机制无关。
+- 结论：零售 3913 只能“切语言开关”，没有翻译文本；本项目看到的中文界面来自 `script/compiled.code` 的字符串本地化（`tools/localization/`，底层容器工具 `tools/client-code/`），与这套 MLS 机制无关。
 
 ## 6. 验证（修复后应做）
 

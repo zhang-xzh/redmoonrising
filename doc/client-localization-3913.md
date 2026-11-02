@@ -1,8 +1,8 @@
 # build 3913 客户端汉化（Red Moon Rising）
 
 把 `M:\EVE-LOCAL\inputs\EVE-Online-3913`（build 3913，2006 年 retail 客户端）的界面
-文本换成中文。译名取自 3396210 客户端的本地化表。工具在 `tools/localization/`，
-生成物在 `tools/localization/artifacts/`。
+文本换成中文。译名取自 3396210 客户端的本地化表。客户端代码工具在 `tools/client-code/`，
+本地化流水线在 `tools/localization/`，生成物在 `tools/localization/artifacts/`。
 
 ## 客户端结构
 
@@ -104,13 +104,13 @@ python <EveJS>/tools/FsdDump/dump_localization.py \
 python build_map.py --en loc_en.json \
     --zh <EveJS>/config/client_localization_fsd_zh.json \
     --client M:/EVE-LOCAL/inputs/EVE-Online-3913/script/compiled.code.vanilla \
-    --out ui_en_zh.json
+    --out ../config/localization/ui_en_zh.json
 
-# 3) 打补丁 + 校验
+# 3) 打补丁 + 校验（verify.py 在 tools/client-code/）
 python localize_code.py \
     --in  M:/EVE-LOCAL/inputs/EVE-Online-3913/script/compiled.code.vanilla \
     --out artifacts/compiled.code.zh
-python verify.py --in M:/EVE-LOCAL/inputs/EVE-Online-3913/script/compiled.code.vanilla
+python ../client-code/verify.py --in M:/EVE-LOCAL/inputs/EVE-Online-3913/script/compiled.code.vanilla
 
 # 4) 静态消息
 python make_messages_zh.py --client M:/EVE-LOCAL/inputs/EVE-Online-3913

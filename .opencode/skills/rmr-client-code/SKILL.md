@@ -21,28 +21,30 @@ Python-2 protocol-1 pickle:
   [ (module_path: str, (marshalled_code: str, aux: int)), ... ]
 ```
 
-每个 blob 是 Python 2.4 方言 marshal code object（4 字节 header、interned string `t`、string ref `R`）。`tools/localization/eveccp.py` 是权威读写实现，未改动时 round-trip 字节保真。
+每个 blob 是 Python 2.4 方言 marshal code object（4 字节 header、interned string `t`、string ref `R`）。`tools/client-code/eveccp.py` 是权威读写实现，未改动时 round-trip 字节保真。
 
-## 工具（`tools/localization/`，已纳入版本库）
+## 工具
+
+客户端代码工具在 `tools/client-code/`，本地化流水线在 `tools/localization/`（均已纳入版本库）。
 
 | 脚本 | 用途 |
 |---|---|
-| `eveccp.py` | 容器 unpickle/pickle + marshal 读写（库） |
-| `dis24.py` / `opcode24.py` | 2.3/2.4 字节码反汇编，判断常量用途 |
-| `localize_code.py` | 按 `config/localization/ui_en_zh.json` 改显示文本 |
-| `scan.py` | 只读扫描：`list` / `grep` / `tree` / `dis` |
-| `build_map.py` | 从 3396210 的 en-us + zh 构建 EN→ZH 映射 |
-| `make_messages_zh.py` | 生成 `res/common/messages.zh.txt` |
-| `verify.py` | 逐模块字节比对 |
-| `artifacts/` | `compiled.code.zh`（md5 251dfdef…）、`messages.zh.txt`、`prefs.zh.ini` |
+| `tools/client-code/eveccp.py` | 容器 unpickle/pickle + marshal 读写（库） |
+| `tools/client-code/dis24.py` / `opcode24.py` | 2.3/2.4 字节码反汇编，判断常量用途 |
+| `tools/client-code/scan.py` | 只读扫描：`list` / `grep` / `tree` / `dis` |
+| `tools/client-code/verify.py` | 逐模块字节比对 |
+| `tools/localization/localize_code.py` | 按 `config/localization/ui_en_zh.json` 改显示文本 |
+| `tools/localization/build_map.py` | 从 3396210 的 en-us + zh 构建 EN→ZH 映射 |
+| `tools/localization/make_messages_zh.py` | 生成 `res/common/messages.zh.txt` |
+| `tools/localization/artifacts/` | `compiled.code.zh`（md5 251dfdef…）、`messages.zh.txt`、`prefs.zh.ini` |
 
-用法见 `tools/localization/README.md` 与 `doc/client-localization-3913.md`；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`。
+用法见 `tools/client-code/README.md`、`tools/localization/README.md` 与 `doc/client-localization-3913.md`；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`。
 
 解释器：`C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`（`python` 不在 PATH）。
 
 ```powershell
 $py = 'C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe'
-cd M:\EVE-LOCAL\redmoonrising\tools\localization
+cd M:\EVE-LOCAL\redmoonrising\tools\client-code\probes
 & $py repack.py <in> <out>
 ```
 
@@ -75,4 +77,4 @@ cd M:\EVE-LOCAL\redmoonrising\tools\localization
 
 ## 触发关键词
 
-compiled.code, compiled.code.vanilla, eveccp, dis24, localize_code, repack, check_patch, ui_en_zh.json, marshal, pickle, Stackless Python, .pyo, 客户端代码, 本地化, 中文, 字体, 界面文字
+compiled.code, compiled.code.vanilla, eveccp, dis24, tools/client-code, localize_code, repack, check_patch, ui_en_zh.json, marshal, pickle, Stackless Python, .pyo, 客户端代码, 本地化, 中文, 字体, 界面文字
