@@ -1,6 +1,6 @@
 # 客户端 ESC 菜单 Language 标签列表为空
 
-**当前状态**：未修复。根因已定位（服务端返回结构错误），修复方案见第 4 节；本文件只记录现状，代码未改。
+**当前状态**：计划中。这是多语言功能的第一阶段现象，不是独立缺陷；根因已定位（服务端返回结构错误），修复方案见第 4 节。整体机制、分层方案和实施阶段见 `doc/client/multilanguage-3913.md`。
 
 ## 1. 症状
 
@@ -75,10 +75,24 @@
 
 ## 5. 多语言能力现状（回答“客户端支持多语言吗”）
 
-- 框架在：`prefs.languageID`、`res:/common/messages.<lang>.txt`、`cfg.ReloadMessages`（`external/common/script/sys/cfg.py:432-437`）、`fontsvc.py:1026` 对 `ZH` 的字体回退、`authentication.SetLanguageID`。
-- 内容不在：`res/common/messages.txt` 是全部英文（20935 字节）；其余 `messages.de/es/fr/it/ja/ko/pt/ru/zh.txt` 只有一条 `MlsNotifyCaveats`（“所选语言并非全部文本可用，缺的用英文”），`messages.is.txt` 也只有 1376 字节。
-- `mls` 语言包机制（`mlsUtil.Mls.TR`、`languageSvc.GetMessagesByLanguageID`）在 3913 客户端里**没有任何调用点**，是死代码。
-- 结论：零售 3913 只能“切语言开关”，没有翻译文本；本项目看到的中文界面来自 `script/compiled.code` 的字符串本地化（`tools/localization/`，底层容器工具 `tools/client-code/`），与这套 MLS 机制无关。
+语言列表为空只是多语言功能的第一阶段现象。零售框架存在（`prefs.languageID`、
+`res:/common/messages.<lang>.txt`、`cfg.ReloadMessages`、`fontsvc` 的 `ZH` 字体回退、
+`authentication.SetLanguageID`），但 RMR 的 `SetLanguageID` 还是空实现，服务端静态数据只有英文，
+客户端 `compiled.code` 是单语言构建。
+
+关键结论：
+
+- 切换语言**不会**向服务器重新请求游戏数据；只发 `authentication.SetLanguageID`，
+  并本地重载 `messages.<lang>.txt`。
+- 只有教程（`tutorialSvc.GetTutorials/GetTutorialInfo`）、幻灯片
+  （`languageSvc.GetTextsForGroup`）等少数 RPC 带 `languageID`，且是用到时才请求。
+- `mlsUtil.Mls.LoadLanguagePack` → `languageSvc.GetMessagesByLanguageID` 在 3913 客户端没有调用点；
+  `mls` 只作为 `cfg.evemessages` 的懒加载访问器。
+- 零售 3913 没有“同一 ID 的多语言版本”：`db/` 里只有 `languages` 和 `account` 带 `languageID`。
+- 本项目看到的中文界面来自 `compiled.code` 的字符串本地化（`tools/localization/`），
+  与这套运行期语言机制无关。
+
+完整的分层方案、数据模型和实施阶段见 `doc/client/multilanguage-3913.md`。
 
 ## 6. 验证（修复后应做）
 
@@ -96,6 +110,7 @@
 - `crates/eve-server/src/svc/language.rs`、`crates/eve-server/src/svc/rows.rs`
 - 客户端：`ui/shared/systemmenu.py`、`parklife/gameui.py`、`external/common/script/sys/cfg.py`、`external/common/script/sys/mlsUtil.py`
 - `doc/client/client-code-baseline.md`（反编译基线不可全信，结构以字节码为准）
+- `doc/client/multilanguage-3913.md`（多语言机制与实施计划）
 - `tools/localization/README.md`（中文界面实际来源）
 
 ## 9. 搜索关键词

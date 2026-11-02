@@ -29,7 +29,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `doc/setup/` | 运行、构建、配置、启动器、agent 规则迁移记录 |
 | `doc/platform/` | crate 划分、连接与服务、世界状态、ballpark/destiny、bots、web |
 | `doc/data/` | PostgreSQL 表转储、卷操作、备份/重置、版本溯源 |
-| `doc/client/` | 3913 客户端目录、`compiled.code`、本地化 |
+| `doc/client/` | 3913 客户端目录、`compiled.code`、本地化、多语言 |
 | `doc/issues/` | 已解决异常归档与索引 |
 
 ## 文档清单
@@ -43,6 +43,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `doc/data/provenance-3913.md` | 客户端/数据库版本锚点、sha256 基线、消息键交叉校验 |
 | `doc/client/client-3913.md` | 客户端布局、`compiled.code`、本地化工具链 |
 | `doc/client/client-code-baseline.md` | 零售代码基线仓库（`dist`+`tree`+`lib`+`stdlib`）、反编译工具与验证 |
+| `doc/client/multilanguage-3913.md` | 多语言机制、分层方案、会话/bulk/客户端文案的实施阶段 |
 | `doc/client-localization-3913.md` | 客户端本地化流水线的原始说明（依据、现状、限制），根级方法文档 |
 | `doc/issues/INDEX.md` | 异常归档索引 |
 
