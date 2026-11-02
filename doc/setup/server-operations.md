@@ -13,11 +13,11 @@ RMR 服务端如何构建、启动、配置和观察。所有命令在仓库根 
 ## 启动
 
 ```powershell
-# 推荐：起 compose、等 26000 就绪，再拉起客户端（本地脚本，当前未跟踪）
-M:\EVE-LOCAL\redmoonrising\Start-RMR.bat
+# 推荐：起 compose、等 26000 就绪，再拉起客户端（仓库根，已跟踪）
+M:\EVE-LOCAL\redmoonrising\Play.bat
 
 # 只起服务端（不拉客户端）
-M:\EVE-LOCAL\redmoonrising\Start-RMR.bat --no-client
+M:\EVE-LOCAL\redmoonrising\Play.bat --no-client
 
 # 手动
 docker compose up -d
@@ -25,6 +25,8 @@ docker compose logs -f server --tail 100
 ```
 
 先决条件：端口 26000/8080/5432 未被占用（EveJS 等服务若在跑，先停对应容器）。
+
+`Play.bat` 以脚本所在目录为 compose 目录（`%~dp0`）。`docker-compose.yml` 固定项目名 `rmr`，所有 checkout 共用同一组容器，所以从 worktree 运行会用该 worktree 的代码重建 `rmr-server`；日常仍在主工作区 `M:\EVE-LOCAL\redmoonrising` 运行。`--no-client` 只起服务端；客户端目录用 `RMR_CLIENT_DIR` 覆盖。
 
 ## 本地构建（不走 Docker）
 

@@ -37,14 +37,14 @@ show_patch_notes=1
 ## 启动
 
 ```powershell
-# 客户端目录内：设 USERDOMAIN=CENTRAL 才会显示 CCP 内部 "Local Servers" 登录项
-M:\EVE-LOCAL\inputs\EVE-Online-3913\Launch-EVE-RMR.bat
+# 一键：起服务端 + 等 26000 + 拉起客户端（脚本在仓库根，客户端目录保持只读）
+M:\EVE-LOCAL\redmoonrising\Play.bat
 
-# 或一键：起服务端 + 等 26000 + 拉起客户端
-M:\EVE-LOCAL\redmoonrising\Start-RMR.bat
+# 只起服务端
+M:\EVE-LOCAL\redmoonrising\Play.bat --no-client
 ```
 
-`Launch-EVE-RMR.bat` 会先探测 `127.0.0.1:26000`，没监听就提示先起服务端。
+`Play.bat` 由客户端目录的 `Launch-EVE-RMR.bat` 迁移而来（后者已删除）：先 `docker compose up -d` 并等 `127.0.0.1:26000` 就绪（最多 5 分钟），再设 `USERDOMAIN=CENTRAL`（显示 CCP 内部 "Local Servers" 登录项）并启动 `eve.exe`。客户端目录可用环境变量 `RMR_CLIENT_DIR` 覆盖，默认 `M:\EVE-LOCAL\inputs\EVE-Online-3913`。
 
 ## 客户端代码：`script\compiled.code`
 

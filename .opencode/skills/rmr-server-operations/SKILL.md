@@ -10,8 +10,8 @@ description: Use when building, running, configuring or debugging the RMR server
 ## 一键运行
 
 ```powershell
-M:\EVE-LOCAL\redmoonrising\Start-RMR.bat            # 起服务端 + 等 26000 + 拉起客户端（本地脚本，未跟踪）
-M:\EVE-LOCAL\redmoonrising\Start-RMR.bat --no-client # 只起服务端
+M:\EVE-LOCAL\redmoonrising\Play.bat            # 起服务端 + 等 26000 + 拉起客户端（仓库根，已跟踪）
+M:\EVE-LOCAL\redmoonrising\Play.bat --no-client # 只起服务端
 docker compose up -d
 docker compose logs -f server --tail 100
 ```

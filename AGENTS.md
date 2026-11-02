@@ -130,7 +130,7 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 
 **动手前先确认 EVE 客户端是否运行；只要客户端在运行，禁止重启服务端。**
 
-- “重启”含：`docker compose restart server`、`docker compose up --force-recreate server`、`docker compose down`/`up`、`Start-RMR.bat` 触发的重启，以及任何导致 `eve-server` 进程退出/连接被切断的操作；不得用 `docker kill` / `docker stop` 绕过。
+- “重启”含：`docker compose restart server`、`docker compose up --force-recreate server`、`docker compose down`/`up`、`Play.bat` 触发的重启，以及任何导致 `eve-server` 进程退出/连接被切断的操作；不得用 `docker kill` / `docker stop` 绕过。
 - 原因：重启会切断在线客户端会话，2006 年的客户端可能卡死、报错或丢失未保存状态。
 - 判断：`powershell -NoProfile -Command "Get-Process exefile -ErrorAction SilentlyContinue | Select-Object Id,StartTime"`（有输出即游戏在运行；只开着启动器 `eve.exe` 也算即将进入游戏，按运行处理）。
 - 客户端运行时：不执行任何重启命令；改动需重启才生效时，先完成所有落盘（代码/文档/skill）并提示用户关闭客户端，等客户端退出后再重启。

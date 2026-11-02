@@ -6,7 +6,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 
 - 服务端：`M:\EVE-LOCAL\redmoonrising`（Rust workspace；镜像 `rmr-server`，容器 `rmr-server` / `rmr-postgres`；端口 26000 / 8080 / 5432）。
 - 客户端：`M:\EVE-LOCAL\inputs\EVE-Online-3913`（EVE 2.10 / build 3913 / codename Blood，`eve.exe`，永不升级）。
-- 客户端启动：`M:\EVE-LOCAL\redmoonrising\Start-RMR.bat`（起服务端并拉起客户端）或客户端目录内 `Launch-EVE-RMR.bat`（设 `USERDOMAIN=CENTRAL` 显示 Local Servers）。
+- 客户端启动：`M:\EVE-LOCAL\redmoonrising\Play.bat`（仓库根；起服务端并拉起客户端，设 `USERDOMAIN=CENTRAL` 显示 Local Servers）。
 - 远端：`origin` = 上游 `github.com/pixelcatburglar/redmoonrising`（只作对照/取上游，`main` 跟踪 `origin/main`）；`fork` = 自己的 GitHub fork `github.com/zhang-xzh/redmoonrising`，`plus` 跟踪 `fork/plus` 并作为推送目标。`main` 为上游基线，`plus` 为开发主分支。
 - 数据库：PostgreSQL 16，命名卷 `pgdata`，初始化数据 `db/*.sql.gz`（212 个表转储）。
 - 客户端代码：`script/compiled.code` 当前是**零售原版**（sha256 `daa5eae3…`、md5 `36e18ef3…`）；上一版中文包在 `script/compiled.code.zh-prev-20261101-194509`（md5 `251dfdef…`）和 `tools/localization/artifacts/compiled.code.zh`；`script/compiled.code.vanilla` 当前**缺失**，重置来源用 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code\dist\compiled.code`（与零售原版同 hash）。客户端代码工具 `tools/client-code/`、本地化流水线 `tools/localization/` 与映射 `config/localization/ui_en_zh.json` 已入库；逐模块基线见 `doc/client/client-code-baseline.md`，版本/完整性基线见 `doc/data/provenance-3913.md`。
@@ -50,7 +50,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 
 | 路径 | 用途 |
 |---|---|
-| `Start-RMR.bat`（本地脚本，已列入 `.gitignore`） | 起 compose、等 26000、拉起客户端（`--no-client` 只起服务端） |
+| `Play.bat`（仓库根，已跟踪） | 起 compose、等 26000、拉起客户端（`--no-client` 只起服务端）；`RMR_CLIENT_DIR` 覆盖客户端目录 |
 | `docker-compose.yml` / `Dockerfile` | Postgres + 服务端容器；镜像内带 `strings.txt` |
 | `crates/eve-server/src/bin/fakeclient.rs` | 无头客户端：LLV 握手 + 脚本化服务调用 |
 | `crates/eve-server/web/` | TypeScript 仪表盘（`npm run build` 产出 `web/dist/app.js`，随源提交） |
