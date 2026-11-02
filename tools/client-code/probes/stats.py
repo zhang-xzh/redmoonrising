@@ -1,5 +1,5 @@
 import sys, os, json, re, collections
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import eveccp
 
 CCP = r"M:\EVE-LOCAL\inputs\EVE-Online-3913\script\compiled.code"
