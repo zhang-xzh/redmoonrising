@@ -212,6 +212,18 @@ RMR 现状：`tutorialSvc` 忽略 `languageID`（`crates/eve-server/src/svc/tuto
    当前产物 1.18 MB、19534 条文本：13261 个类型里 9193 个 `typeName`、5862 条 `description`；
    559 个组里 483 个 `groupName`；11261 个静态地点里 2184 个名字。
    匹配是“原文相同才翻”，不是按 ID 猜测，所以改过文案的条目不翻、保持英文。
+
+   **译文来源（可复现）**：
+
+   - 英文侧：`M:\EVE-LOCAL\EveJS\tools\FsdDump\dump_localization.py`
+     从 `M:\EVE-LOCAL\inputs\EVE-Online-3396210` 导出 `--lang en-us`，得到
+     messageID → 英文（默认落在 `%TEMP%\opencode\loc_en.json`，可用 `RMR_LOC_EN` 覆盖）。
+   - 中文侧：`M:\EVE-LOCAL\EveJS\config\client_localization_fsd_zh.json`，
+     同一 3396210 客户端的 messageID → 中文。
+   - 两个文件按 messageID 配对成“英文原文 → 中文”；生成器再拿 3913 `db/*.sql.gz` 里的英文原文
+     去查这张表。3396210 只提供**译文文本**，类型/属性/市场数值一律仍以 3913 `db/` 为准。
+   - 默认路径写死在 `build_server_map.py` 顶部（`EN_JSON` / `ZH_JSON`），换机器时用
+     `--en` / `--zh` 显式指定。
 5. **生效方式**：改覆盖层→重启服务端（无需重建镜像，目录是挂载的）；改代码→重建镜像。
    语言在客户端重登后生效。
 6. **成本**：启动时多构建一套 bulk；实测 EN 2.6s / ZH 2.5s、各 2.0 MB，

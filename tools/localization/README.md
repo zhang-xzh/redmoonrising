@@ -61,6 +61,10 @@ python build_server_map.py \
     --out M:/EVE-LOCAL/redmoonrising/config/localization/server_zh.json
 ```
 
+- 译文来源：`--en` 是 3396210 的 en-us 导出（`<EveJS>/tools/FsdDump/dump_localization.py
+  --client M:/EVE-LOCAL/inputs/EVE-Online-3396210 --lang en-us`，默认 `%TEMP%/opencode/loc_en.json`），
+  `--zh` 是同一客户端的 `<EveJS>/config/client_localization_fsd_zh.json`；两者按 messageID 配对，
+  再按 3913 英文原文查表。现代客户端只提供译文，数值仍以 3913 `db/` 为准。
 - 输出结构：`表 → 列 → 主键 → 中文`，例如 `{"invTypes":{"typeName":{"587":"裂谷级"}}}`。
 - 匹配只用 3913 行的**英文原文**（名称再做大小写/空白归一）；原文改过的行不翻，保持英文，
   不按现代 typeID 猜测。
