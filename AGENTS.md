@@ -6,7 +6,7 @@
 - `crates/eve-proto`：LLV 版本握手、machoNet 帧、包与地址。
 - `crates/eve-server`：服务端本体（连接/服务/ballpark/bots/web）。
 
-客户端固定为 `M:\EVE-LOCAL\inputs\EVE-Online-3913`（启动器 `eve.exe`，真正的游戏进程是 `bin\exefile.exe`；**永不升级**）；游戏端口 **26000**，web 面板 **8080**。上游仓库 `origin` = `github.com/pixelcatburglar/redmoonrising`。
+客户端固定为 `M:\EVE-LOCAL\inputs\EVE-Online-3913`（启动器 `eve.exe`，真正的游戏进程是 `bin\exefile.exe`；**永不升级**）；游戏端口 **26000**，web 面板 **8080**。上游仓库 `origin` = `github.com/pixelcatburglar/redmoonrising`（只作对照）；自己的 fork `fork` = `github.com/zhang-xzh/redmoonrising`，`plus` 跟踪 `fork/plus`，推送一律推 `fork`。
 
 本文件对本工作区内全部开发强制生效；详细操作（worktree 命令、数据卷操作、异常模板、skill 规范）见 `AGENTS-DETAIL.md`，只在执行对应任务时读取。
 
