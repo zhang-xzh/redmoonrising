@@ -3,7 +3,7 @@
 把 2006 年 retail 客户端 `EVE-Online-3913`（build 3913，Python 2.3.3 + Stackless 3.0）
 的界面文本换成中文。译名来自 3396210 客户端的本地化表。
 
-完整说明（依据、现状、限制）：`docs/client-localization-3913.md`。
+完整说明（依据、现状、限制）：`doc/client-localization-3913.md`。
 
 ## 文件
 

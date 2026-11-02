@@ -36,7 +36,7 @@ Python-2 protocol-1 pickle:
 | `verify.py` | 逐模块字节比对 |
 | `artifacts/` | `compiled.code.zh`（md5 251dfdef…）、`messages.zh.txt`、`prefs.zh.ini` |
 
-用法见 `tools/localization/README.md` 与 `docs/client-localization-3913.md`；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`。
+用法见 `tools/localization/README.md` 与 `doc/client-localization-3913.md`；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`。
 
 解释器：`C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`（`python` 不在 PATH）。
 

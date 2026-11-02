@@ -43,6 +43,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `doc/data/provenance-3913.md` | 客户端/数据库版本锚点、sha256 基线、消息键交叉校验 |
 | `doc/client/client-3913.md` | 客户端布局、`compiled.code`、本地化工具链 |
 | `doc/client/client-code-baseline.md` | 零售代码基线仓库（`dist`+`tree`+`lib`+`stdlib`）、反编译工具与验证 |
+| `doc/client-localization-3913.md` | 客户端本地化流水线的原始说明（依据、现状、限制），根级方法文档 |
 | `doc/issues/INDEX.md` | 异常归档索引 |
 
 ## 脚本与工具
