@@ -53,9 +53,9 @@ if "%PLAY_SERVER_ONLY%"=="1" (
     exit /b 0
 )
 
-if not exist "%RMR_CLIENT_DIR%\eve.exe" (
+if not exist "%RMR_CLIENT_DIR%\bin\exefile.exe" (
     echo.
-    echo Client not found: "%RMR_CLIENT_DIR%\eve.exe"
+    echo Client not found: "%RMR_CLIENT_DIR%\bin\exefile.exe"
     echo Set RMR_CLIENT_DIR to the client directory and run Play.bat again.
     pause
     exit /b 1
@@ -65,7 +65,7 @@ echo [3/3] Launching client from "%RMR_CLIENT_DIR%" ...
 rem Always show the CCP-internal "Local Servers" entry on the login screen.
 set "USERDOMAIN=CENTRAL"
 pushd "%RMR_CLIENT_DIR%" || goto :no_dir
-start "" "%RMR_CLIENT_DIR%\eve.exe"
+start "" "%RMR_CLIENT_DIR%\bin\exefile.exe"
 popd
 exit /b 0
 
