@@ -2,6 +2,8 @@
 
 RMR 是 EVE 2.10 / build 3913（2006）的 machoNet 服务端。协议与玩法以零售客户端为准，服务端只做“客户端期望的那一侧”。
 
+本文件是职责级概览；逐模块的实现细节见 `doc/platform/implementation-overview.md` 及其分册（协议、世界、玩法、服务层、bot、web）。
+
 ## Crate 划分
 
 | Crate | 职责 | 关键入口 |

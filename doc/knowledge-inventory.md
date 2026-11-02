@@ -41,6 +41,13 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `doc/setup/server-operations.md` | 构建/运行/配置/日志/联调 |
 | `doc/setup/agent-rules.md` | 本仓库 agent 规则（AGENTS.md/.opencode/skills/doc 约定）的来源与生效方式 |
 | `doc/platform/architecture.md` | 服务端架构总览（crate、模块、数据流） |
+| `doc/platform/implementation-overview.md` | 实现手册入口：启动、配置、常驻任务、并发模型、状态归属、调用全链路、验证入口 |
+| `doc/platform/implementation-protocol.md` | marshal、LLV 握手、machoNet 帧、服务分发、bulk 数据、异常 |
+| `doc/platform/implementation-world.md` | 世界状态、会话变量、移动、ballpark/destiny、物品/dogma、心跳脉冲 |
+| `doc/platform/implementation-gameplay.md` | 战斗、NPC/站点、无人机、损失/掉落、犯罪与警察、生产、POS/主权 |
+| `doc/platform/implementation-services.md` | 服务注册表与每个 service 的 method/数据表契约 |
+| `doc/platform/implementation-bots.md` | bot 人口、行为状态机、战争/政治、经济、控制面 |
+| `doc/platform/implementation-web.md` | web 仪表盘路由/API/前端构建与 fakeclient 用法 |
 | `doc/data/database.md` | 数据库结构、初始化、备份、重置 |
 | `doc/data/provenance-3913.md` | 客户端/数据库版本锚点、sha256 基线、消息键交叉校验 |
 | `doc/client/client-3913.md` | 客户端布局、`compiled.code`、本地化工具链 |
