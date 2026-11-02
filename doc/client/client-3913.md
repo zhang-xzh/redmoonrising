@@ -1,4 +1,6 @@
 # 3913 客户端
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 本项目的唯一客户端：EVE Online **2.10 / build 3913 / codename Blood**（2006），目录 `M:\EVE-LOCAL\inputs\EVE-Online-3913`，**固定不升级**。
 

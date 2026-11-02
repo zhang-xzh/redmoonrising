@@ -1,4 +1,6 @@
 # 客户端 ESC 菜单 Language 标签列表为空
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 **当前状态**：计划中。这是多语言功能的第一阶段现象，不是独立缺陷；根因已定位（服务端返回结构错误），修复方案见第 4 节。整体机制、分层方案和实施阶段见 `doc/client/multilanguage-3913.md`。
 

@@ -1,4 +1,6 @@
 # Agent 规则（来源、落地与生效）
+> 客户端工具、补丁与本地化流水线已迁至独立仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`；
+> 本文中的 `tools/...`、`config/localization/...` 均相对该仓库根目录。
 
 本仓库的 agent 规则从 EveJS 工作区（`M:\EVE-LOCAL\EveJS`）迁移并按 RMR 的技术栈重写，2026-11-01 一次落地。本文记录“现在有哪些规则文件、为什么这样改、怎么生效”。
 
@@ -67,6 +69,6 @@
 
 ## 已知缺口
 
-- 3913 客户端逐模块代码基线在独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/`，见 `doc/client/client-code-baseline.md`）；客户端代码工具与本地化流水线仍在本仓库（`tools/client-code/`、`tools/localization/`、`config/localization/` 由 commit `be249b2` 起强制加入；`tools/` 仍在 `.gitignore`，该目录下新增文件需 `git add -f`）。
+- 3913 客户端代码/工具/补丁/本地化都在独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/` + `tools/` + `config/localization/`，见 `doc/client/client-code-baseline.md`）；本仓库不再保存客户端工具与本地化流水线。
 - 文档只有 `doc/` 一个入口（权威、当前状态）；commit `be249b2` 带来的客户端本地化原始说明已并入 `doc/client-localization-3913.md`，`doc/client/client-3913.md` 是汇总。
 - 迁移未引入任何 MCP 服务；需要无头测试时直接用 `fakeclient`。
