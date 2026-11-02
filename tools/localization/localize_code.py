@@ -19,11 +19,12 @@ Design notes (learned from the client itself, build 3913):
   and skipped by exact string content.
 """
 import sys, os, json, re
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(HERE))
+sys.path.insert(0, os.path.join(ROOT, "tools", "client-code"))
 import eveccp, dis24
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_MAP = os.path.join(HERE, "ui_en_zh.json")
+DEFAULT_MAP = os.path.join(ROOT, "config", "localization", "ui_en_zh.json")
 DEFAULT_EXCLUDE = os.path.join(HERE, "exclude.json")
 
 IDENT = re.compile(r"^[A-Za-z_][A-Za-z0-9_]*$")

@@ -1,8 +1,8 @@
 import sys, os, json, collections
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import eveccp
 
-MAP = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))),
+MAP = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))),
                    "config", "localization", "ui_en_zh.json")
 m = json.load(open(MAP, encoding="utf-8"))
 print("map size", len(m))

@@ -1,9 +1,9 @@
 import sys, os, json
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import eveccp
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-ROOT = os.path.dirname(os.path.dirname(HERE))
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(HERE)))
 table = json.load(open(os.path.join(ROOT, "config", "localization", "ui_en_zh.json"), encoding="utf-8"))
 data = open(r"M:\EVE-LOCAL\inputs\EVE-Online-3913\script\compiled.code", "rb").read()
 items = [(p, v[0], v[1]) for (p, v) in eveccp.unpickle_container(data)]

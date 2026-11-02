@@ -11,11 +11,12 @@ Matching: exact English, then a punctuation/case-insensitive key.  Placeholders
 must match so %-formatting in the old client keeps working.
 """
 import sys, os, json, re, collections
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.dirname(os.path.dirname(HERE))
+sys.path.insert(0, os.path.join(ROOT, "tools", "client-code"))
 import eveccp
 
-HERE = os.path.dirname(os.path.abspath(__file__))
-OUT = os.path.join(HERE, "ui_en_zh.json")
+OUT = os.path.join(ROOT, "config", "localization", "ui_en_zh.json")
 
 CCP = r"M:\EVE-LOCAL\inputs\EVE-Online-3913\script\compiled.code"
 EN_JSON = os.environ.get("RMR_LOC_EN") or os.path.join(
