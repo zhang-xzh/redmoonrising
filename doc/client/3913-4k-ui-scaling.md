@@ -86,8 +86,16 @@ Windows 不再做 1.5× 拉伸。之后在游戏内把 **WINDOW SIZE 设为 3840
 `desktopScale=0.5` 就是真正的 4K 200%，鼠标量化降到 2 物理像素/步。
 
 剩余的 2 像素/步来自 200% UI 缩放本身：`triui` 的硬件光标位置仍在虚拟桌面坐标上。
-要做到 1 像素/步，需要 hook `IDirect3DDevice9::SetCursorPosition`，用原始鼠标坐标设置
-硬件光标（UI 命中测试仍用虚拟坐标）；这是一个很小的 `d3d9.dll` 光标专用代理，不影响渲染。
+已用 `tools/client-cursor-fix/` 的 `d3d9.dll` 代理修正：hook
+`IDirect3DDevice9::SetCursorPosition`，用 `GetCursorPos` + `ScreenToClient` 的真实客户区
+坐标设置硬件光标（UI 命中测试仍用虚拟坐标）。实机日志：
+
+```
+SetCursorPosition game=(2249,1195) raw=(689,377) flags=0x00000000
+```
+
+用户确认鼠标手感恢复正常。安装：`bin\d3d9.dll` + `bin\cursor_fix.ini`，完全重启客户端；
+回滚：删除这两个文件并删除上面的 DPI 注册表值。
 
 回滚：删除上面的 registry 值。
 
