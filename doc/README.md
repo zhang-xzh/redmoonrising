@@ -21,7 +21,7 @@
 - 主题文档写成“当前状态”，不追加更新日志；被取代的内容直接删除。
 - 新文档同时登记到 [`knowledge-inventory.md`](knowledge-inventory.md)（表格一行）。
 - 文件名一律小写 kebab-case，不再新增 UPPER-CASE 或下划线命名。
-- 仓库里另有一篇 `docs/client-localization-3913.md`（早期路径，客户端本地化的原始说明）；新增文档一律进 `doc/`，该文件保留作历史参考。
+- 仓库只用 `doc/` 一个文档根（早期 `docs/` 已并入）；根级放跨领域方法文档，如 [`client-localization-3913.md`](client-localization-3913.md)（客户端本地化流水线的原始说明）。
 - 文档内引用其它文档用仓库相对路径 `doc/<领域>/<文件>.md`（正文反引号）或相对链接。
 
 ## 维护

@@ -76,7 +76,7 @@ Python-2 protocol-1 pickle:
 
 - 映射表另有仓库根 `config/localization/ui_en_zh.json`（与 `tools/localization/ui_en_zh.json` 同步）。
 - 诊断/复现脚本在 `tools/localization/probes/`（`repack.py`、`check_patch.py`、`stats.py`、`analyze.py`、`probe*.py` 等，已入库）；作参考用，权威流程仍是上表的正式脚本与 README。
-- 用法与流程的权威说明：`tools/localization/README.md`、`docs/client-localization-3913.md`。
+- 用法与流程的权威说明：`tools/localization/README.md`、`doc/client-localization-3913.md`。
 
 运行解释器：`C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`（`python` 不在 PATH）。
 
