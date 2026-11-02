@@ -24,13 +24,13 @@ def _log(msg):
         pass
 
 
-def _set_scale(where):
+def _set_scale(where, value):
     try:
         import __builtin__
         eve = __builtin__.eve
         u = eve.triapp.uilib
         before = getattr(u, 'desktopScale', 'missing')
-        u.desktopScale = 0.5
+        u.desktopScale = value
         d = u.desktop
         _log('%s: desktopScale %r -> %r desktop=%dx%d'
              % (where, before, getattr(u, 'desktopScale', 'missing'), d.width, d.height))
@@ -48,23 +48,49 @@ try:
     cls = svc.__class__
     _log('real gameui service: %r class=%r' % (svc, cls))
 
-    def _wrap(name, pre=False, post=True):
+    def _wrap(name, value, pre=False, post=True):
         orig = getattr(cls, name)
 
         def _patched(self, *args, **kwargs):
             if pre:
-                _set_scale(name + ':pre')
+                _set_scale(name + ':pre', value)
             result = orig(self, *args, **kwargs)
             if post:
-                _set_scale(name + ':post')
+                _set_scale(name + ':post', value)
             return result
 
         setattr(cls, name, _patched)
-        _log('patched class %s' % name)
+        _log('patched class %s (scale %s)' % (name, value))
 
-    _wrap('LoadLayers', pre=False, post=True)
-    _wrap('GoStation', pre=True, post=True)
-    _wrap('GoInflight', pre=True, post=True)
-    _wrap('OnSessionChanged', pre=False, post=True)
+    def _session_scale(where):
+        try:
+            s = eve.session
+            if getattr(s, 'stationid', None) is not None or getattr(s, 'solarsystemid', None) is not None:
+                value = 0.5
+            else:
+                value = 1.0
+        except Exception:
+            value = 1.0
+        _set_scale(where, value)
+
+    def _wrap_session(name):
+        orig = getattr(cls, name)
+
+        def _patched(self, *args, **kwargs):
+            result = orig(self, *args, **kwargs)
+            _session_scale(name + ':post')
+            return result
+
+        setattr(cls, name, _patched)
+        _log('patched class %s (session scale)' % name)
+
+    # Login page stays 1x: splashunderlay.blue is fixed-size and clips at 2x.
+    _wrap('LoadLayers', 1.0, pre=False, post=True)
+    _wrap('GoLogin', 1.0, pre=True, post=True)
+    # Character selection and in-game are 2x.
+    _wrap('GoCharacterSelection', 0.5, pre=True, post=True)
+    _wrap('GoStation', 0.5, pre=True, post=True)
+    _wrap('GoInflight', 0.5, pre=True, post=True)
+    _wrap_session('OnSessionChanged')
 except Exception, e:
     _log('module error: %r' % (e,))

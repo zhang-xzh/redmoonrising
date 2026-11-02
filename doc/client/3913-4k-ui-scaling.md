@@ -10,11 +10,11 @@ eve.triapp.uilib.desktopScale = 0.5   # 200%
 eve.triapp.uilib.desktopScale = 1.0   # 原始
 ```
 
-- 720×460 窗口实测：`desktopScale 1.0 → 0.5` 时 `desktop 720×460 → 360×230`，登录 UI 2×。
-- 2560×1440 下角色选择、空间站 UI 2× 生效。
+- 720×460 窗口实测：`desktopScale 1.0 → 0.5` 时 `desktop 720×460 → 360×230`，UI 2×。
+- 当前行为：**登录页 100%，角色选择 / 空间站 / 空间 200%**。
 - 设备/窗口在登录后按角色分辨率重建，`desktopScale` 会重置；需要在每次重建后重设。
-- **已知问题**：登录页 `res:/UI/Login/splashunderlay.blue` 是固定尺寸布局，2× 下右侧
-  （SERVER / STATUS / EULA / SHOW INTRODUCTION）被裁切，待单独修。
+- 登录页 `res:/UI/Login/splashunderlay.blue` 是固定尺寸布局，2× 会裁切右侧按钮，因此
+  登录页保持 `1.0`，只在角色选择/进站/进空间时设 `0.5`。
 
 ## 机制
 
@@ -36,26 +36,35 @@ eve.triapp.uilib.desktopScale = 1.0   # 原始
 
 脚本在真正的 `gameui` 服务实例（`__builtin__.sm.services['gameui']`）的类上包一层：
 
-- `LoadLayers`（登录页）
-- `GoStation` / `GoInflight`（进站 / 进空间）
-- `OnSessionChanged`（会话切换兜底）
+| 方法 | 缩放 | 时机 |
+|---|---|---|
+| `LoadLayers` | `1.0` | 登录页加载后 |
+| `GoLogin` | `1.0` | 回登录页 |
+| `GoCharacterSelection` | `0.5` | 角色选择前后 |
+| `GoStation` | `0.5` | 进站前后 |
+| `GoInflight` | `0.5` | 进空间前后 |
+| `OnSessionChanged` | `0.5` / `1.0` | 按 `session.stationid`/`solarsystemid` 判断 |
 
-每次包层后把 `eve.triapp.uilib.desktopScale` 设为 `0.5`。调试日志在
-`cache:/ui_scale_<pid>_<seq>.txt`。
+调试日志在 `cache:/ui_scale_<pid>_<seq>.txt`。
 
 ## 验证
 
-- 登录页：`desktopScale 1.0 → 0.5`，`desktop=720x460 → 360x230`，登录面板明显放大。
-- 角色选择 / 空间站（2560×1440）：UI 2×。
-- 日志确认设备/窗口重建后 `desktopScale` 被重新设为 0.5。
+- 登录页：`LoadLayers:post` 设 `1.0`，`desktop=720x460`，完整不裁切。
+- 角色选择：2560×1440 下 `GoCharacterSelection:pre` 设 `0.5`，`desktop=1280x720`，UI 2×。
+- 空间站 / 空间：`GoStation` / `GoInflight` 设 `0.5`，UI 2×。
+- 日志确认设备/窗口重建后 `desktopScale` 被重新设置。
 
-## 已知问题：登录页裁切
+## 登录页处理
 
 登录页使用 `res:/UI/Login/splashunderlay.blue`（固定尺寸的 `mainarea/toparea/bottomarea`），
-2× 后内部按钮仍按原像素排，右侧超出窗口被裁。修法二选一：
+2× 后内部按钮仍按原像素排，右侧超出窗口被裁。当前做法是**登录页保持 `desktopScale=1.0`**，
+只在角色选择、进站、进空间时设 `0.5`：
 
-1. 登录页保持 `desktopScale=1.0`，只在角色选择/进站后设 `0.5`（最简单，登录页不放大但不裁）。
-2. 把 `splashunderlay` 及其子布局按 2× 放大（需要改 `.blue` 资源或登录页代码）。
+- 登录页完整显示，不裁切（100%）。
+- 角色选择 / 空间站 / 空间 200%。
+
+如果以后要把登录页也做成 200%，需要缩放 `splashunderlay` 及其子布局（改 `.blue` 资源或
+登录页代码），不是 `desktopScale` 一行能解决的。
 
 ## 回滚
 

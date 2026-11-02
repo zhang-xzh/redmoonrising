@@ -1,19 +1,19 @@
-# 3913 客户端 200% UI 缩放（desktopScale）
+# 3913 客户端 UI 缩放（desktopScale）
 
 ## 状态
 
-**可用。** 3913 客户端自带 `triui.UILib.desktopScale`，把虚拟桌面缩到窗口的一半即可得到
-200% UI。当前实测：
+**可用。** 当前行为：
 
-- 登录页（720×460）：`desktopScale 1.0 → 0.5`，虚拟桌面 `720×460 → 360×230`，UI 2×。
-- 角色选择 / 空间站（2560×1440）：2× 生效。
-- 已知问题：登录页的 `res:/UI/Login/splashunderlay.blue` 是固定尺寸布局，2× 下右侧
-  （SERVER/STATUS/EULA/SHOW INTRODUCTION 等）被裁切。下一步修这个页面。
+- **登录页 100%**（不裁切）。
+- **角色选择 / 空间站 / 空间 200%**。
+- 4K / 2560×1440 都适用；`desktopScale=0.5` = 200%，`1.0` = 原始。
 
 ## 原理
 
-`trinity.dll` 的 `triui.UILib` 有一个浮点属性 `desktopScale`（成员偏移 `0x398`，默认
-`1.0f`，文档字符串 “Scales virtual desktop area”，字符串地址 `0x102c2564`）。实测：
+`trinity.dll` 的 `triui.UILib` 有浮点属性 `desktopScale`（成员偏移 `0x398`，默认 `1.0f`，
+文档字符串 “Scales virtual desktop area”，字符串地址 `0x102c2564`）。
+
+实测 `desktopScale` 是乘数：
 
 ```
 desktopScale = 2.0  ->  desktop 720x460 -> 1440x920   (UI 变小)
@@ -22,8 +22,9 @@ desktopScale = 0.5  ->  desktop 720x460 ->  360x230   (UI 2x)
 
 即 `desktop.width/height = 窗口尺寸 × desktopScale`。**0.5 就是 200% UI**。
 
-设备/窗口在登录后会按角色设置的分辨率重建，`desktopScale` 会被重置，所以脚本在
-登录页加载、角色选择、进站/进空间时各重设一次。
+登录页使用固定尺寸的 `res:/UI/Login/splashunderlay.blue`，2× 会裁掉右侧按钮，所以登录页
+保持 `1.0`；角色选择、进站、进空间时设 `0.5`。设备/窗口在会话切换时会重建，
+`desktopScale` 会重置，因此每个入口都重设一次。
 
 ## 安装
 
@@ -38,22 +39,25 @@ M:\EVE-LOCAL\inputs\EVE-Online-3913\script\my_autoexec.py
 
 ## 脚本做了什么
 
-- 在真正的 `gameui` 服务实例（`__builtin__.sm.services['gameui']`）的类上包一层：
-  - `LoadLayers`（登录页）
-  - `GoStation` / `GoInflight`（进站/进空间）
-  - `OnSessionChanged`（会话切换兜底）
-- 每次包层后调用 `_set_scale()`，把 `eve.triapp.uilib.desktopScale` 设为 `0.5`。
-- 调试日志写到 `cache:/ui_scale_<pid>_<seq>.txt`。
+在真正的 `gameui` 服务实例（`__builtin__.sm.services['gameui']`）的类上包一层：
+
+| 方法 | 缩放 | 时机 |
+|---|---|---|
+| `LoadLayers` | 1.0 | 登录页加载后 |
+| `GoLogin` | 1.0 | 回登录页 |
+| `GoCharacterSelection` | 0.5 | 角色选择前后 |
+| `GoStation` | 0.5 | 进站前后 |
+| `GoInflight` | 0.5 | 进空间前后 |
+| `OnSessionChanged` | 0.5 / 1.0 | 按 `session.stationid`/`solarsystemid` 判断 |
+
+调试日志：`cache:/ui_scale_<pid>_<seq>.txt`。
 
 ## 验证
 
-- 登录页：`desktopScale 1.0 → 0.5` 后，虚拟桌面从 720×460 变成 360×230，登录面板明显放大。
-- 角色选择 / 空间站：2560×1440 下 UI 为 2×。
-- 日志确认每次设备/窗口重建后 `desktopScale` 被重新设为 0.5。
-
-## 已知问题
-
-登录页 `splashunderlay.blue` 固定尺寸，2× 后右侧按钮被裁切（见 `doc/client/3913-4k-ui-scaling.md`）。
+- 登录页：`desktopScale 1.0`，`desktop=720x460`，完整不裁切。
+- 角色选择：2560×1440 下日志 `GoCharacterSelection:pre` 设为 0.5，`desktop=1280x720`，
+  UI 2×。
+- 空间站/空间：`GoStation` / `GoInflight` 同样设 0.5。
 
 ## 回滚
 
