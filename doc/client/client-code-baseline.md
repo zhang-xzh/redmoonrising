@@ -16,6 +16,22 @@
 现役客户端 `script\compiled.code`（md5 `251dfdef…`）是本地化后的包，与 `.vanilla` 有 143 个模块不同；
 基线一律以零售包为准，不从工作包复制。
 
+## 远程与分支策略
+
+仓库有独立远程 `gogs` = `http://10.10.10.1:3001/zhangxzh/EVE-Online-3913-code.git`
+（Gogs 私有仓库，凭据由 Windows 凭据管理器提供），分支策略与 `EveJS` 一致：
+
+| 分支 | 角色 |
+|---|---|
+| `main` | 零售基线，只含 `e890771 Import EVE 3913 client code baseline`；只作对照与重置，不开发、不合入任务分支 |
+| `plus` | 开发主分支，本地默认检出，所有任务分支的合入目标 |
+| `<前缀>/<功能>-<sessionid>` | 单任务分支，前缀 `feat/`、`fix/`、`doc/`、`chore/`，`<sessionid>` 取对话 id；合入后保留 |
+| `archive/…` | 归档分支，只读保留 |
+
+开工从最新 `gogs/plus` 建任务分支（任务体量大或并行时用独立 `git worktree`），完成后
+`git merge --no-ff` 回 `plus`，再 `git push gogs plus` 与分支本身；`main` 只推基线。
+仓库内 `AGENTS.md` 是这套流程的强制版本，`README.md` 的「远程与分支」小节是操作摘要。
+
 ## 目录结构
 
 参照新版客户端仓库 `M:\EVE-LOCAL\inputs\EVE-3396210-code.ccp`（`dist/` + `tree/` + `tools/`）：
