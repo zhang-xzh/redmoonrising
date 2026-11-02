@@ -2,7 +2,7 @@
 
 零售 3913 客户端 Python 代码的独立版本管理基线：`M:\EVE-LOCAL\inputs\EVE-Online-3913-code`
 （自己的 git 仓库，不属于 RMR workspace）。用途是给客户端代码一个可 diff、可回溯、
-可重建容器的工作副本，替代此前只有 `tools/localization/` 脚本 + `artifacts/` 的状态。
+可重建容器的工作副本，替代此前只有 `tools/client-code/` + `tools/localization/` 脚本的状态。
 
 ## 来源与权威性
 
@@ -77,7 +77,7 @@ pickle 与零售原件**字节不同**（不复刻原件的 pickle memo 编码�
 
 改代码的完整链路：改 `tree` → `build_compiled_code.py --out …` → 覆盖客户端
 `script\compiled.code`（先备份）→ **完全退出并重启客户端** → 进游戏验证。客户端本地化仍走
-`tools/localization/`（`eveccp.py`/`localize_code.py`），本仓库只做基线对照，两者不要互相覆盖。
+`tools/client-code/`（`eveccp.py`）与 `tools/localization/`（`localize_code.py`），本仓库只做基线对照，两者不要互相覆盖。
 
 ## 验证记录
 

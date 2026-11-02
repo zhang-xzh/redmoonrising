@@ -58,25 +58,25 @@ Python-2 protocol-1 pickle:
 - 373 个模块，按 `script:/eve/...` 一类路径索引；每个 blob 是 marshal code object（interned string `t`、string ref `R` 等）。客户端运行时是 Python **2.3.3 / Stackless 3.0**，`eveccp.py` 按 2.3/2.4 方言读写。
 - 当前大小 7,926,678 字节；`compiled.code.vanilla` 7,930,596 字节（零售原样）。两者有 **143/373 个模块不同**——即当前包已带本地化改动。
 - 当前客户端 `script\compiled.code` 与 `tools/localization/artifacts/compiled.code.zh` **完全一致**（md5 `251dfdefbfa6eda204821afbf3dec74e`），即仓库里的产物就是客户端在用的包。
-- 读写的权威实现：`tools/localization/eveccp.py`（round-trip 字节级保真，可改字符串常量）；它同时是“格式即文档”的来源。
+- 读写的权威实现：`tools/client-code/eveccp.py`（round-trip 字节级保真，可改字符串常量）；它同时是“格式即文档”的来源。
 
-### 工具链（`tools/localization/`，已纳入版本库）
+### 工具链（`tools/client-code/` 代码工具 + `tools/localization/` 本地化，均已纳入版本库）
 
 | 脚本 | 作用 |
 |---|---|
-| `eveccp.py` | 容器 unpickle/pickle、marshal 读写；库 |
-| `dis24.py` / `opcode24.py` | Python 2.3/2.4 字节码反汇编（判断常量是显示文本还是结构数据） |
-| `localize_code.py` | 按映射表把显示字符串改成中文 `unicode`；跳过类名、字典键、import 名、比较常量、单 token 标识符 |
-| `scan.py` | 只读扫描：`list` / `grep PAT [const\|name]` / `tree MODULE` / `dis MODULE/FUNC` |
-| `build_map.py` | 从 3396210 的 en-us + zh 本地化构建 EN→ZH 映射 `ui_en_zh.json`（约 2457 条） |
-| `make_messages_zh.py` | 生成 `res/common/messages.zh.txt`（UTF-16LE + BOM + CRLF） |
-| `verify.py` | 逐模块 `loads`/`dumps` 字节比对 |
-| `exclude.json` | 已知会破坏客户端、需精确排除的字符串（当前为空） |
-| `artifacts/compiled.code.zh`、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini` | 当前构建产物；按 README 覆盖到客户端 |
+| `tools/client-code/eveccp.py` | 容器 unpickle/pickle、marshal 读写；库 |
+| `tools/client-code/dis24.py` / `opcode24.py` | Python 2.3/2.4 字节码反汇编（判断常量是显示文本还是结构数据） |
+| `tools/client-code/scan.py` | 只读扫描：`list` / `grep PAT [const\|name]` / `tree MODULE` / `dis MODULE/FUNC` |
+| `tools/client-code/verify.py` | 逐模块 `loads`/`dumps` 字节比对 |
+| `tools/localization/localize_code.py` | 按映射表把显示字符串改成中文 `unicode`；跳过类名、字典键、import 名、比较常量、单 token 标识符 |
+| `tools/localization/build_map.py` | 从 3396210 的 en-us + zh 本地化构建 EN→ZH 映射 `config/localization/ui_en_zh.json`（约 2457 条） |
+| `tools/localization/make_messages_zh.py` | 生成 `res/common/messages.zh.txt`（UTF-16LE + BOM + CRLF） |
+| `tools/localization/exclude.json` | 已知会破坏客户端、需精确排除的字符串（当前为空） |
+| `tools/localization/artifacts/compiled.code.zh`、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini` | 当前构建产物；按 README 覆盖到客户端 |
 
-- 映射表另有仓库根 `config/localization/ui_en_zh.json`（与 `tools/localization/ui_en_zh.json` 同步）。
-- 诊断/复现脚本在 `tools/localization/probes/`（`repack.py`、`check_patch.py`、`stats.py`、`analyze.py`、`probe*.py` 等，已入库）；作参考用，权威流程仍是上表的正式脚本与 README。
-- 用法与流程的权威说明：`tools/localization/README.md`、`doc/client-localization-3913.md`。
+- 映射表只有一份：仓库根 `config/localization/ui_en_zh.json`（`build_map.py` 默认输出、`localize_code.py` 默认读取）。
+- 诊断/复现脚本在 `tools/client-code/probes/`（`repack.py`、`check_patch.py`、`stats.py`、`analyze.py`、`probe*.py` 等，已入库）；作参考用，权威流程仍是上表的正式脚本与 README。
+- 用法与流程的权威说明：`tools/client-code/README.md`、`tools/localization/README.md`、`doc/client-localization-3913.md`。
 
 运行解释器：`C:\Users\zhang\AppData\Roaming\uv\python\cpython-3.11-windows-x86_64-none\python.exe`（`python` 不在 PATH）。
 

@@ -51,7 +51,7 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 - 提交前看 `git status` / `git diff` / `git log --oneline -10`，只 stage 本次有意改动；绝不提交密钥、日志、`dumps/`、`target/`、临时产物；不 `--force`、不建空提交。
 - 提交信息：简短英文祈使句（`Add ...` / `Fix ...` / `Allow ...`），一句话说清改了什么。
 - 提交后报告短 hash 与摘要；**不自动 push**（除非明确要求）；提交失败另起新提交、不 amend。
-- `.gitignore` 仍写着 `tools/`、`target/`、`crates/eve-server/web/node_modules/`；但客户端本地化流水线与产物已用 `git add -f` 纳入版本库（`tools/localization/`、`config/localization/`）。该目录下**新增**文件默认仍被忽略，需显式 `git add -f`。
+- `.gitignore` 仍写着 `tools/`、`target/`、`crates/eve-server/web/node_modules/`；但客户端代码工具与本地化流水线已用 `git add -f` 纳入版本库（`tools/client-code/`、`tools/localization/`、`config/localization/`）。这些目录下**新增**文件默认仍被忽略，需显式 `git add -f`。
 
 ---
 
@@ -142,8 +142,8 @@ git 对分支引用加锁、更新原子，**不存在真正的同时合并**：
 **3913 客户端的 Python 代码只有两种形态：`script\compiled.code`（自定义容器：Python protocol-1 pickle + marshal code object，373 个模块，约 7.9 MB）和 `lib\*.pyo` / `stdlib\**` 里的散装字节码。`bin\exefile.exe`、`bin\*.dll`、`res\*.stuff` 一律不改。**
 
 - 零售原样备份 `script\compiled.code.vanilla` 必须保持不动，它是唯一的重置来源。**当前 `compiled.code` 已与 vanilla 不同**（143/373 个模块被改过，2026-11-01 写入），即工作包已经带本地化改动；要回到零售状态就从 `.vanilla` 重新生成。
-- 改动一律**由脚本生成**，可复现：工具在 `tools/localization/`（`eveccp.py` 读写容器、`dis24.py`/`opcode24.py` 反汇编、`localize_code.py` 改字符串、`scan.py`/`verify.py` 校验、`make_messages_zh.py` 生成静态消息文件；映射表 `config/localization/ui_en_zh.json`），已纳入版本库。
-- 工具与产物都在版本库：`tools/localization/README.md`（用法）、`tools/localization/artifacts/compiled.code.zh`（当前客户端包，md5 `251dfdefbfa6eda204821afbf3dec74e`，与客户端 `script/compiled.code` 当前一致）、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini`；详细流程见 `doc/client-localization-3913.md`。`tools/` 仍在 `.gitignore` 里，新增文件要 `git add -f`。
+- 改动一律**由脚本生成**，可复现：客户端代码工具在 `tools/client-code/`（`eveccp.py` 读写容器、`dis24.py`/`opcode24.py` 反汇编、`scan.py`/`verify.py` 扫描与校验），本地化流水线在 `tools/localization/`（`localize_code.py` 改字符串、`build_map.py` 建映射、`make_messages_zh.py` 生成静态消息文件；映射表 `config/localization/ui_en_zh.json`），均已纳入版本库。
+- 工具与产物都在版本库：`tools/client-code/README.md`（客户端代码工具）、`tools/localization/README.md`（本地化用法）、`tools/localization/artifacts/compiled.code.zh`（当前客户端包，md5 `251dfdefbfa6eda204821afbf3dec74e`，与客户端 `script/compiled.code` 当前一致）、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini`；详细流程见 `doc/client-localization-3913.md`。`tools/` 仍在 `.gitignore` 里，新增文件要 `git add -f`。
 - 逐模块基线：独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（`dist/compiled.code` + `tree/*.pyc`/`*.py` + `lib/` + `stdlib/` + `tools/`），结构性大改在此进行并重建容器；细节见 `doc/client/client-code-baseline.md`。
 - 每次写入前备份当前 `compiled.code`；写完必须进客户端**完全重启**验证（字节码只在进程启动时载入），并记录到 `doc/client/`。
 

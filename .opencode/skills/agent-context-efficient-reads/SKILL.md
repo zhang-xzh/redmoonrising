@@ -26,7 +26,7 @@ description: Use for RMR large files, big tool/log output, or many tool steps. T
 
 - 先 `glob`/`grep` 定位，再用 `read` 的 `offset`/`limit` 只取片段；同一大文件一个会话最多整读一次，之后一律 `grep` + 定点读。
 - Rust 文件优先读模块头 `//!` 与函数签名，不整文件回显。
-- 二进制/压缩数据（`compiled.code`、`*.stuff`、`*.sql.gz`）永远不直接读：用工具（`tools/localization/*.py`、`zcat`）抽取需要的部分。
+- 二进制/压缩数据（`compiled.code`、`*.stuff`、`*.sql.gz`）永远不直接读：用工具（`tools/client-code/*.py`、`zcat`）抽取需要的部分。
 
 ## 命令输出（PowerShell）
 

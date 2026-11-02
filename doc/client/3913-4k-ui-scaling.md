@@ -43,7 +43,7 @@
 
 - `script/sys/autoexec.py` 在启动时执行 `script:/my_autoexec.py`（如果存在），随后才执行
   `script/run.py`。该文件是纯 `.py` 源码，由客户端自己的 Python 运行时编译，删掉即回滚。
-- `script/compiled.code` 可用 `tools/localization/eveccp.py` 读写（Python 2.3 marshal，
+- `script/compiled.code` 可用 `tools/client-code/eveccp.py` 读写（Python 2.3 marshal，
   magic `0A0DF23B`），`dis24.py` / `repack.py` 已经验证可字节级往返。
 - `trinity.dll` 的 `triui` 模块有一个运行时属性 `desktopScale`，描述为
   “Scales virtual desktop area”（字符串 `0x102c2564`），同对象在渲染路径里把

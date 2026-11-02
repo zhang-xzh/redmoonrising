@@ -43,10 +43,10 @@
 
 ## 客户端代码仓库（未来：3913 `compiled.code`）
 
-- 目前**没有**独立的 3913 客户端代码仓库；`tools/localization/` 被 `.gitignore` 忽略，属本地未跟踪文件。
+- 3913 客户端代码的逐模块基线在独立 git 仓库 `M:\EVE-LOCAL\inputs\EVE-Online-3913-code`（见 `doc/client/client-code-baseline.md`）；本仓库只保留代码工具（`tools/client-code/`，已入库）与本地化流水线（`tools/localization/`），两者不要互相覆盖。
 - 建立仓库后的目标布局（与 3396210 仓库同一套策略）：
   - `tree\` = 解包出的 `script/`（模块路径 → marshal blob），权威且字节精确。
-  - `patches\` = 改写脚本/安装器（只用 `tools/localization/*.py`）。
+  - `patches\` = 改写脚本/安装器（只用 `tools/client-code/*.py` 与 `tools/localization/*.py`）。
   - `dist\compiled.code` = 打好的原包；`main` = 零售基线，`plus` = 开发主线。
 - 建仓库前的大改一律先手工备份 `compiled.code`：
 

@@ -54,7 +54,7 @@ build/版本列；客户端 `script/compiled.code.vanilla` 目前缺失。所以
 
 - `boot.ini`：`version=2.10 / build=3913 / codename=Blood`；`res/common/messages.txt`：
   `ReleaseSubtitle=Red Moon Rising`。
-- 字节码扫描（`tools/localization/scan.py` + 本工具）：没有 `rigSlot`/`rigs`、没有
+- 字节码扫描（`tools/client-code/scan.py` + 本工具）：没有 `rigSlot`/`rigs`、没有
   contracts 系统、没有 invention；`messages.txt` 里的 `ReleaseSubtitle` 与 `boot.ini` 同代。
 - `script/` 下现有文件：`compiled.code`（零售原版，sha256 `daa5eae3…`，md5 `36e18ef3…`）、
   `compiled.code.zh-prev-20261101-194509`（上一版中文包，7,926,678 字节，md5 `251dfdef…`）、
