@@ -8,4 +8,4 @@ RMR 已解决异常的索引。正文不是 skill，每篇正文位于 `doc/issu
 
 | 归档文档 | 症状 / 触发关键词 |
 |---|---|
-| [rmr-issue-language-list-empty.md](rmr-issue-language-list-empty.md) | 多语言阶段 1（计划中）：ESC → Language 标签列表为空；`AttributeError: 'list' object has no attribute 'languageID'`；GetLanguages / languageSvc / SetLanguageID |
+| [rmr-issue-language-list-empty.md](rmr-issue-language-list-empty.md) | 已修复：ESC → Language 标签列表为空；`AttributeError: 'list' object has no attribute 'languageID'`；GetLanguages 返回 list 而非 Rowset；SetLanguageID 不改 session；语言名乱码 |

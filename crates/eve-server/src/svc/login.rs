@@ -21,7 +21,8 @@ pub async fn object_caching(call: &Call, ctx: &Ctx<'_>) -> Option<Outcome> {
 pub async fn authentication(call: &Call, _ctx: &Ctx<'_>) -> Option<Outcome> {
     let value = match call.method.as_str() {
         "Ping" => Value::Long(crate::bulkdata::filetime_now()),
-        "GetPostAuthenticationMessage" | "SetLanguageID" => Value::None,
+        // SetLanguageID changes the session, so conn serves it before dispatch.
+        "GetPostAuthenticationMessage" => Value::None,
         _ => return None,
     };
     Some(Outcome::Value(value))

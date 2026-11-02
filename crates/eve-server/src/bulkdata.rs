@@ -6,6 +6,8 @@ use flate2::Compression;
 use tokio_postgres::error::SqlState;
 use std::io::Write;
 
+use crate::i18n::Overlay;
+
 #[derive(Copy, Clone, PartialEq)]
 pub enum Shape {
     Tuple,
@@ -143,6 +145,23 @@ pub struct BulkData {
     pub node_id: i64,
 }
 
+/// The English bulk data plus one build per translated language.
+pub struct BulkSet {
+    pub base: BulkData,
+    pub by_lang: HashMap<String, BulkData>,
+}
+
+impl BulkSet {
+    /// The bulk a session with `lang` gets; unknown and untranslated languages
+    /// fall back to English.
+    pub fn for_lang(&self, lang: Option<&str>) -> &BulkData {
+        lang
+            .map(|l| l.trim().to_ascii_uppercase())
+            .and_then(|l| self.by_lang.get(&l))
+            .unwrap_or(&self.base)
+    }
+}
+
 const CACHED_OBJECT_GUID: &[u8] = b"util.CachedObject";
 const PAYLOAD_GUID: &[u8] = b"objectCaching.CachedObject";
 const ROWSET_GUID: &[u8] = b"util.Rowset";
@@ -166,10 +185,11 @@ impl BulkData {
         table: &StringTable,
         node_id: i64,
         now: i64,
+        overlay: Option<&Overlay>,
     ) -> Result<Self, tokio_postgres::Error> {
         let mut entries = HashMap::new();
         for spec in SPECS {
-            let (header, lines) = match spec.sql {
+            let (header, mut lines) = match spec.sql {
                 Some(sql) => match query_rows(db, sql, spec.numeric_text).await {
                     Ok(v) => v,
                     // A static table this object reads is missing: serve it empty
@@ -189,6 +209,12 @@ impl BulkData {
                     Vec::new(),
                 ),
             };
+            if let Some(overlay) = overlay {
+                let replaced = translate(spec.key, &header, &mut lines, overlay);
+                if replaced > 0 {
+                    tracing::debug!(object = spec.key, texts = replaced, "bulk text translated");
+                }
+            }
             let rows = lines.len();
             let payload = match spec.shape {
                 Shape::Tuple => {
@@ -268,6 +294,70 @@ impl BulkData {
                 Value::Bytes(entry.key.as_bytes().to_vec()),
             ])),
         }
+    }
+}
+
+/// The official table behind a bulk object, for language overlays.
+fn translation_table(key: &str) -> Option<&'static str> {
+    Some(match key {
+        "config.BulkData.types" => "invTypes",
+        "config.BulkData.groups" => "invGroups",
+        "config.BulkData.categories" => "invCategories",
+        "config.BulkData.metagroups" => "invMetaGroups",
+        "config.BulkData.dgmattribs" => "dgmAttributeTypes",
+        "config.BulkData.dgmeffects" => "dgmEffects",
+        "config.BulkData.billtypes" => "billTypes",
+        "config.BulkData.ramaltypes" => "ramAssemblyLineTypes",
+        "config.BulkData.ramactivities" => "ramActivities",
+        "config.BulkData.ramcompletedstatuses" => "ramCompletedStatuses",
+        "config.Roles" => "eveRoles",
+        "config.Flags" => "eveFlags",
+        "config.Races" => "chrRaces",
+        "config.Bloodlines" => "chrBloodlines",
+        "config.Statistics" => "eveStatistics",
+        "config.Units" => "eveUnits",
+        "config.ChannelTypes" => "channelTypes",
+        "config.StaticLocations" => "eveStaticLocations",
+        _ => return None,
+    })
+}
+
+/// Replaces text cells named in the overlay. The first column is the table's
+/// primary key; every bulk object here lists it first. Returns how many cells
+/// were replaced.
+fn translate(spec: &str, header: &[Value], lines: &mut [Value], overlay: &Overlay) -> usize {
+    let Some(table) = translation_table(spec) else { return 0 };
+    let columns: Vec<Option<String>> = header.iter().map(column_name).collect();
+    let mut replaced = 0;
+    for line in lines {
+        let Value::List(cells) = line else { continue };
+        let Some(key) = cells.first().and_then(id_text) else { continue };
+        for (i, cell) in cells.iter_mut().enumerate().skip(1) {
+            let Some(column) = columns.get(i).and_then(Option::as_deref) else { continue };
+            let Value::Bytes(text) = cell else { continue };
+            if let Some(translated) = overlay.text(table, column, &key) {
+                *text = translated.as_bytes().to_vec();
+                replaced += 1;
+            }
+        }
+    }
+    replaced
+}
+
+fn column_name(value: &Value) -> Option<String> {
+    match value {
+        Value::Bytes(b) | Value::Buffer(b) => Some(String::from_utf8_lossy(b).into_owned()),
+        Value::Unicode(s) => Some(s.clone()),
+        _ => None,
+    }
+}
+
+fn id_text(value: &Value) -> Option<String> {
+    match value {
+        Value::Int(i) | Value::Long(i) => Some(i.to_string()),
+        Value::Bytes(b) | Value::Buffer(b) => Some(String::from_utf8_lossy(b).into_owned()),
+        Value::Unicode(s) => Some(s.clone()),
+        _ => None,
     }
 }
 
@@ -352,4 +442,76 @@ pub fn filetime_now() -> i64 {
 
 pub fn service_info() -> Value {
     Value::Dict(Vec::new())
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    fn overlay(raw: &str) -> Overlay {
+        serde_json::from_str(raw).unwrap()
+    }
+
+    #[test]
+    fn translation_replaces_only_overlaid_cells() {
+        let overlay = overlay(
+            r#"{"invTypes":{"typeName":{"587":"裂谷级"},"description":{"587":"描述"}}}"#,
+        );
+        let header = vec![
+            Value::bytes("typeID"),
+            Value::bytes("typeName"),
+            Value::bytes("description"),
+            Value::bytes("groupID"),
+        ];
+        let mut lines = vec![
+            Value::List(vec![
+                Value::Int(587),
+                Value::bytes("Rifter"),
+                Value::bytes("A frigate."),
+                Value::Int(25),
+            ]),
+            // A type the overlay does not know stays English.
+            Value::List(vec![
+                Value::Int(588),
+                Value::bytes("Reaper"),
+                Value::None,
+                Value::Int(237),
+            ]),
+        ];
+        assert_eq!(
+            translate("config.BulkData.types", &header, &mut lines, &overlay),
+            2
+        );
+        let Value::List(first) = &lines[0] else { panic!("line is not a list") };
+        assert_eq!(first[0], Value::Int(587));
+        assert_eq!(first[1], Value::bytes("裂谷级"));
+        assert_eq!(first[2], Value::bytes("描述"));
+        assert_eq!(first[3], Value::Int(25));
+        let Value::List(second) = &lines[1] else { panic!("line is not a list") };
+        assert_eq!(second[1], Value::bytes("Reaper"));
+    }
+
+    #[test]
+    fn objects_without_a_table_are_left_alone() {
+        let overlay = overlay(r#"{"invTypes":{"typeName":{"587":"裂谷级"}}}"#);
+        let header = vec![Value::bytes("messageID"), Value::bytes("messageText")];
+        let mut lines = vec![Value::List(vec![Value::Int(587), Value::bytes("Rifter")])];
+        assert_eq!(
+            translate("config.BulkData.messages", &header, &mut lines, &overlay),
+            0
+        );
+        let Value::List(cells) = &lines[0] else { panic!("line is not a list") };
+        assert_eq!(cells[1], Value::bytes("Rifter"));
+    }
+
+    #[test]
+    fn a_language_picks_its_bulk_or_falls_back_to_english() {
+        let empty = || BulkData { entries: HashMap::new(), node_id: 1 };
+        let mut by_lang = HashMap::new();
+        by_lang.insert("ZH".to_string(), empty());
+        let set = BulkSet { base: empty(), by_lang };
+        assert!(std::ptr::eq(set.for_lang(Some("zh")), &set.by_lang["ZH"]));
+        assert!(std::ptr::eq(set.for_lang(Some("DE")), &set.base));
+        assert!(std::ptr::eq(set.for_lang(None), &set.base));
+    }
 }

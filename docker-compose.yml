@@ -36,6 +36,8 @@ services:
       RMR_DATABASE: postgres://rmr:rmr@postgres:5432/rmr
     volumes:
       - ./rmr.yml:/app/rmr.yml:ro
+      # server_<lang>.json overlays; edit and restart the server.
+      - ./config/localization:/app/config/localization:ro
     ports:
       - "26000:26000"
       # The web dashboard: this machine only, since it has no login.

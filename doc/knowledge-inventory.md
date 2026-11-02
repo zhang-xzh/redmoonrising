@@ -43,7 +43,7 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `doc/data/provenance-3913.md` | 客户端/数据库版本锚点、sha256 基线、消息键交叉校验 |
 | `doc/client/client-3913.md` | 客户端布局、`compiled.code`、本地化工具链 |
 | `doc/client/client-code-baseline.md` | 零售代码基线仓库（`dist`+`tree`+`lib`+`stdlib`）、反编译工具与验证 |
-| `doc/client/multilanguage-3913.md` | 多语言机制、分层方案、会话/bulk/客户端文案的实施阶段 |
+| `doc/client/multilanguage-3913.md` | 多语言机制与现状：会话闭环、按语言 bulk（EN/ZH 覆盖层）、剩余阶段（动态名称/教程/UI 文案） |
 | `doc/client-localization-3913.md` | 客户端本地化流水线的原始说明（依据、现状、限制），根级方法文档 |
 | `doc/issues/INDEX.md` | 异常归档索引 |
 
@@ -56,6 +56,6 @@ RMR 项目的知识索引：技能（skills）、仓库文档、脚本与工具�
 | `crates/eve-server/src/bin/fakeclient.rs` | 无头客户端：LLV 握手 + 脚本化服务调用 |
 | `crates/eve-server/web/` | TypeScript 仪表盘（`npm run build` 产出 `web/dist/app.js`，随源提交） |
 | `tools/client-code/*.py` | `compiled.code` 容器解包/反汇编/扫描/重打包校验与诊断探针（已纳入版本库；`tools/` 仍在 `.gitignore`，新增文件要 `git add -f`） |
-| `tools/localization/*.py` | 本地化映射构建、字符串改写、静态消息生成与产物（同上，已纳入版本库） |
+| `tools/localization/*.py` | 客户端本地化映射/改写/消息生成，以及服务端名称层 `build_server_map.py`（生成 `config/localization/server_zh.json`；同上，已纳入版本库） |
 | `tools/data-provenance/*.py` | 客户端 + `db/` 的 sha256 清单、数据库内容锚点、客户端消息键交叉校验；基线 JSON 与用法见 `doc/data/provenance-3913.md`（已纳入版本库，新增文件要 `git add -f`） |
 | `db/*.sql.gz` | 官方表转储，卷首次启动时导入 |

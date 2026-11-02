@@ -84,20 +84,49 @@ impl Conn {
         self.session.user_id = Some(account.account_id);
         self.session.role = ROLE_LOGIN | ROLE_PLAYER | account.role;
         self.session.address = Some(self.peer.to_string());
-        self.session.language_id = Some(
-            clientinfo
-                .get_str("languageID")
-                .and_then(|v| v.as_bytes())
-                .map(|b| String::from_utf8_lossy(b).into_owned())
-                .unwrap_or_else(|| "EN".to_string()),
-        );
+        // The client's own preference wins; an account that never sent one
+        // starts from what it chose last time, then English.
+        let language = clientinfo
+            .get_str("languageID")
+            .and_then(|v| v.as_bytes())
+            .map(|b| String::from_utf8_lossy(b).into_owned())
+            .filter(|l| !l.trim().is_empty())
+            .or_else(|| account.language_id.clone())
+            .unwrap_or_else(|| "EN".to_string());
+        let language = match db::language_exists(&self.server.db, &language).await {
+            Ok(true) => language,
+            Ok(false) => {
+                warn!("unknown language {language:?} at login; using EN");
+                "EN".to_string()
+            }
+            Err(e) => {
+                error!("checking the login language: {}", crate::logging::chain(&e));
+                language
+            }
+        };
+        self.session.language_id = Some(language.clone());
+        if account.language_id.as_deref() != Some(language.as_str()) {
+            if let Err(e) =
+                db::set_account_language(&self.server.db, account.account_id, &language).await
+            {
+                error!(
+                    "saving language for account {}: {}",
+                    account.account_id,
+                    crate::logging::chain(&e)
+                );
+            }
+        }
         self.session.char_id = None;
         self.authenticated = true;
         self.span.record("user", account.account_id);
 
         self.pending_session_change = Some(self.session_change(self.session.change_body()));
 
-        let inner = Value::Tuple(vec![self.server.bulk.init_vals(), bulkdata::service_info()]);
+        let (init_vals, objects) = {
+            let bulk = self.server.bulk.for_lang(self.session.language_id.as_deref());
+            (bulk.init_vals(), bulk.entries.len())
+        };
+        let inner = Value::Tuple(vec![init_vals, bulkdata::service_info()]);
         let payload = eve_marshal::save(&inner, &self.server.table)?;
         let mut rsp = packet.respond(
             MessageType::AuthenticationRsp,
@@ -117,7 +146,7 @@ impl Conn {
             sid = self.session.sid,
             "logged in as {:?}, sent {} init stubs",
             account.name,
-            self.server.bulk.entries.len()
+            objects
         );
         Ok(())
     }

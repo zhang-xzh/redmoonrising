@@ -71,10 +71,11 @@ Python-2 protocol-1 pickle:
 | `tools/localization/localize_code.py` | 按映射表把显示字符串改成中文 `unicode`；跳过类名、字典键、import 名、比较常量、单 token 标识符 |
 | `tools/localization/build_map.py` | 从 3396210 的 en-us + zh 本地化构建 EN→ZH 映射 `config/localization/ui_en_zh.json`（约 2457 条） |
 | `tools/localization/make_messages_zh.py` | 生成 `res/common/messages.zh.txt`（UTF-16LE + BOM + CRLF） |
+| `tools/localization/build_server_map.py` | 从同一对本地化表 + 3913 `db/` 英文原文生成服务端覆盖层 `config/localization/server_zh.json`（表/列/主键 → 中文） |
 | `tools/localization/exclude.json` | 已知会破坏客户端、需精确排除的字符串（当前为空） |
 | `tools/localization/artifacts/compiled.code.zh`、`artifacts/messages.zh.txt`、`artifacts/prefs.zh.ini` | 当前构建产物；按 README 覆盖到客户端 |
 
-- 映射表只有一份：仓库根 `config/localization/ui_en_zh.json`（`build_map.py` 默认输出、`localize_code.py` 默认读取）。
+- 客户端字符串映射只有一份：仓库根 `config/localization/ui_en_zh.json`（`build_map.py` 默认输出、`localize_code.py` 默认读取）；服务端名称层是另一份 `config/localization/server_zh.json`（`build_server_map.py`）。
 - 诊断/复现脚本在 `tools/client-code/probes/`（`repack.py`、`check_patch.py`、`stats.py`、`analyze.py`、`probe*.py` 等，已入库）；作参考用，权威流程仍是上表的正式脚本与 README。
 - 用法与流程的权威说明：`tools/client-code/README.md`、`tools/localization/README.md`、`doc/client-localization-3913.md`。
 
