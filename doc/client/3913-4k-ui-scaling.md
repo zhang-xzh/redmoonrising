@@ -66,6 +66,31 @@ eve.triapp.uilib.desktopScale = 1.0   # 原始
 如果以后要把登录页也做成 200%，需要缩放 `splashunderlay` 及其子布局（改 `.blue` 资源或
 登录页代码），不是 `desktopScale` 一行能解决的。
 
+## 鼠标精度 / DPI 感知
+
+这台机器是 4K 面板 + Windows 150% 缩放（`AppliedDPI=144`，逻辑桌面 2560×1440，
+物理 3840×2160）。3913 的 `exefile.exe` 没有 DPI manifest，默认是 **DPI-unaware**，
+Windows 会把 2560×1440 的窗口和鼠标坐标整体虚拟化 1.5×。再叠加 `desktopScale=0.5`
+的 2×，游戏内鼠标实际按 **3 个物理像素/步** 走，所以明显比桌面（1 物理像素）粗糙，
+画面也被 Windows 二次拉伸。
+
+修复（注册表，可逆，不改客户端文件）：
+
+```
+HKCU\Software\Microsoft\Windows NT\CurrentVersion\AppCompatFlags\Layers
+    M:\EVE-LOCAL\inputs\EVE-Online-3913\bin\exefile.exe = "~ HIGHDPIAWARE"
+```
+
+设置后实测进程 `GetProcessDpiAwareness = 2`（per-monitor aware），窗口按物理像素创建，
+Windows 不再做 1.5× 拉伸。之后在游戏内把 **WINDOW SIZE 设为 3840×2160**（或 fullscreen），
+`desktopScale=0.5` 就是真正的 4K 200%，鼠标量化降到 2 物理像素/步。
+
+剩余的 2 像素/步来自 200% UI 缩放本身：`triui` 的硬件光标位置仍在虚拟桌面坐标上。
+要做到 1 像素/步，需要 hook `IDirect3DDevice9::SetCursorPosition`，用原始鼠标坐标设置
+硬件光标（UI 命中测试仍用虚拟坐标）；这是一个很小的 `d3d9.dll` 光标专用代理，不影响渲染。
+
+回滚：删除上面的 registry 值。
+
 ## 回滚
 
 删除客户端 `script\my_autoexec.py`，并删除 `cache\ui_scale_*.txt`。没有改
